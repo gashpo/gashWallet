@@ -1,0 +1,131 @@
+.chip-tabs {
+    width: 100%;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    overflow-x: auto;
+    padding: calc( 0.25 * var(--font-size) ) calc( 1.25 * var(--font-size) ) calc( 0.75 * var(--font-size) ) calc( 1.25 * var(--font-size) );
+    white-space: nowrap;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.chip-tab-item {
+    display: inline-block;
+    padding: calc( 0.3 * var(--font-size) ) calc( 0.75 * var(--font-size) );
+    border-radius: calc(  2 * var(--font-size) );
+    color: $bfMediumGray;
+    font-size: calc( 0.8125 * var(--font-size) );
+    line-height: calc( 1.125 * var(--font-size) );
+    transition: 0.1s;
+
+    & + .chip-tab-item {
+        margin-left: calc( 0.75 * var(--font-size) );
+    }
+
+    &.active {
+        background-color: $bfPrimary;
+        color: $bfWhite;
+    }
+}
+
+// 固定下方的分享 tab bar
+
+.tab-bar {
+    position: fixed;
+    bottom: 0;
+    padding: calc( 0.75 * var(--font-size) ) calc( 0.75 * var(--font-size) ) calc( 2.125 * var(--font-size) ) calc( 0.75 * var(--font-size) );
+    background: $bfWhite;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: calc( 1.25 * var(--font-size) ) calc( 1.25 * var(--font-size) ) 0 0s;
+    box-shadow: 0px 0px calc( 1 * var(--font-size) ) rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.tab-bar-item, button.tab-bar-item {
+    border: unset;
+    background: unset;
+    padding: 0 calc( 1 * var(--font-size) );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $bfDarkGray;
+    .img {
+        width: calc( 1.875 * var(--font-size) );
+        padding-top: calc( 1.875 * var(--font-size) );
+    }
+    &[disabled="disabled"] {
+        * {
+            color: $bfMediumGray;
+        }
+    }
+}
+
+.tab-menu {
+    display: flex;
+    overflow-y: auto;
+    padding: calc( 0.25 * var(--font-size) ) calc( 2 * var(--font-size) ) 0 calc( 2 * var(--font-size) );
+    border-bottom: 1px solid $bfSoftWhite;
+}
+
+.tab-menu-item {
+    padding: calc( 1 * var(--font-size) ) calc( 1.5 * var(--font-size) );
+    flex-shrink: 0;
+    font-size: calc( 1.5 * var(--font-size) );
+    color: $bfMediumGray;
+    label {
+        color: $bfMediumGray;
+        transition: $transition;
+    }
+    &:before {
+        content: "";
+        position: absolute;
+        transition: $transition;
+        width: 0;
+        height: calc( 0.2 * var(--font-size) );
+        bottom: 0;
+    }
+    &.active {
+        position: relative;
+        font-weight: 500;
+        color: $bfPrimary;
+        // border-bottom: calc( .25 * var(--font-size) ) solid $bfPrimary;
+        &:before {
+            background: $bfPrimary;
+            width: 100%;
+            right: 0;
+        }
+        label {
+            color: $bfPrimary;
+            font-weight: bold;
+        }
+    }
+    &.toLeft {
+        &:before {
+            right: 0;
+        }
+    }
+    &.toRight {
+        &:before {
+            left: 0%;
+        }
+    }
+}
+
+.tab-content {
+    padding: calc( 1 * var(--font-size) );
+    .no-result {
+        width: calc( 7.0625 * var(--font-size) );
+        padding-top: calc( 5.3125 * var(--font-size) );
+        margin-top: calc( 5.75 * var(--font-size) );
+        margin-bottom: calc( 1.43 * var(--font-size) );
+        img {
+            min-width: 100%;
+            min-height: 100%;
+        }
+    }
+}

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>GASH會員錢包 | 安全便捷的遊戲支付首選！</title>
+  <link rel="icon" type="image/png" href="img/favicon.ico" />
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.jpg" />
+  <meta name="keywords" content="GASH、遊戲橘子、遊戲點數、儲值、點數儲值、GASH點數、樂點、電子錢包" />
+  <meta name="description" content="GASH會員錢包是一個方便快捷的數位錢包，讓您可輕鬆進行遊戲內儲值，並在眾多遊戲中暢享消費樂趣。無論是儲值或是消費，都能享受安全且便捷的支付體驗。立即使用GASH會員錢包，盡情暢玩您喜愛的線上遊戲！" />
+  <!-- share info -->
+  <meta property="og:url" content="https://gashwallet.gashpoint.com"/>
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GASH會員錢包 | 安全便捷的遊戲支付首選！" />
+  <!-- Stage / og:image -->
+  <meta property="og:image" content="https://stage-gashwallet.gashpoint.com/img/og-image.jpg" />
+  <!-- Prod / og:image -->
+  <!-- <meta property="og:image" content="https://gashwallet.gashpoint.com/img/og-image.jpg" /> -->
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="720" />
+  
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="fonts/icons/icon.woff2" />
+  <link rel="stylesheet" href="fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="fonts/icons/icons.css" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Stage / Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P8G3C282');</script>
+  <!-- End Google Tag Manager -->
+  
+  <!-- Prod / Google Tag Manager -->
+  <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KZSGGMHK');</script> -->
+  <!-- End Google Tag Manager -->
+</head>
+
+<!-- Stage / Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PCE9RRCSVL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PCE9RRCSVL');
+</script>
+
+<!-- Prod / Google tag (gtag.js) -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9BJ2B40KC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F9BJ2B40KC');
+</script> -->
+
+<body>
+  <!-- Stage / Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P8G3C282"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- Prod / Google Tag Manager (noscript) -->
+  <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZSGGMHK"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header id="header">
+    <div class="cont">
+      <div class="lateral"></div>
+      <div class="center">
+        <img src="img/gash_logo.svg">
+      </div>
+      <div class="lateral">
+        <button class="btn" @click="toggleLoginStatus">{{ loginStatus ? '登出' : '登入' }}</button>
+      </div>
+    </div>
+  </header>
+
+  <div id="main-container" class="container convert">
+    <ul class="breadcrumb">
+      <li><a href="index.html"><i class="be-icon be-icon-home" aria-hidden="true"></i>首頁</a></li>
+      <li><a href="convert.html"></i>兌換</a></li>
+      <li>兌換 BitCash</li>
+    </ul>
+    <div class="topup-card bitcash">
+      <div class="topup-title">
+        <h4>兌換 BitCash</h4>
+        <p>請確認您的 GASH 錢包餘額後，選擇欲兌換面額，將立即兌換為 BitCash 序號使用。</p>
+      </div>
+      <div class="points">
+        <p>GASH Points</p>
+        <img src="img/points-gash.svg">
+        <p>1,502</p><span>點</span>
+      </div>
+      <div class="bitcash-list">
+        <p>選擇你要購買的面額</p>
+        <ul>
+          <li v-for="(item, index) in bitcashList" :key="index">
+            <input type="radio" :id="'exchange' + (index + 1)" value="" name="bitcash" :disabled="item.disabled" @change="selectBitcash(index)">
+            <label :for="'exchange' + (index + 1)">
+              <div class="bp"><img src="img/points-bitcash.svg" alt="">{{item.bp}}</div>
+              <div class="gp"><img src="img/points-gash.svg" alt="">{{item.gp}}</div>
+            </label>
+          </li>
+        </ul>
+      </div>
+      <div class="input-checkbox">
+        <input type="checkbox" value="agreeProductTerms" id="agree-product-terms" v-model="agreeProductTerms">
+        <label class="checkbox__label" for="agree-product-terms">購買前請確認同意遵守 <a href="https://bitcash.jp/docs/terms/lang/zh-TW/caution" target="_blank">BitCash 使用條款</a></label>
+      </div>
+      <button class="btn" @click="showPopup('importing')" :disabled="!isButtonEnabled">立即兌換</button>
+    </div>
+     <p class="topup-buy">還對於 BitCash 有疑問嗎？前往 <a href="https://bitcash.jp/docs/support/faq/lang/zh-TW/s01" target="_blank">BitCash 常見問題</a></p>
+
+
+     <!-- Popup - 輸入安全鎖 -->
+     <div class="modal-dialog" v-if="modalVisible && currentPopup === 'importing'">
+      <span class="modal-close-btn" @click="hidePopup"><i class="icon-close"></i></span>
+      <div class="modal-container">
+        <div class="modal-title">
+          <h3>請輸入安全鎖密碼</h3>
+        </div>
+        <div class="inputBox">
+          <label for="password">安全鎖密碼</label>
+          <div class="input-icon">
+            <input id="password" :type="isPassWordV ? 'text' : 'password'" maxlength="6" oninput="value=value.replace(/[^\d]/g,'')" placeholder="請輸入安全鎖密碼" v-model="passWord">
+            <i :class="iconClass" @click="togglePassWordV"></i>
+          </div>
+          <div class="tipBox error">
+            <p>僅限6碼數字</p>
+          </div>
+        </div>
+        <button class="btn" :disabled="!passWord.length" @click="showToast(); hidePopup(); showPopup('success'); ">確定</button>
+      </div>
+    </div>    
+    <!-- Popup - 兌換成功 -->
+    <div class="modal-dialog" v-if="modalVisible && currentPopup === 'success'">
+      <span class="modal-close-btn" @click="hidePopup"><i class="icon-close"></i></span>
+      <div class="modal-container">
+        <div class="modal-title">
+          <h3>兌換成功</h3>
+          <p>以下為你的兌換代碼，請妥善保管。相關兌換紀錄可於紀錄中查詢。</p>
+        </div>
+        <div class="input-icon copy">
+          <input type="text" v-model="serialNo">
+          <i class="icon-icon_copy" @click="copySerialNo(); showToast();" ref="copyIcon"></i>
+        </div>
+        <div class="btnBox">
+          <button class="btn" onclick="window.open('https://bitcash.jp/docs_jp/tri?act=cmn/guide/lang/zh-TW/index&sv=1&_lh#how-to-use', '_blank')">前往 BitCash 使用</button>
+          <button class="btn btn-outline" @click="hidePopup()">繼續兌換</button>
+        </div>
+      </div>
+    </div>
+    <!-- 遮罩 -->
+    <div class="overlay" v-if="modalVisible" @click="hidePopup"></div>
+  </div>
+
+
+  <!-- toast - 安全鎖輸入錯誤 -->
+  <div class="toastBox ic-false">
+    <p>安全鎖輸入錯誤，請重新輸入。</p>
+  </div>
+  <!-- toast - 複製成功 -->
+  <div class="toastBox ic-true">
+    <p>複製成功</p>
+  </div>
+ 
+
+  <footer>
+    @2023 集團 Group
+  </footer>
+
+  <script src="js/vendor/jquery-3.6.0.min.js"></script>
+  <script src="js/vendor/vue-2.6.14.min.js"></script>
+  <script type="text/javascript">
+    var vmHeader = new Vue({ 
+      el: "#header",
+      data() {
+        return {
+          loginStatus: false, //登入鈕
+        }},
+
+        methods: {
+        toggleLoginStatus() {
+          // 切換登入狀態
+          this.loginStatus = !this.loginStatus;
+        }
+      },        
+    });
+
+    var vmCont = new Vue({
+      el: '#main-container',
+      data() {
+        return {
+          agreeProductTerms: false, //checkbox
+          passWord: '',
+          isPassWordV: false,
+          serialNo: 'きょうもすてきないちにちですよ',
+          modalVisible: false, //遮罩
+          currentPopup: '',
+          
+          bitcashList: [
+            { bp: "1,000",gp: "326", disabled: false, selected: false},
+            { bp: "3,000",gp: "997", disabled: false, selected: false},
+            { bp: "5,000",gp: "1,627", disabled: true, selected: false},
+            { bp: "10,000",gp: "3,254", disabled: true, selected: false}
+          ],
+        }
+      },
+
+      methods: {
+        //監控哪 bitcash 被選取
+        selectBitcash(index) {
+          this.bitcashList.forEach((item, i) => {
+            item.selected = (i === index);
+          });
+        },
+
+        //檢視密碼
+        togglePassWordV() {
+          this.isPassWordV = !this.isPassWordV;
+        },
+
+        // 複製序號
+        copySerialNo() {
+          // 複製 serialNo 的值
+          navigator.clipboard.writeText(this.serialNo)
+            .then(() => {
+              // 複製成功，將圖標 class 切換為 icon-icon_check
+              this.$refs.copyIcon.classList.remove('icon-icon_copy');
+              this.$refs.copyIcon.classList.add('icon-icon_check');
+
+              // 兩秒後切換回 icon-icon_copy
+              setTimeout(() => {
+                this.$refs.copyIcon.classList.remove('icon-icon_check');
+                this.$refs.copyIcon.classList.add('icon-icon_copy');
+              }, 2000);
+            })
+        },
+
+        //popup
+        showModal() {
+          this.modalVisible = true;
+          document.body.classList.add('modal-open');
+          this.skeleton = true;
+        },
+        hidePopup() {
+          this.modalVisible = false;
+          this.currentPopup = ''; // 清除當前顯示的 popup
+          document.body.classList.remove('modal-open');
+          this.data = true;
+          this.skeleton = false;
+        },
+        showPopup(popupName) {
+          this.currentPopup = popupName; // 顯示當對應 popup
+          this.showModal();
+        },
+        
+        // 顯示 toast
+        showToast() {
+          $(".toastBox").animate({ top: "10px" }, 100).delay(2000).animate({ top: "-40px" }, 100);
+        },
+      },
+
+      computed: {
+        // 立即兌換 btn
+        isButtonEnabled() {
+          return this.bitcashList.some(item => item.selected) && this.agreeProductTerms;
+        },
+
+        // 檢視密碼icon
+        iconClass() {
+          return this.isPassWordV ? 'icon_visibility' : 'icon_visibility-off';
+        },
+      },
+
+    });
+  </script>
+</body>
+
+</html>

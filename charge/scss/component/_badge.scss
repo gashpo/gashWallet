@@ -1,0 +1,14 @@
+.badge {
+    padding: calc( .25 * var(--font-size) ) calc( .5 * var(--font-size) );
+    font-size: calc( 0.8125 * var(--font-size) );
+    line-height: calc( 1 * var(--font-size) );
+    vertical-align: middle;
+    color: $bfWhite;
+    white-space: nowrap;
+    border-radius: calc( 1 * var(--font-size) );
+}
+
+.badge-disabled, .badge[data-type="disabled"] {
+    background: $bfGray;
+    align-self:flex-end;
+}

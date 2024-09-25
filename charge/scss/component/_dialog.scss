@@ -1,0 +1,191 @@
+.dialog {
+    color: $bfDark;
+    min-width: 100%;
+    max-height: calc( 37 * var(--font-size) );
+    overflow-x: hidden;
+
+    
+    &.fancybox-content {
+        border-radius: calc( 1.25 * var(--font-size) );
+        padding: calc( 1.5 * var(--font-size) ) calc( 2.5 * var(--font-size) ) calc( 1 * var(--font-size) );
+        .fancybox-close-small {
+            display: none;
+            padding: calc( .75 * var(--font-size) );
+            width: calc( 3.5 * var(--font-size) );
+            height: calc( 3.5 * var(--font-size) );
+        }
+    }
+    .Title {
+        // font-weight: bold;
+        color: $bfDark;
+    }
+    .Subhead2-M {
+        line-height: calc( 1.5 * var(--font-size) );
+    }
+    &.no-close {
+        .fancybox-button[class*='fancybox-close'] {
+            display: none;
+        }
+    }
+    // 增減小卡張數的 input disabled 樣式
+    
+    .input[disabled] {
+        background: white;
+        border-color: $bfPrimary;
+        color: $bfDark;
+        opacity: 1;
+    }
+}
+
+.fancybox-slide.fancybox-slide--html {
+    padding: calc( 1.9 * var(--font-size) );
+}
+
+.reward-wrap {
+    width: 100%;
+    border-radius: calc( 1 * var(--font-size) );
+    padding: calc( 1.25 * var(--font-size) ) calc( 1 * var(--font-size) );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    .reward-wrap-img {
+        width: calc( 5 * var(--font-size) );
+        padding-top: calc( 5 * var(--font-size) );
+        margin-bottom: calc( .5 * var(--font-size) );
+        border-radius: calc( .625 * var(--font-size) );
+        overflow: hidden;
+        position: relative;
+        img {
+            max-height: 100%;  
+            max-width: 100%; 
+            object-fit: cover;
+            width: auto;
+            height: auto;
+            position: absolute;  
+            top: 0;  
+            bottom: 0;  
+            left: 0;  
+            right: 0;  
+            margin: auto;
+        }
+    }
+    // &:before {
+    //     content: '';
+    //     position: absolute;
+    //     right: calc( 1 * var(--font-size) );
+    //     top: calc( -1 * var(--font-size) );
+    //     display: block;
+    //     width: calc( 1.875 * var(--font-size) );
+    //     height: calc( 1.875 * var(--font-size) );
+    //     background-image: url('./../img/bf-img2.png');
+    //     background-repeat: no-repeat;
+    //     background-position: center;
+    //     background-size: cover;
+    // }
+    .reward-wrap-title {
+        margin-bottom: calc( 0.4 * var(--font-size) );
+    }
+}
+
+.dialog-footer {
+    padding-left: calc( 1.4 * var(--font-size) );
+    padding-right: calc( 1.4 * var(--font-size) );
+    margin-left: calc( -1.4 * var(--font-size) );
+    margin-right: calc( -1.4 * var(--font-size) );
+    margin-bottom: calc( -1.4 * var(--font-size) );
+    background: $slightlyLightGray;
+    .d-flex {
+        button.btn-reset {
+            width: 20%;
+            flex-grow: 1;
+            padding: calc( 1 * var(--font-size) );
+            span {
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
+// 小卡細節的設定
+
+.small-detail-img {
+    width: calc( 5.375 * var(--font-size) );
+    padding-top: calc( 5.375 * var(--font-size) );
+    border-radius: calc( 1 * var(--font-size) );
+    margin-top: calc( 2 * var(--font-size) );
+}
+
+.count {
+    padding: 0 calc( .5 * var(--font-size) ) calc( .1 * var(--font-size) ) calc( .5 * var(--font-size) );
+    border: calc( 0.1 * var(--font-size) ) solid $slightlyLightGray;
+    min-width: calc( 2.5 * var(--font-size) );
+    margin-top: calc( -.75 * var(--font-size) );
+    // margin-bottom: calc( 1 * var(--font-size) );
+    background: $bfWhite;
+    border-radius: calc( 2 * var(--font-size) );
+    font-size: calc( 0.8125 * var(--font-size) );
+    line-height: calc( 1 * var(--font-size) );
+
+    vertical-align: middle;
+    color: $bfPrimary;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    box-shadow: 0 calc( 0.25 * var(--font-size) ) calc( 1 * var(--font-size) ) rgba(186, 186, 186, 0.1);
+
+    &:before {
+        content: '×';
+        font-size: calc( 0.75 * var(--font-size) );
+        letter-spacing: 1px;
+    }
+}
+// 交換贈與的小卡圖示
+.small-card-action-img {
+    width: calc( 3.875 * var(--font-size) );
+    height: calc( 3.875 * var(--font-size) );
+    flex-shrink: 0;
+    flex-grow: 0;
+    position: relative;
+    @include shadow1;
+    border: calc( 0.08 * var(--font-size) ) solid $bfSoftWhite;
+    margin-right: calc( 1.5 * var(--font-size) );
+    overflow: hidden;
+    border-radius: calc( 1 * var(--font-size) );
+    img {
+        position: absolute;
+        object-fit: cover;
+        min-width: 100%;
+        min-height: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        margin: auto;
+    }
+}
+
+// 查看票券新增的設定
+.dialog-bar-title {
+    font-size: calc( 1 * var(--font-size) );
+    color: $bfDark;
+    text-align: center;
+    display: block;
+    margin-top: calc( -0.25 * var(--font-size) );
+}
+.dialog-subTitle {
+    width: 100%;
+    padding-bottom: calc( 1 * var(--font-size) );
+    color: $bfDarkGray;
+}
+.dialog-body {
+    display: flex;
+    margin: 0 calc( -1.4 * var(--font-size) ) ;
+    flex-direction: column;
+    align-items: center;
+    padding: calc( 1 * var(--font-size) ) calc( 1.4 * var(--font-size) );
+    height: calc( 28.75 * var(--font-size) );
+    overflow: auto;
+}

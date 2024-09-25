@@ -1,0 +1,292 @@
+/* 按鈕 */
+
+button {
+  margin: unset;
+  width: unset;
+  line-height: 1;
+}
+// 一般大小
+.btn-primary {
+  box-sizing: border-box;
+  background: $bfPrimary;
+  border-color: $bfPrimary;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: calc(1.45 * var(--font-size)) calc(1.2 * var(--font-size));
+  min-width: calc(7.125 * var(--font-size));
+  text-align: center;
+  font-size: calc(1.5 * var(--font-size));
+  line-height: calc(2 * var(--font-size));
+  color: $bfWhite;
+  border-radius: calc(1.8 * var(--font-size));
+  border-style: solid;
+  border-width: calc(0.0625 * var(--font-size));
+  transition: 0.1s ease;
+  vertical-align: middle;
+  margin: calc(2 * var(--font-size)) calc(0.5 * var(--font-size))
+    calc(1 * var(--font-size));
+  box-shadow: 0 calc(0.25 * var(--font-size)) calc(1 * var(--font-size))
+    rgba(38, 208, 124, 0.15);
+  font-weight: 500;
+  .material-icons {
+    vertical-align: middle;
+  }
+  .img {
+    width: calc(1 * var(--font-size));
+    padding-top: calc(1 * var(--font-size));
+    margin: calc(0 * var(--font-size)) calc(0.25 * var(--font-size)) 0
+      calc(0 * var(--font-size));
+  }
+  &:focus,
+  &:hover,
+  &:active {
+    background: $bfDarkPrimary;
+    border-color: $bfDarkPrimary;
+    outline: unset;
+  }
+  &.small {
+    padding: calc(1.2 * var(--font-size)) calc(3 * var(--font-size));
+    border-radius: calc(0.75 * var(--font-size));
+    min-width: unset;
+    margin: calc(1.8 * var(--font-size)) calc(0.25 * var(--font-size));
+  }
+  &.circle {
+    width: calc(3.125 * var(--font-size));
+    height: calc(3.125 * var(--font-size));
+    min-width: unset;
+    padding: 0;
+    border-radius: calc(2 * var(--font-size));
+    font-size: calc(1.25 * var(--font-size));
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    .img,
+    .material-icons {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+    .img {
+      width: calc(1.6 * var(--font-size));
+      padding-top: calc(1.6 * var(--font-size));
+    }
+    .material-icons {
+      line-height: calc(3.125 * var(--font-size));
+    }
+    &.small {
+      padding: calc(0.25 * var(--font-size));
+      width: calc(1.875 * var(--font-size));
+      height: calc(1.875 * var(--font-size));
+      font-size: calc(0.9 * var(--font-size));
+      line-height: calc(1 * var(--font-size));
+      margin: calc(0.5 * var(--font-size)) calc(0.25 * var(--font-size));
+      .material-icons {
+        line-height: calc(1.875 * var(--font-size));
+      }
+    }
+  }
+  &.block {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 40px;
+    display: flex;
+    box-shadow: none;
+
+    span.alert {
+      position: absolute;
+      font-size: 12px;
+      color: $bg;
+      background-color: #2b3843;
+      padding: 4px 8px;
+      border-radius: 4px;
+      right: 16px;
+      transform: translate(0, -40px);
+      min-width: max-content;
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        right: 12px;
+        background-color: #2b3843;
+        width: 20px;
+        height: 16px;
+        clip-path: polygon(40% 0%, 0 75%, 100% 0);
+      }
+    }
+  }
+}
+
+.text-btn {
+  font-size: calc(0.85 * var(--font-size));
+}
+// 外框
+.btn-primary {
+  &.outline {
+    background-color: unset;
+    color: $bfPrimary;
+    font-weight: 500;
+    box-shadow: unset;
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: unset;
+      color: $bfDarkPrimary;
+    }
+  }
+}
+
+// 外框
+.btn-primary {
+  &.text {
+    padding: calc(0.3 * var(--font-size)) calc(0.75 * var(--font-size));
+    margin: calc(0.5 * var(--font-size)) calc(0.25 * var(--font-size));
+    min-width: unset;
+    background-color: unset;
+    border: unset;
+    color: $bfDarkPrimary;
+    box-shadow: unset;
+    &:focus,
+    &:hover,
+    &:active {
+      border: unset;
+      background-color: unset;
+      color: $bfDarkPrimary;
+    }
+  }
+}
+
+// 非 primary 的 icon 按鈕
+.btn-icon {
+  width: calc(2.5 * var(--font-size));
+  height: calc(2.5 * var(--font-size));
+  padding: 0;
+  box-sizing: border-box;
+  // border: 1px solid #f1f1f1;
+  // box-shadow:  0 calc( .25* var(--font-size) ) calc( 1* var(--font-size) ) rgba(75, 75, 75, 0.1);
+  border-radius: calc(1.5 * var(--font-size));
+  position: relative;
+  background: $bfWhite;
+  border: unset;
+  text-align: center;
+  color: $bfDark;
+  flex-shrink: 0;
+  flex-grow: 0;
+  .material-icons {
+    position: absolute;
+    top: calc(0.06 * var(--font-size));
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-size: calc(1.5 * var(--font-size));
+    height: calc(1.5 * var(--font-size));
+    line-height: calc(1.5 * var(--font-size));
+    vertical-align: middle;
+  }
+}
+
+.btn-share {
+  width: calc(2.5 * var(--font-size));
+  height: calc(2.5 * var(--font-size));
+  border: 1px solid $bfSlightlyGray;
+  background-image: url("./../img/icon/ic-share-dark.png");
+  background-size: calc(1.5 * var(--font-size));
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: $bfWhite;
+}
+
+.btn-back {
+  outline: unset;
+  border: unset;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: $bfDark;
+  .btn-icon {
+    flex-shrink: 0;
+    margin-right: calc(0.75 * var(--font-size));
+  }
+}
+
+// 禁止狀態
+.btn-primary {
+  &.disabled,
+  &[disabled="disabled"] {
+    background-color: $bfLightGray;
+    border-color: $bfLightGray;
+    color: $bfWhite;
+    cursor: not-allowed;
+    box-shadow: unset;
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: $bfLightGray;
+      border-color: $bfLightGray;
+      color: $bfWhite;
+    }
+  }
+  &.outline {
+    &.disabled,
+    &[disabled="disabled"] {
+      background-color: unset;
+      border-color: $bfLightGray;
+      color: $bfLightGray;
+      cursor: not-allowed;
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: unset;
+        border-color: $bfLightGray;
+        color: $bfLightGray;
+      }
+    }
+  }
+  &.text {
+    &.disabled,
+    &[disabled="disabled"] {
+      background-color: unset;
+      border: unset;
+      color: $bfLightGray;
+      cursor: not-allowed;
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: unset;
+        border: unset;
+        color: $bfLightGray;
+      }
+    }
+  }
+}
+.material-icons.disabled {
+  color: $disabled-text;
+  cursor: not-allowed;
+}
+
+// 移除按鈕預設
+.btn-reset {
+  background: unset;
+  outline: unset;
+  border-width: 0;
+  transition: 0.15s;
+  &[disabled="disabled"] {
+    opacity: 0.5;
+  }
+}
+
+// 點點點的按鈕 loading
+.btn-loading {
+  // display: inline-block;
+  width: calc(6 * var(--font-size));
+  margin: 0 auto;
+  transform: scale(1.6);
+}

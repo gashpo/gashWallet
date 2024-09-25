@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>GASH會員錢包 | 安全便捷的遊戲支付首選！</title>
+  <link rel="icon" type="image/png" href="img/favicon.ico" />
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.jpg" />
+  <meta name="keywords" content="GASH、遊戲橘子、遊戲點數、儲值、點數儲值、GASH點數、樂點、電子錢包" />
+  <meta name="description" content="GASH會員錢包是一個方便快捷的數位錢包，讓您可輕鬆進行遊戲內儲值，並在眾多遊戲中暢享消費樂趣。無論是儲值或是消費，都能享受安全且便捷的支付體驗。立即使用GASH會員錢包，盡情暢玩您喜愛的線上遊戲！" />
+  <!-- share info -->
+  <meta property="og:url" content="https://gashwallet.gashpoint.com"/>
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GASH會員錢包 | 安全便捷的遊戲支付首選！" />
+  <!-- Stage / og:image -->
+  <meta property="og:image" content="https://stage-gashwallet.gashpoint.com/img/og-image.jpg" />
+  <!-- Prod / og:image -->
+  <!-- <meta property="og:image" content="https://gashwallet.gashpoint.com/img/og-image.jpg" /> -->
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="720" />
+  
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="fonts/icons/icon.woff2" />
+  <link rel="stylesheet" href="fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="fonts/icons/icons.css" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Stage / Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P8G3C282');</script>
+  <!-- End Google Tag Manager -->
+  
+  <!-- Prod / Google Tag Manager -->
+  <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KZSGGMHK');</script> -->
+  <!-- End Google Tag Manager -->
+</head>
+
+<!-- Stage / Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PCE9RRCSVL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PCE9RRCSVL');
+</script>
+
+<!-- Prod / Google tag (gtag.js) -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9BJ2B40KC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F9BJ2B40KC');
+</script> -->
+
+<body>
+  <!-- Stage / Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P8G3C282" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- Prod / Google Tag Manager (noscript) -->
+  <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZSGGMHK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header id="header">
+    <div class="cont">
+      <div class="lateral"></div>
+      <div class="center">
+        <img src="img/gash_logo.svg">
+      </div>
+      <div class="lateral">
+        <button class="btn" @click="toggleLoginStatus">{{ loginStatus ? '登出' : '登入' }}</button>
+      </div>
+    </div>
+  </header>
+
+  <div id="main-container" class="container setting">
+    <div class="stepBox">
+      <ul>
+        <li :class="{ active: currentStep === 0, finish: currentStep > 0 }">驗證</li>
+        <li :class="{ active: currentStep === 1, finish: currentStep > 1 }">設定安全鎖</li>
+        <li :class="{ active: currentStep === 2 }">完成</li>
+      </ul>
+    </div>
+    <!-- setp1 輸入舊密碼 -->
+    <section class="transform" v-show="sections[0].visible">
+      <div class="topup-card lock">
+        <div class="topup-title">
+          <h4>修改安全鎖</h4>
+        </div>
+        <div class="inputBox">
+          <label for="password">輸入舊的安全鎖密碼</label>
+          <div class="input-icon">
+            <input id="password" :type="isPassWordOV ? 'text' : 'password'" maxlength="6" oninput="value=value.replace(/[^\d]/g,'')" placeholder="請輸入安全鎖密碼" v-model="passWordO">
+            <i :class="iconClassO" @click="togglePassWordOV"></i>
+          </div>
+          <div class="tipBox">
+            <p>僅限6碼數字</p>
+            <a href="setting-lock.html">忘記安全鎖？</a>
+          </div>
+        </div>
+        <div class="btnBox">
+          <button class="btn" :disabled="!passWordO.length" @click="showNextSection(0)">確定</button>
+        </div>
+      </div>
+    </section>
+    <!-- setp2 設定密碼 -->
+    <section class="transform" v-show="sections[1].visible" :class="{ 'active': sections[1].visible }">
+      <div class="topup-card lock">
+        <div class="topup-title">
+          <h4>修改安全鎖</h4>
+        </div>
+        <div class="inputBox">
+          <label for="password">安全鎖密碼</label>
+          <div class="input-icon">
+            <input id="password" :type="isPassWordV ? 'text' : 'password'" maxlength="6" oninput="value=value.replace(/[^\d]/g,'')" placeholder="請輸入安全鎖密碼" v-model="passWord" @input="showTipBox">
+            <i :class="iconClass" @click="togglePassWordV"></i>
+          </div>
+          <div class="tipBox">
+            <p>僅限6碼數字</p>
+          </div>
+        </div>
+        <div class="inputBox">
+          <label for="passwordC">再次輸入安全鎖密碼</label>
+          <div class="input-icon">
+            <input id="passwordC" :type="isPassWordCV ? 'text' : 'password'" maxlength="6" oninput="value=value.replace(/[^\d]/g,'')" placeholder="再次輸入安全鎖密碼" v-model="passWordC"  @focus="showTipBox">
+            <i :class="iconClassC" @click="togglePassWordCV"></i>
+          </div>
+          <div class="tipBox" v-show="isTipBoxVisible">
+            <p class="error">再次輸入密碼不一致</p>
+          </div>
+        </div>
+        <button class="btn" :disabled="!isSamePassword" @click="showNextSection(1)">確定</button>
+      </div>
+    </section>
+    <!-- setp3 完成 -->
+    <section  class="transform" v-show="sections[2].visible" :class="{ 'active': sections[2].visible }">
+      <div class="topup-card unlocked">
+        <div class="empty svg">
+          <div class="state-img" id="lottie"></div>
+          <p>修改成功<br>請妥善保管好你的安全鎖密碼</p>
+        </div>
+        <button class="btn" type="button" onclick="location.href='setting.html'">我知道了</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- toast - 修改失敗 -->
+  <div class="toastBox ic-false">
+    <p>設定失敗，請檢查輸入是否正確。</p>
+  </div>
+
+  <footer>
+    @2023 集團 Group
+  </footer>
+
+
+  <script src="js/vendor/jquery-3.6.0.min.js"></script>
+  <script src="js/vendor/vue-2.6.14.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.7/lottie.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var animationContainer = document.getElementById('lottie');
+      var animation = bodymovin.loadAnimation({
+        container: animationContainer, // 動畫將在其中顯示的容器
+        renderer: 'svg', // 渲染器類型，可以是'canvas'或'svg'
+        loop: true, // 動畫是否循環播放
+        autoplay: true, // 是否自動播放動畫
+        path: 'js/json/security-lock.json' // JSON文件的路徑
+      });
+    }); 
+  </script>
+  <script type="text/javascript">
+    var vmHeader = new Vue({ 
+      el: "#header",
+      data() {
+        return {
+          loginStatus: false, //登入鈕
+        }},
+
+        methods: {
+        toggleLoginStatus() {
+          // 切換登入狀態
+          this.loginStatus = !this.loginStatus;
+        }
+      },        
+    });
+
+    var vmCont = new Vue({
+      el: '#main-container',
+      data() {
+        return {
+          passWordO: '',
+          passWord: '',
+          passWordC: '',
+          isPassWordOV: false,
+          isPassWordV: false,
+          isPassWordCV: false,
+          isTipBoxVisible: false,
+
+          sections: [
+            { visible: true },
+            { visible: false },
+            { visible: false }
+          ],
+          currentStep: 0,
+        }
+      },
+
+      watch: {
+        passWord(newValue) {
+          this.checkPassword(newValue, this.passWordC);
+        },
+        passWordC(newValue) {
+          this.checkPassword(this.passWord, newValue);
+        }
+      },
+
+      methods: {
+        //section 切換
+        showNextSection(index) {
+          this.sections[index].visible = false;// 將當前 section 隱藏
+
+          // 將下一個 section 顯示
+          if (this.sections[index + 1]) {
+            this.sections[index + 1].visible = true;
+            this.currentStep = index + 1; // 更新步驟指示器
+          }
+        },
+
+        //發送驗證碼
+        sendVC: function(){
+            $('.btn-load-more').show();
+            $('.sendBtn').hide();
+
+            // 3秒後顯示
+            setTimeout (function () {
+                $('.btn-load-more').hide();
+                $('.sendBtn').show();
+                $('.sendBtn').text('60s');
+                $('.sendBtn').prop('disabled', true);
+                $('#SMStip').show();
+                var count = 60;
+                var interval = setInterval(function () {
+                    count--;
+                    $('.sendBtn').text(count + 's');
+                    if (count == 0) {
+                        clearInterval(interval);
+                        $('.sendBtn').prop('disabled', false).text('發送驗證碼');
+                    }
+                }, 1000);
+            },3000);
+        },
+
+        //檢視密碼
+        togglePassWordOV() {
+          this.isPassWordOV = !this.isPassWordOV;
+        },
+        togglePassWordV() {
+          this.isPassWordV = !this.isPassWordV;
+        },
+        togglePassWordCV() {
+          this.isPassWordCV = !this.isPassWordCV;
+        },
+
+        //再次輸入密碼呼叫 tipBox
+        checkPassword() {
+          if (this.passWord === this.passWordC) {
+            this.hideTipBox();
+          } else {
+            this.showTipBox();
+          }
+        },
+        showTipBox() {
+          if (this.passWord && document.activeElement.id === 'passwordC') {
+            this.isTipBoxVisible = true;
+          }
+        },
+        hideTipBox() {
+          this.isTipBoxVisible = false;
+        },
+        
+        // 顯示 toast
+        showToast() {
+          $(".toastBox").animate({ top: "10px" }, 100).delay(2000).animate({ top: "-40px" }, 100);
+        },
+      },
+
+      computed:{
+        // 檢查密碼輸入是否相同
+        isSamePassword() {
+          return this.passWord === this.passWordC && this.passWord !== '' && this.passWordC !== '';
+        },
+
+        // 檢視密碼icon
+        iconClassO() {
+          return this.isPassWordOV ? 'icon_visibility' : 'icon_visibility-off';
+        },
+        iconClass() {
+          return this.isPassWordV ? 'icon_visibility' : 'icon_visibility-off';
+        },
+        iconClassC() {
+          return this.isPassWordCV ? 'icon_visibility' : 'icon_visibility-off';
+        },
+      },
+    });
+  </script>
+</body>
+
+</html>

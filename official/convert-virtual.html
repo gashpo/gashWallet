@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>GASH會員錢包 | 安全便捷的遊戲支付首選！</title>
+  <link rel="icon" type="image/png" href="img/favicon.ico" />
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.jpg" />
+  <meta name="keywords" content="GASH、遊戲橘子、遊戲點數、儲值、點數儲值、GASH點數、樂點、電子錢包" />
+  <meta name="description" content="GASH會員錢包是一個方便快捷的數位錢包，讓您可輕鬆進行遊戲內儲值，並在眾多遊戲中暢享消費樂趣。無論是儲值或是消費，都能享受安全且便捷的支付體驗。立即使用GASH會員錢包，盡情暢玩您喜愛的線上遊戲！" />
+  <!-- share info -->
+  <meta property="og:url" content="https://gashwallet.gashpoint.com"/>
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GASH會員錢包 | 安全便捷的遊戲支付首選！" />
+  <!-- Stage / og:image -->
+  <meta property="og:image" content="https://stage-gashwallet.gashpoint.com/img/og-image.jpg" />
+  <!-- Prod / og:image -->
+  <!-- <meta property="og:image" content="https://gashwallet.gashpoint.com/img/og-image.jpg" /> -->
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="720" />
+  
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="fonts/icons/icon.woff2" />
+  <link rel="stylesheet" href="fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="fonts/icons/icons.css" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Stage / Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P8G3C282');</script>
+  <!-- End Google Tag Manager -->
+  
+  <!-- Prod / Google Tag Manager -->
+  <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KZSGGMHK');</script> -->
+  <!-- End Google Tag Manager -->
+</head>
+
+<!-- Stage / Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PCE9RRCSVL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PCE9RRCSVL');
+</script>
+
+<!-- Prod / Google tag (gtag.js) -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9BJ2B40KC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F9BJ2B40KC');
+</script> -->
+
+<body>
+  <!-- Stage / Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P8G3C282" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- Prod / Google Tag Manager (noscript) -->
+  <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZSGGMHK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header id="header">
+    <div class="cont">
+      <div class="lateral"></div>
+      <div class="center">
+        <img src="img/gash_logo.svg">
+      </div>
+      <div class="lateral">
+        <button class="btn" @click="toggleLoginStatus">{{ loginStatus ? '登出' : '登入' }}</button>
+      </div>
+    </div>
+  </header>
+
+  <div id="main-container" class="container convert">
+    <ul class="breadcrumb">
+      <li><a href="index.html"><i class="be-icon be-icon-home" aria-hidden="true"></i>首頁</a></li>
+      <li><a href="convert.html"></i>兌換</a></li>
+      <li>兌換天堂M序號</li>
+    </ul>
+    <div class="topup-card">
+      <div class="topup-title">
+        <h4>兌換天堂M序號</h4>
+        <p>請輸入您獲得的天堂Ｍ虛寶序號兌換號碼，兌換完成後，將立即取得天堂Ｍ虛寶序號。</p>
+      </div>
+      <div class="inputBox">
+        <div class="input-icon">
+          <input id="number" type="text" onKeyUp="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')" maxlength="19" placeholder="請輸入虛寶序號兌換號碼" autocomplete="off" v-model="number">
+        </div>
+        <div class="tipBox error">
+          <p>僅限19碼英數字</p>
+        </div>
+      </div>
+
+      <button class="btn" :disabled="!number.length" @click="showPopup('success'); showToast();">確定</button>
+      <div class="topup-note">
+        <p>貼心提醒</p>
+        <ol>
+          <li>
+            <p>活動序號一經兌換後，即無法申退回服務，詳情請見 GASH 官網 <a href="https://tw.gashpoint.com/games/article/4011" target="_blank">注意事項和教學</a> 公告。</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+     <p class="topup-buy">還沒有擁有序號嗎？前往 <a href="https://tw-event.beanfun.com/LineageM/Exchange/index.aspx" target="_blank">天堂M序號兌換</a></p>
+
+
+    <!-- Popup - 兌換成功 -->
+    <div class="modal-dialog" v-if="modalVisible && currentPopup === 'success'">
+      <span class="modal-close-btn" @click="hidePopup"><i class="icon-close"></i></span>
+      <div class="modal-container">
+        <div class="modal-title">
+          <h3>兌換成功</h3>
+          <p>以下為你的兌換代碼，請妥善保管。相關兌換紀錄可於紀錄中查詢。</p>
+        </div>
+        <div class="input-icon copy">
+          <input type="text" v-model="serialNo">
+          <i class="icon-icon_copy" @click="copySerialNo(); showToast();" ref="copyIcon"></i>
+        </div>
+        <div class="btnBox">
+          <button class="btn" onclick="window.open('https://tw-event.beanfun.com/LineageM/Exchange/index.aspx', '_blank')">前往天堂M兌換虛寶</button>
+          <button class="btn btn-outline" @click="hidePopup()">繼續輸入序號</button>
+        </div>
+      </div>
+    </div>
+    <!-- 遮罩 -->
+    <div class="overlay" v-if="modalVisible" @click="hidePopup"></div>
+  </div>
+
+
+  <!-- toast - 序號不存在 -->
+  <div class="toastBox ic-false">
+    <p>此序號不存在，請重新輸入。</p>
+  </div>
+  <!-- toast - 兌換失敗 -->
+  <div class="toastBox ic-false">
+    <p>兌換失敗。(代碼 001920001)</p>
+  </div>
+  <!-- toast - 複製成功 -->
+  <div class="toastBox ic-true">
+    <p>複製成功</p>
+  </div>
+
+  <footer>
+    @2023 集團 Group
+  </footer>
+
+  <script src="js/vendor/jquery-3.6.0.min.js"></script>
+  <script src="js/vendor/vue-2.6.14.min.js"></script>
+  <script type="text/javascript">
+    var vmHeader = new Vue({ 
+      el: "#header",
+      data() {
+        return {
+          loginStatus: false, //登入鈕
+        }},
+
+        methods: {
+        toggleLoginStatus() {
+          // 切換登入狀態
+          this.loginStatus = !this.loginStatus;
+        }
+      },        
+    });
+
+    var vmCont = new Vue({
+      el: '#main-container',
+      data() {
+        return {
+          number: '',
+          modalVisible: false, //遮罩
+          currentPopup: '',
+          serialNo: 'CP302329429438492', //兌換成功序號
+        }
+      },
+
+      methods: {
+        // 複製序號
+        copySerialNo() {
+          // 複製 serialNo 的值
+          navigator.clipboard.writeText(this.serialNo)
+            .then(() => {
+              // 複製成功，將圖標 class 切換為 icon-icon_check
+              this.$refs.copyIcon.classList.remove('icon-icon_copy');
+              this.$refs.copyIcon.classList.add('icon-icon_check');
+
+              // 兩秒後切換回 icon-icon_copy
+              setTimeout(() => {
+                this.$refs.copyIcon.classList.remove('icon-icon_check');
+                this.$refs.copyIcon.classList.add('icon-icon_copy');
+              }, 2000);
+            })
+        },
+
+        //popup
+        showModal() {
+          this.modalVisible = true;
+          document.body.classList.add('modal-open');
+          this.skeleton = true;
+        },
+        hidePopup() {
+          this.modalVisible = false;
+          this.currentPopup = ''; // 清除當前顯示的 popup
+          document.body.classList.remove('modal-open');
+          this.data = true;
+          this.skeleton = false;
+        },
+        showPopup(popupName) {
+          this.currentPopup = popupName; // 顯示當對應 popup
+          this.showModal();
+        },
+        
+        // 顯示 toast
+        showToast() {
+          $(".toastBox").animate({ top: "10px" }, 100).delay(2000).animate({ top: "-40px" }, 100);
+        },
+      },
+
+    });
+  </script>
+</body>
+
+</html>

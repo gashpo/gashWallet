@@ -1,0 +1,49 @@
+// 手風琴
+
+.accordion {
+    transition: $transition;
+    &:not(.expand) {
+        .accordion-label .rotate {
+            transform: rotate(-180deg);
+        }
+        .accordion-content {
+            height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+}
+
+.accordion-label  {
+    padding:calc( 1.15 * var(--font-size) ) calc( 1.75 * var(--font-size) ) calc( 1.15 * var(--font-size) ) calc( 1.75 * var(--font-size) );
+    display: flex;
+    align-items: flex-start;
+    transition: $transition;
+    label {
+        // padding-top: calc( .25 * var(--font-size) );
+        line-height: calc(1.4 * var(--font-size));
+        flex-grow: 1;
+        color: $bfDark;
+    }
+    .accordion-icon {
+        margin: 0;
+        padding: 0;
+        color: $bfDark;
+        transition: $transition;
+        span {
+            font-size: calc( 1.5 * var(--font-size) );
+        }
+    }
+}
+
+.accordion-content {
+    padding: calc( 0 * var(--font-size) ) calc( 1.75 * var(--font-size) ) calc( 3 * var(--font-size) ) calc( 1.75 * var(--font-size) );
+    background: $slightlyLightGray;
+    color: $bfDark;
+    overflow: hidden;
+    height: 100%;
+    transition: $transition;
+    font-size: calc( 0.8125 * var(--font-size) );
+    line-height: calc( 1.25 * var(--font-size) );
+    vertical-align: middle;
+}

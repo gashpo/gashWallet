@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>GASH會員錢包 | 安全便捷的遊戲支付首選！</title>
+  <link rel="icon" type="image/png" href="img/favicon.ico" />
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.jpg" />
+  <meta name="keywords" content="GASH、遊戲橘子、遊戲點數、儲值、點數儲值、GASH點數、樂點、電子錢包" />
+  <meta name="description" content="GASH會員錢包是一個方便快捷的數位錢包，讓您可輕鬆進行遊戲內儲值，並在眾多遊戲中暢享消費樂趣。無論是儲值或是消費，都能享受安全且便捷的支付體驗。立即使用GASH會員錢包，盡情暢玩您喜愛的線上遊戲！" />
+  <!-- share info -->
+  <meta property="og:url" content="https://gashwallet.gashpoint.com"/>
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GASH會員錢包 | 安全便捷的遊戲支付首選！" />
+  <!-- Stage / og:image -->
+  <meta property="og:image" content="https://stage-gashwallet.gashpoint.com/img/og-image.jpg" />
+  <!-- Prod / og:image -->
+  <!-- <meta property="og:image" content="https://gashwallet.gashpoint.com/img/og-image.jpg" /> -->
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="720" />
+
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="fonts/icons/icon.woff2" />
+  <link rel="stylesheet" href="fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="fonts/icons/icons.css" />
+  <link rel="stylesheet" href="js/vendor/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Stage / Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P8G3C282');</script>
+  <!-- End Google Tag Manager -->
+  
+  <!-- Prod / Google Tag Manager -->
+  <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KZSGGMHK');</script> -->
+  <!-- End Google Tag Manager -->
+</head>
+
+<!-- Stage / Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PCE9RRCSVL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PCE9RRCSVL');
+</script>
+
+<!-- Prod / Google tag (gtag.js) -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9BJ2B40KC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F9BJ2B40KC');
+</script> -->
+
+<body>
+  <!-- Stage / Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P8G3C282"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- Prod / Google Tag Manager (noscript) -->
+  <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZSGGMHK"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header id="header">
+    <div class="cont">
+      <div class="lateral"></div>
+      <div class="center">
+        <img src="img/gash_logo.svg">
+      </div>
+      <div class="lateral">
+        <button class="btn" @click="toggleLoginStatus">{{ loginStatus ? '登出' : '登入' }}</button>
+      </div>
+    </div>
+  </header>
+
+  <div id="main-container" class="container convert">
+    <ul class="breadcrumb">
+      <li><a href="index.html"><i class="be-icon be-icon-home" aria-hidden="true"></i>首頁</a></li>
+      <li><a href="convert.html"></i>兌換</a></li>
+      <li><a href="convert-mission.html">任務卡/刮刮卡</a></li>
+      <li>{{ title }}</li>
+    </ul>
+    <div class="topup-card mission">
+      <div class="inpage">
+        <ul class="chips">
+          <li v-for="chip in chips">
+            {{ chip }}
+          </li>
+        </ul>
+        <h6>{{ title }}</h6>
+        <!-- .main-img 分為三種狀態：「已過期」 = .expired，「已使用」 = .used，「未使用」則不帶任何class -->
+        <div class="main-img expired">
+          <img :src="img">
+          <span>已過期</span>
+        </div>
+        <button class="btn btn-secondary">活動詳情 <i class="be-icon be-icon-external-link"></i></button>
+        <div class="event-details">
+          <p><span>活動時間</span>{{ date }}</p>
+          <p><span>領取期限</span>{{ expiration }}</p>
+        </div>
+        <div class="info">
+          <p>
+            《RO 仙境傳說Online》歡慶5月改版！  <br>
+            恭喜您符合GASH獨家儲值回饋資格 <br>
+            特此回饋【GASH 50點】 <br><br>
+            ※GASH小叮嚀：本次贈送之免費點數，使用期限為領取日次月月底，逾期未使用將會失效。 <br>
+            ※此贈送免點限《RO 仙境傳說Online》遊戲使用
+          </p>
+        </div>
+        <!-- 已使用時才顯示 .gained 欄位 -->
+        <div class="gained">
+          <p>已獲得 <img src="img/GASHpoint.svg"> {{ point }}</p>
+          <div class="input-icon copy">
+            <input type="text" v-model="serialNo">
+            <i class="icon-icon_copy" @click="copySerialNo(); showToast();" ref="copyIcon"></i>
+          </div>
+          <p class="sub">恭喜您獲得【《勝利女神：妮姬》1.5週年儲值贈GASH刮刮卡！】點數可於刮開後至錢包確認</p>
+        </div>
+      </div>
+    </div> 
+    <p class="mission-code">任務代碼 53147</p>
+    
+    <!-- 「已顯示」時不顯示 .floatingBtn 欄位，「已過期」時會顯示但<button>設為 disabled -->
+    <div class="floatingBtn mission">
+      <ul>
+        <li>
+          <button class="btn cart-comfirm__button" type="button" @click="showPopup('scratch')" >領取獎勵 <img src="img/GASHpoint.svg">{{ point }}</button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Popup - 刮刮卡 -->
+    <div class="modal-dialog convert-modal" v-if="modalVisible && currentPopup === 'scratch'">
+      <span class="modal-close-btn" @click="hidePopup"><i class="icon-close"></i></span>
+      <div class="modal-container">
+        <div class="modal-title">
+          <h3>刮卡片領獎勵</h3>
+        </div>
+        <div class="scratch-container" @click="showPopup('success')">
+          <canvas id="scratch" style="background-image: url(img/scratch_card.jpg);"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popup - 領取成功 -->
+    <div class="modal-dialog convert-modal" v-if="modalVisible && currentPopup === 'success'">
+      <span class="modal-close-btn" @click="hidePopup"><i class="icon-close"></i></span>
+      <div class="modal-container">
+        <div class="modal-title">
+          <h3>領取成功</h3>
+          <h2><img src="img/points-gash.svg"> 50</h2>
+          <div class="input-icon copy">
+            <input type="text" v-model="serialNo">
+            <i class="icon-icon_copy" @click="copySerialNo(); showToast();" ref="copyIcon"></i>
+          </div>
+          <p>恭喜您獲得【《勝利女神：妮姬》1.5週年儲值贈GASH刮刮卡！】點數可於刮開後至錢包確認</p>
+        </div>
+        <div class="btnBox">
+          <button class="btn" @click="hidePopup">我知道了</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 遮罩 -->
+    <div class="overlay" v-if="modalVisible" @click="hidePopup"></div>
+  </div>
+
+
+
+  <!-- toast - 安全鎖輸入錯誤 -->
+  <div class="toastBox ic-false">
+    <p>安全鎖輸入錯誤，請重新輸入。</p>
+  </div>
+  <!-- toast - 複製成功 -->
+  <div class="toastBox ic-true">
+    <p>複製成功</p>
+  </div>
+ 
+
+  <footer class="inpage_fixed">
+    © 2024 GASH POINT Co., Ltd. All Rights Reserved.
+  </footer>
+
+  <script src="js/vendor/jquery-3.6.0.min.js"></script>
+  <script src="js/vendor/vue-2.6.14.min.js"></script>
+  <script src="js/vendor/swiper/swiper-bundle.min.js"></script>
+  <script type="text/javascript">
+    var vmHeader = new Vue({ 
+      el: "#header",
+      data() {
+        return {
+          loginStatus: false, //登入鈕
+        }},
+
+        methods: {
+        toggleLoginStatus() {
+          // 切換登入狀態
+          this.loginStatus = !this.loginStatus;
+        }
+      },        
+    });
+
+    var vmCont = new Vue({
+      el: '#main-container',
+      data() {
+        return {
+          modalVisible: false, //遮罩
+          currentPopup: '',
+          state: 'unuse',
+          title: '點卡儲值1000點返GASH 50點',
+          date: '2024/04/01 00:00 - 2024/04/30 00:00',
+          expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+          img: 'img/mission-inpage.png',
+          chips: ['任務卡','點數'],
+          point: '50',
+          serialNo: 'CP302329429438492', //兌換成功序號
+        }
+      },
+
+      methods: {
+        // 複製序號
+        copySerialNo() {
+          // 複製 serialNo 的值
+          navigator.clipboard.writeText(this.serialNo)
+            .then(() => {
+              // 複製成功，將圖標 class 切換為 icon-icon_check
+              this.$refs.copyIcon.classList.remove('icon-icon_copy');
+              this.$refs.copyIcon.classList.add('icon-icon_check');
+
+              // 兩秒後切換回 icon-icon_copy
+              setTimeout(() => {
+                this.$refs.copyIcon.classList.remove('icon-icon_check');
+                this.$refs.copyIcon.classList.add('icon-icon_copy');
+              }, 2000);
+            })
+        },
+
+        //popup
+        showModal() {
+          this.modalVisible = true;
+          document.body.classList.add('modal-open');
+          this.skeleton = true;
+        },
+        hidePopup() {
+          this.modalVisible = false;
+          this.currentPopup = ''; // 清除當前顯示的 popup
+          document.body.classList.remove('modal-open');
+          this.data = true;
+          this.skeleton = false;
+        },
+        showPopup(popupName) {
+          this.currentPopup = popupName; // 顯示當對應 popup
+          this.showModal();
+        },
+        
+        // 顯示 toast
+        showToast() {
+          $(".toastBox").animate({ top: "10px" }, 100).delay(2000).animate({ top: "-40px" }, 100);
+        },
+      },
+
+      computed: {
+        // 檢視密碼icon
+        iconClass() {
+          return this.isPassWordV ? 'icon_visibility' : 'icon_visibility-off';
+        },
+
+        unuseItems() {
+          return this.items.filter(item => item.state === 'unuse');
+        },
+        usedItems() {
+          return this.items.filter(item => item.state === 'used');
+        },
+        expiredItems() {
+          return this.items.filter(item => item.state === 'expired');
+        }
+      }
+    });
+
+    const missionSwiper = new Swiper('.mission-swiper', {
+      autoHeight: true,
+      allowTouchMove: false,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        renderBullet: function (index, className) {
+          var tabsName = ["可使用", "已使用", "已過期"];
+          return (
+            '<span class="' + className + '">' + tabsName[index] + "</span>"
+          );
+        },
+      },
+    })
+  </script>
+</body>
+
+</html>

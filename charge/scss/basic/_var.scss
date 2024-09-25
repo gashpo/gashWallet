@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
+$Primary: #e5006d;
+$DarkPrimary: #c0105f;
+
+$Secondary: #322741;
+$DarkSecondary: #2e281a;
+
+$contrast: #6D03E5;
+$danger: #ff303e;
+$success: #7DDB2B;
+$warning: #ffc107;
+$info: #00AEFF;
+
+$black: #000;
+
+$bezire: cubic-bezier(.51,.02,.55,1);
+
+$gray-05: rgba(0,0,0,.05);
+$gray-1: rgba(0,0,0,.1);
+$gray-12: rgba(0,0,0,.12);
+$gray-15: rgba(0,0,0,.15);
+$gray-2: rgba(0,0,0,.2);
+$gray-25: rgba(0,0,0,.25);
+$gray-3: rgba(0,0,0,.3);
+$gray-4: rgba(0,0,0,.4);
+$gray-5: rgba(0,0,0,.5);
+$gray-6: rgba(0,0,0,.6);
+
+
+
+$placeholder: #A2A2A2;
+$text-unselect: #696969;
+$disabled-text: $gray-3;
+
+
+$bg: #FFF;
+
+$bfBlack: #000;
+$bfDark: #333;
+$bfBlueDark: #283843;
+$bfDarkGray: #666;
+$bfMediumGray: #999;
+$bfGray: #ccc;
+$bfLightGray: #ddd;
+$bfSlightlyGray: #eee;
+$bfBlueSoftWhite: #f3f6f8;
+$bfSoftWhite: #f4f4f4;
+$slightlyLightGray: #f7f7f7;
+$veryLightGray: #f9f9f9;
+$bfWhite: #FFF;
+
+$bfDarkPrimary: #00923e;
+$bfPrimary: #26d07c;
+$bfLightPrimary: #94e4b3;
+$bfVeryLightPrimary: #ECFFED;
+
+$bfDarkSecondaryA: #f57902;
+$bfSecondaryA: #FF9500;
+$bfLightSecondaryA: #ffb54c;
+$bfSecondaryB: #2886E2;
+
+$bfWarning: #fa8c16;
+$bfDanger: #ED5B4C;
+$bfLink: #1E76CC;
+
+$bfOverlay: rgba(0,0,0,.28);
+$bfToast: rgba(0,0,0,.8);
+
+$bfLightChat: #F1F1F1;
+$bfDarkChat: #7BEAA6;
+
+
+
+$transition: .2s cubic-bezier(.59,.01,.42,.99);
+
+// 字體大小
+:root{
+    --font-size: 10px;
+}
+// @media screen and (max-width: 320px) {
+//     :root{
+//         --font-size: 13px;
+//     }
+// }
+// @media screen and (min-width: 421px) {
+//    :root{
+//         --font-size: 18px;
+//     }
+// }
+// @media screen and (min-width: 468px) {
+//    :root{
+//         --font-size: 20px;
+//     }
+// }
+// @media screen and (min-width: 562.5px) {
+//    :root{
+//         --font-size: 24px;
+//     }
+// }
+// @media screen and (min-width: 609.375px) {
+//    :root{
+//         --font-size: 26px;
+//     }
+// }
+// @media screen and (min-width: 656.25px) {
+//    :root{
+//         --font-size: 28px;
+//     }
+// }
+// @media screen and (min-width: 703.125px) {
+//    :root{
+//         --font-size: 30px;
+//     }
+// }
+// @media screen and (min-width: 750px) {
+//    :root{
+//         --font-size: 32px;
+//     }
+// }
+
+// @media screen and (min-width: 843px) {
+//    :root{
+//         --font-size: 36px;
+//     }
+// }
+// @media screen and (min-width: 937.5px) {
+//    :root{
+//         --font-size: 40px;
+//     }
+// }
+
+// @media screen and (min-width: 1125px) {
+//    :root{
+//         --font-size: 48px;
+//     }
+// }
+
+// @media screen and (min-width: 1218.75px) {
+//    :root{
+//         --font-size: 52px;
+//     }
+// }
+// @media screen and (min-width: 1312.5px) {
+//    :root{
+//         --font-size: 56px;
+//     }
+// }
+// @media screen and (min-width: 1959.4px) {
+//    :root{
+//         --font-size: 58px;
+//     }
+// }
+// @media screen and (min-width: 1406.25px) {
+//    :root{
+//         --font-size: 60px;
+//     }
+// }
+// @media screen and (min-width: 1500px) {
+//    :root{
+//         --font-size: 64px;
+//     }
+// }

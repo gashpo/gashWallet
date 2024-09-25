@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>GASH會員錢包 | 安全便捷的遊戲支付首選！</title>
+  <link rel="icon" type="image/png" href="img/favicon.ico" />
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.jpg" />
+  <meta name="keywords" content="GASH、遊戲橘子、遊戲點數、儲值、點數儲值、GASH點數、樂點、電子錢包" />
+  <meta name="description" content="GASH會員錢包是一個方便快捷的數位錢包，讓您可輕鬆進行遊戲內儲值，並在眾多遊戲中暢享消費樂趣。無論是儲值或是消費，都能享受安全且便捷的支付體驗。立即使用GASH會員錢包，盡情暢玩您喜愛的線上遊戲！" />
+  <!-- share info -->
+  <meta property="og:url" content="https://gashwallet.gashpoint.com"/>
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GASH會員錢包 | 安全便捷的遊戲支付首選！" />
+  <!-- Stage / og:image -->
+  <meta property="og:image" content="https://stage-gashwallet.gashpoint.com/img/og-image.jpg" />
+  <!-- Prod / og:image -->
+  <!-- <meta property="og:image" content="https://gashwallet.gashpoint.com/img/og-image.jpg" /> -->
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="720" />
+  
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="fonts/icons/icon.woff2" />
+  <link rel="stylesheet" href="fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="fonts/icons/icons.css" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Stage / Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P8G3C282');</script>
+  <!-- End Google Tag Manager -->
+  
+  <!-- Prod / Google Tag Manager -->
+  <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KZSGGMHK');</script> -->
+  <!-- End Google Tag Manager -->
+</head>
+
+<!-- Stage / Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PCE9RRCSVL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PCE9RRCSVL');
+</script>
+
+<!-- Prod / Google tag (gtag.js) -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9BJ2B40KC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F9BJ2B40KC');
+</script> -->
+
+<body>
+  <!-- Stage / Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P8G3C282" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- Prod / Google Tag Manager (noscript) -->
+  <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZSGGMHK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <header id="header">
+    <div class="cont">
+      <div class="lateral"></div>
+      <div class="center">
+        <img src="img/gash_logo.svg">
+      </div>
+      <div class="lateral">
+        <button class="btn" @click="toggleLoginStatus">{{ loginStatus ? '登出' : '登入' }}</button>
+      </div>
+    </div>
+  </header>
+
+  <div id="main-container" class="container convert">
+    <ul class="breadcrumb">
+      <li><a href="index.html"><i class="be-icon be-icon-home" aria-hidden="true"></i>首頁</a></li>
+      <li><a href="convert.html">兌換</a></li>
+      <li>紀錄</li>
+    </ul>
+    <div class="records">
+      <ul class="tab">
+        <li v-for="item in chipsList" :key="item.value" :class="{ active: item.value === activeTab }" @click="changeTab(item.value)">{{item.label}}</li>
+      </ul>
+      <!-- 空值 -->
+      <ul class="history-list convert-records" v-if="showEmptyList">
+        <div class="empty">
+          <img src="img/empty.svg">
+          <p>目前無使用紀錄</p>
+        </div>
+      </ul>
+      <!-- 有值 -->
+      <ul class="history-list convert-records">
+        <div class="index-note" v-if="activeTab === 'bitcash'">
+          <p class="info">要將餘額合併嗎？<a href="https://bitcash.jp/pin/tri?act=merge&screenType=E1PU9MV1" target="_blank">前往餘額合併</a></p>
+        </div>
+
+        <li v-for="record in filteredRecords" :key="record.serial">
+          <div class="item-info">
+            <div class="item-cont">
+              <p class="item-title" v-if="activeTab === 'virtual'">{{record.title}} {{record.amount}}</p>
+              <p class="item-title" v-if="activeTab === 'bitcash'"><img src="img/points-bitcash.svg">{{record.bitcash}}</p>
+              <div class="item-amount" v-if="activeTab === 'bitcash'"><img src="img/points-gash.svg">{{record.gash}}</div>
+            </div>
+            <div class="item-serial">
+              <span>序號</span>
+              {{record.serial}}
+              <i class="icon-icon_copy" @click="copySerial(record.serial, $event)"></i>
+            </div>
+            <div class="item-statusndate">
+              <ul>
+                <li>
+                  <span>狀態：{{record.status}}</span>
+                  <span>{{record.statusTime}}</span>
+                </li>
+                <li v-if="activeTab === 'virtual'">
+                  <span>效期：{{record.dueDate}}</span>
+                </li>
+              </ul>
+              <button class="btn btn-outline" v-if="activeTab === 'virtual'" onclick="window.open('https://tw-event.beanfun.com/LineageM/Exchange/index.aspx', '_blank')">立即使用</button>
+              <button class="btn btn-outline" v-if="activeTab === 'bitcash'" onclick="window.open('https://bitcash.jp/docs_jp/tri?act=cmn/guide/lang/zh-TW/index&sv=1&_lh#how-to-use', '_blank')">立即使用</button>
+            </div>
+          </div>
+      </ul>
+    </div>
+  </div>
+
+  <!-- toast - 複製成功 -->
+  <div class="toastBox ic-true">
+    <p>複製成功</p>
+  </div>
+
+  <footer>
+    @2023 集團 Group
+  </footer>
+
+  <script src="js/vendor/jquery-3.6.0.min.js"></script>
+  <script src="js/vendor/vue-2.6.14.min.js"></script>
+  <script type="text/javascript">
+    var vmHeader = new Vue({ 
+      el: "#header",
+      data() {
+        return {
+          loginStatus: false, //登入鈕
+        }},
+
+        methods: {
+          toggleLoginStatus() {
+            // 切換登入狀態
+            this.loginStatus = !this.loginStatus;
+          },
+        },
+    });
+
+    var vmCont = new Vue({
+      el: '#main-container',
+      data() {
+        return {
+          activeTab: 'virtual',
+          chipsList: [
+              {label: '虛寶兌換', value: 'virtual'},
+              {label: 'BitCash', value: 'bitcash'},
+          ],
+          reList: [
+            {
+              type: 'virtual',
+              title: '天堂M',
+              amount: '400顆藍鑽禮包',
+              serial: 'CP302329429438400',
+              status: '成功',
+              statusTime: '2021/1/21 09:30:36',
+              dueDate: '2021/12/21 09:30:36',
+            },
+            {
+              type: 'virtual',
+              title: '天堂M',
+              amount: '13,376顆藍鑽禮包',
+              serial: 'CP302329429438401',
+              status: '成功',
+              statusTime: '2021/1/21 09:30:36',
+              dueDate: '2021/12/21 09:30:36',
+            },
+            {
+              type: 'virtual',
+              title: '天堂M',
+              amount: '2,000顆藍鑽禮包',
+              serial: 'CP302329429438400',
+              status: '成功',
+              statusTime: '2021/1/21 09:30:36',
+              dueDate: '2021/12/21 09:30:36',
+            },
+            {
+              type: 'virtual',
+              title: '天堂M',
+              amount: '400顆藍鑽禮包',
+              serial: 'CP302329429438401',
+              status: '成功',
+              statusTime: '2021/1/21 09:30:36',
+              dueDate: '2021/12/21 09:30:36',
+            },
+            {
+              type: 'virtual',
+              title: '天堂M',
+              amount: '4,013顆藍鑽禮包',
+              serial: 'CP302329429438400',
+              status: '成功',
+              statusTime: '2021/1/21 09:30:36',
+              dueDate: '2021/12/21 09:30:36',
+            },
+            {
+              type: 'virtual',
+              title: '天堂M',
+              amount: '400顆藍鑽禮包',
+              serial: 'CP302329429438401',
+              status: '成功',
+              statusTime: '2021/1/21 09:30:36',
+              dueDate: '2021/12/21 09:30:36',
+            },
+            {
+              type: 'virtual',
+              title: '天堂M',
+              amount: '13,376顆藍鑽禮包',
+              serial: 'CP302329429438400',
+              status: '成功',
+              statusTime: '2021/1/21 09:30:36',
+              dueDate: '2021/12/21 09:30:36',
+            },
+            {
+              type: 'virtual',
+              title: '天堂M',
+              amount: '13,376顆藍鑽禮包',
+              serial: 'CP302329429438401',
+              status: '成功',
+              statusTime: '2021/1/21 09:30:36',
+              dueDate: '2021/12/21 09:30:36',
+            },
+            {
+              type: 'virtual',
+              title: '天堂M',
+              amount: '400顆藍鑽禮包',
+              serial: 'CP302329429438400',
+              status: '成功',
+              statusTime: '2021/1/21 09:30:36',
+              dueDate: '2021/12/21 09:30:36',
+            },
+            {
+              type: 'virtual',
+              title: '天堂M',
+              amount: '4,013顆藍鑽禮包',
+              serial: 'CP302329429438401',
+              status: '成功',
+              statusTime: '2021/1/21 09:30:36',
+              dueDate: '2021/12/21 09:30:36',
+            },
+            {
+              type: 'virtual',
+              title: '天堂M',
+              amount: '4,013顆藍鑽禮包',
+              serial: 'CP302329429438400',
+              status: '成功',
+              statusTime: '2021/1/21 09:30:36',
+              dueDate: '2021/12/21 09:30:36',
+            },
+            {
+              type: 'virtual',
+              title: '天堂M',
+              amount: '4,013顆藍鑽禮包',
+              serial: 'CP302329429438401',
+              status: '成功',
+              statusTime: '2021/1/21 09:30:36',
+              dueDate: '2021/12/21 09:30:36',
+            },
+            {
+              type: 'virtual',
+              title: '天堂M',
+              amount: '13,376顆藍鑽禮包',
+              serial: 'CP302329429438400',
+              status: '成功',
+              statusTime: '2021/1/21 09:30:36',
+              dueDate: '2021/12/21 09:30:36',
+            },
+            {
+              type: 'virtual',
+              title: '天堂M',
+              amount: '400顆藍鑽禮包',
+              serial: 'CP302329429438401',
+              status: '成功',
+              statusTime: '2021/1/21 09:30:36',
+              dueDate: '2021/12/21 09:30:36',
+            },
+            {
+              type: 'virtual',
+              title: '天堂M',
+              amount: '13,376顆藍鑽禮包',
+              serial: 'CP302329429438400',
+              status: '成功',
+              statusTime: '2021/1/21 09:30:36',
+              dueDate: '2021/12/21 09:30:36',
+            },
+            {
+              type: 'bitcash',
+              bitcash: '1,000',
+              gash: '326',
+              serial: 'きょうもすてきないちにちですよ01',
+              status: '成功',
+              statusTime: '2021/1/21 09:30:36',
+              no: '18293823921039',
+            },
+            {
+              type: 'bitcash',
+              bitcash: '10,000',
+              gash: '3,254',
+              serial: 'きょうもすてきないちにちですよ02',
+              status: '成功',
+              statusTime: '2021/1/21 09:30:36',
+              no: '18293823921039',
+            },
+          ],
+        }
+      },
+
+      methods: {
+        //tabs 切換
+        changeTab(tab) {
+          this.activeTab = tab;
+          $('header').removeClass('hidden');
+        },
+
+        // 複製序號
+        copySerial(serial, event) {
+          var tempInput = document.createElement("input");
+          tempInput.value = serial;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          document.execCommand("copy");
+          document.body.removeChild(tempInput);
+
+          event.target.classList.remove("icon-icon_copy");
+          event.target.classList.add("icon-icon_check");
+
+          this.showToast();
+          setTimeout(function () {
+            $(".toastBox").removeAttr('style');
+            event.target.classList.remove("icon-icon_check");
+            event.target.classList.add("icon-icon_copy");
+          }, 2000);
+        },
+
+        // 顯示 toast
+        showToast() {
+          $(".toastBox").animate({ top: "10px" }, 100).delay(2000).animate({ top: "-40px" }, 100);
+        },
+      },
+
+      computed: {
+        filteredRecords() {
+          return this.reList.filter(record => record.type === this.activeTab);
+        },
+        //reList 空值用
+        showEmptyList() {
+          return this.filteredRecords.length === 0;
+        },
+      },
+    });
+
+    // header 藏起來
+    var prev = 40;
+    var $window = $(window);
+    var header = $('header');
+
+    $window.on('scroll', function () {
+      var scrollTop = $window.scrollTop();
+      if (scrollTop > 40) {
+        header.toggleClass('hidden', scrollTop > prev);
+        prev = scrollTop;
+      }
+    });
+  </script>
+</body>
+
+</html>

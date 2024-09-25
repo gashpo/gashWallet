@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>GASH會員錢包 | 安全便捷的遊戲支付首選！</title>
+    <link rel="icon" type="image/png" href="img/favicon.ico" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.jpg" />
+    <meta
+      name="keywords"
+      content="GASH、遊戲橘子、遊戲點數、儲值、點數儲值、GASH點數、樂點、電子錢包"
+    />
+    <meta
+      name="description"
+      content="GASH會員錢包是一個方便快捷的數位錢包，讓您可輕鬆進行遊戲內儲值，並在眾多遊戲中暢享消費樂趣。無論是儲值或是消費，都能享受安全且便捷的支付體驗。立即使用GASH會員錢包，盡情暢玩您喜愛的線上遊戲！"
+    />
+    <!-- share info -->
+    <meta property="og:url" content="https://gashwallet.gashpoint.com" />
+    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="GASH會員錢包 | 安全便捷的遊戲支付首選！"
+    />
+    <!-- Stage / og:image -->
+    <meta
+      property="og:image"
+      content="https://stage-gashwallet.gashpoint.com/img/og-image.jpg"
+    />
+    <!-- Prod / og:image -->
+    <!-- <meta property="og:image" content="https://gashwallet.gashpoint.com/img/og-image.jpg" /> -->
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="720" />
+
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin=""
+      href="fonts/icons/icon.woff2"
+    />
+    <link rel="stylesheet" href="fonts/icomoon/style.css" />
+    <link rel="stylesheet" href="fonts/icons/icons.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Stage / Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-P8G3C282");
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Prod / Google Tag Manager -->
+    <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KZSGGMHK');</script> -->
+    <!-- End Google Tag Manager -->
+  </head>
+
+  <!-- Stage / Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-PCE9RRCSVL"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-PCE9RRCSVL");
+  </script>
+
+  <!-- Prod / Google tag (gtag.js) -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9BJ2B40KC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F9BJ2B40KC');
+</script> -->
+
+  <body>
+    <!-- Stage / Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-P8G3C282"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Prod / Google Tag Manager (noscript) -->
+    <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZSGGMHK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="notice">
+      ⚠️
+      提醒您，GASH錢包即將於2024年12月XX日關閉儲值服務，屆時您存放在錢包內的點數仍可正常使用不受影響。
+    </div>
+
+    <header id="header">
+      <div class="cont">
+        <div class="lateral"></div>
+        <div class="center">
+          <img src="img/gash_logo.svg" />
+        </div>
+        <div class="lateral">
+          <button
+            class="btn"
+            :class="{ 'loggedin': isLoggedIn }"
+            @click="toggleLoginStatus"
+          >
+            {{ loginStatus ? '登出' : '登入' }}
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div id="main-container" class="container index">
+      <template v-if="skeleton">
+        <div class="skeleton">
+          <div class="point-info">
+            <div class="point-title">
+              <p class="loading"></p>
+              <h2 class="loading"></h2>
+            </div>
+            <div class="point-detail">
+              <div class="loading"></div>
+              <div class="loading"></div>
+            </div>
+            <div class="index-note loading"></div>
+          </div>
+          <div class="records">
+            <ul class="tab">
+              <li class="loading"></li>
+              <li></li>
+            </ul>
+            <div class="tab-content">
+              <div v-show="activeTab === 'latest'">
+                <div class="tags" v-show="latestItems.length">
+                  <ul>
+                    <li
+                      v-for="tag in latestTags"
+                      :key="tag.value"
+                      class="loading"
+                    ></li>
+                  </ul>
+                </div>
+                <ul class="latest-list" v-show="latestItems.length">
+                  <li>
+                    <a href="#" target="_blank">
+                      <div class="item-img loading"></div>
+                      <div class="item-info">
+                        <p class="item-title loading"></p>
+                        <span class="item-date loading"></span>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank">
+                      <div class="item-img loading"></div>
+                      <div class="item-info">
+                        <p class="item-title loading"></p>
+                        <span class="item-date loading"></span>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank">
+                      <div class="item-img loading"></div>
+                      <div class="item-info">
+                        <p class="item-title loading"></p>
+                        <span class="item-date loading"></span>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank">
+                      <div class="item-img loading"></div>
+                      <div class="item-info">
+                        <p class="item-title loading"></p>
+                        <span class="item-date loading"></span>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank">
+                      <div class="item-img loading"></div>
+                      <div class="item-info">
+                        <p class="item-title loading"></p>
+                        <span class="item-date loading"></span>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank">
+                      <div class="item-img loading"></div>
+                      <div class="item-info">
+                        <p class="item-title loading"></p>
+                        <span class="item-date loading"></span>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <template v-if="data">
+        <div class="point-info">
+          <div class="point-title">
+            <p>GASH Points</p>
+            <!-- 未登入 -->
+            <h2>－</h2>
+            <span>點</span>
+            <!-- 已登入 -->
+            <!-- <h2>99,999</h2><span>點</span> -->
+          </div>
+          <div class="point-detail">
+            <div>
+              <p class="font-sm">儲值點數</p>
+              <!-- 未登入 -->
+              <p>－</p>
+              <!-- 已登入 -->
+              <!-- <p>99,999</p> -->
+            </div>
+            <div>
+              <p class="font-sm">效期點數</p>
+              <!-- 未登入 -->
+              <p>－</p>
+              <!-- 已登入 -->
+              <!-- <p>99,999</p> -->
+            </div>
+          </div>
+          <div class="index-note">
+            <!-- 未登入 -->
+            <p class="info">本月底即將到期點數 － 點</p>
+            <p class="info">交換/轉點中點數 － 點</p>
+            <!-- 已登入 -->
+            <!-- <p class="info">本月底即將到期點數 99,999 點</p>
+          <p class="info">交換/轉點中點數 99,999 點</p> -->
+          </div>
+          <!-- 無法啟用該服務/設定提醒/OTP popup 情境觸發用  -->
+          <button class="btn" @click="showPopup('unable')">
+            無法啟用該服務
+          </button>
+          <button class="btn" @click="showPopup('hint')">設定提醒</button>
+          <button class="btn" @click="showPopup('otp')">OTP</button>
+        </div>
+
+        <div class="records">
+          <ul class="tab">
+            <li
+              :class="{ active: activeTab === 'latest' }"
+              @click="changeTab('latest')"
+            >
+              最新活動
+            </li>
+            <!-- 未登入 -->
+            <li @click="showPopup('login-reminder')">使用紀錄</li>
+            <!-- 已登入 -->
+            <!-- <li :class="{ active: activeTab === 'history' }" @click="changeTab('history')">使用紀錄</li> -->
+          </ul>
+          <div class="tab-content">
+            <div v-show="activeTab === 'latest'">
+              <div class="tags" v-show="latestItems.length">
+                <ul>
+                  <li
+                    v-for="tag in latestTags"
+                    :key="tag.value"
+                    :class="{ active: latestTag === tag.value }"
+                    @click="changeLatestTag(tag.value)"
+                  >
+                    {{ tag.label }}
+                  </li>
+                </ul>
+              </div>
+              <!-- 空值 -->
+              <div class="empty" v-show="!latestItems.length">
+                <img src="img/empty.svg" />
+                <p>目前無最新活動</p>
+              </div>
+              <ul class="latest-list" v-show="latestItems.length">
+                <li
+                  v-for="item in latestItems"
+                  :key="item.id"
+                  v-if="latestTag === 'all' || item.tag === latestTag"
+                >
+                  <a href="#" target="_blank">
+                    <div class="item-img"><img :src="item.img" /></div>
+                    <div class="item-info">
+                      <p class="item-title">{{ item.title }}</p>
+                      <span class="item-date">{{ item.date }}</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div v-show="activeTab === 'history'">
+              <!-- 空值 -->
+              <div class="empty" v-show="!historyItems.length">
+                <img src="img/empty.svg" />
+                <p>目前無使用紀錄</p>
+              </div>
+
+              <div class="tags" v-show="historyItems.length">
+                <ul>
+                  <li
+                    v-for="tag in historyTags"
+                    :key="tag.value"
+                    :class="{ active: historyTag === tag.value }"
+                    @click="changeHistoryTag(tag.value)"
+                  >
+                    {{ tag.label }}
+                  </li>
+                </ul>
+              </div>
+              <ul class="history-list" v-show="historyItems.length">
+                <li
+                  v-for="item in historyItems"
+                  :key="item.serial"
+                  v-if="historyTag === 'all' || item.tag === historyTag"
+                >
+                  <div class="item-info">
+                    <div class="item-cont">
+                      <p class="item-title">{{ item.title }}</p>
+                      <div
+                        class="item-amount"
+                        :class="getAmountClass(item.amount)"
+                      >
+                        {{ item.amount }}
+                      </div>
+                    </div>
+                    <div class="item-serial">
+                      <span>訂單號</span>
+                      {{ item.serial }}
+                      <i
+                        class="icon-icon_copy"
+                        @click="copySerial(item.serial, $event)"
+                      ></i>
+                    </div>
+                    <div class="item-statusndate">
+                      <span>狀態：{{ item.status }}</span>
+                      <span>{{ item.date }}</span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="floatingBtn">
+          <!-- 一顆按鈕用 -->
+          <!-- <ul>
+          <li>
+            <button class="btn cart-comfirm__button blindBox" type="submit" data-close=""
+              data-open="itemToGame-popup">放入遊戲</button>
+          </li>
+        </ul> -->
+          <!-- 兩顆按鈕用 -->
+          <!-- <ul>
+            <li>
+              <button class="btn primary-subtle give" type="submit">贈送</button>
+            </li>
+            <li>
+              <button class="btn primary-subtle exchange" type="submit">交換</button>
+            </li>
+          </ul> -->
+          <!-- 三顆按鈕以上用 -->
+          <ul>
+            <li class="ic-trade-parent">
+              <button
+                class="btn ic-trade"
+                type="submit"
+                @click="toggleAssemble"
+              >
+                功能
+              </button>
+              <div class="assemble" v-if="isAssembleVisible">
+                <ul>
+                  <li>
+                    <button class="btn give" type="submit"></button>
+                    贈送
+                  </li>
+                  <li>
+                    <button class="btn exchange" type="submit"></button>
+                    交換
+                  </li>
+                  <li>
+                    <button
+                      class="btn convert"
+                      type="submit"
+                      onclick="location.href='convert.html'"
+                    ></button>
+                    兌換
+                  </li>
+                  <li>
+                    <button
+                      class="btn setting"
+                      type="submit"
+                      onclick="location.href='setting.html'"
+                    ></button>
+                    設定
+                  </li>
+                  <li>
+                    <button
+                      class="btn close"
+                      type="submit"
+                      @click="closeAssemble"
+                    ></button>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <button
+                class="btn cart-comfirm__button"
+                type="button"
+                onclick="location.href='topup.html'"
+              >
+                立刻儲值
+                <span class="alert">即將於 12/30 關閉</span>
+              </button>
+            </li>
+            <!-- <li>
+            <button class="btn cart-comfirm__button serial" type="submit" data-close=""
+              data-open="serial_exchange-popup">兌換序號
+              <span class="serial-count">{{ totalSerialCount }}</span>
+            </button>
+          </li> -->
+          </ul>
+          <div
+            class="mask"
+            v-if="isAssembleVisible"
+            @click="closeAssemble"
+          ></div>
+        </div>
+      </template>
+
+      <!-- Popup - 無法啟用該服務 -->
+      <div
+        class="modal-dialog"
+        v-if="modalVisible && currentPopup === 'unable'"
+      >
+        <div class="modal-container">
+          <div class="modal-title">
+            <h3>無法啟用該服務</h3>
+          </div>
+          <div class="modal-slot">
+            本服務目前僅支援台港澳地區手機門號註冊用戶使用，若符合上述條件卻仍無法使用，請儘速<span>聯絡客服</span>協助。<br /><br />※若已完成服務啟用，請重新載入頁面
+            。
+          </div>
+          <button class="btn" @click="hidePopup">聯絡客服</button>
+        </div>
+      </div>
+      <!-- Popup - 設定提醒 -->
+      <div class="modal-dialog" v-if="modalVisible && currentPopup === 'hint'">
+        <div class="modal-container">
+          <div class="modal-title">
+            <h3>設定提醒</h3>
+          </div>
+          <div class="modal-slot">
+            為保障您的權益，啟用GASH點數服務，需先完成<span>手機號碼</span>與<span>信箱</span>的設定。<br /><br />※若已完成設定，請重新載入頁面。
+          </div>
+          <button class="btn" @click="hidePopup">前往設定</button>
+        </div>
+      </div>
+      <!-- Popup - OTP驗證 -->
+      <div class="modal-dialog" v-if="modalVisible && currentPopup === 'otp'">
+        <div class="topup-card lock">
+          <div class="topup-title">
+            <h3>OTP驗證</h3>
+            <p>為保障您的權益，請先進行OTP驗證</p>
+          </div>
+          <div class="input-btn">
+            <input
+              id="verifyPhoneID"
+              type="text"
+              v-model="verifyPhoneID"
+              disabled
+            />
+            <button class="sendBtn" type="button" @click="sendVC">
+              發送驗證碼
+            </button>
+            <button class="sendBtn" type="button" v-else disabled>
+              發送驗證碼
+            </button>
+            <!-- loading 用 -->
+            <button class="btn-load-more js-load-more is-loading" type="button">
+              <span class="btn-load-more__dots">
+                <span class="btn-load-more__dot dot-1"></span>
+                <span class="btn-load-more__dot dot-2"></span>
+                <span class="btn-load-more__dot dot-3"></span>
+              </span>
+            </button>
+          </div>
+          <div class="input-icon">
+            <input
+              type="text"
+              placeholder="請輸入簡訊驗證碼"
+              onkeyup="value=value.replace(/[^\d]/g,'')"
+              maxlength="6"
+              v-model="SMSID"
+              required
+            />
+          </div>
+          <div class="btnBox">
+            <button
+              class="btn"
+              :disabled="!SMSID.length"
+              @click="hidePopup(); showToast();"
+            >
+              確定
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Popup - 登入提醒 -->
+      <div
+        class="modal-dialog"
+        v-if="modalVisible && currentPopup === 'login-reminder'"
+      >
+        <span class="modal-close-btn" @click="hidePopup"
+          ><i class="icon-close"></i
+        ></span>
+        <div class="modal-container">
+          <div class="modal-title">
+            <h3>登入提醒</h3>
+          </div>
+          <div class="modal-slot">
+            為保障您的權益，啟用GASH點數服務，需先完成<span>會員登入</span>。
+          </div>
+          <button class="btn">登入</button>
+        </div>
+      </div>
+      <!-- 遮罩 -->
+      <div class="overlay" v-if="modalVisible"></div>
+    </div>
+
+    <!-- toast - 複製成功 -->
+    <div class="toastBox ic-true">
+      <p>複製成功</p>
+    </div>
+    <!-- toast - 驗證碼發送次數已達上限 -->
+    <div class="toastBox ic-false">
+      <p>每日簡訊驗證次數已達上限，請稍後再試</p>
+    </div>
+    <!-- toast - 驗證碼錯誤 -->
+    <div class="toastBox ic-false">
+      <p>驗證碼錯誤，請重新輸入</p>
+    </div>
+
+    <footer class="index-footer">@2023 集團 Group</footer>
+
+    <script src="js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="js/vendor/vue-2.6.14.min.js"></script>
+    <script type="text/javascript">
+      var vmHeader = new Vue({
+        el: "#header",
+        data() {
+          return {
+            loginStatus: false, //登入鈕
+            isLoggedIn: false,
+          };
+        },
+
+        methods: {
+          toggleLoginStatus() {
+            // 切換登入狀態
+            this.loginStatus = !this.loginStatus;
+            this.isLoggedIn = this.loginStatus;
+          },
+        },
+      });
+
+      var vmCont = new Vue({
+        el: "#main-container",
+        data() {
+          return {
+            skeleton: true, //骨架屏
+            data: false,
+            activeTab: "latest",
+            latestTag: "all",
+            historyTag: "all",
+            isAssembleVisible: false, //交易按鈕
+            verifyPhoneID: "0938***062",
+            SMSID: "",
+            modalVisible: false, //遮罩
+            currentPopup: "",
+
+            latestTags: [
+              { label: "全部", value: "all" },
+              { label: "會員好康", value: "member" },
+              { label: "港澳專區", value: "hkmacau" },
+            ],
+            historyTags: [
+              { label: "全部", value: "all" },
+              { label: "扣點", value: "deduct" },
+              { label: "儲值", value: "topup" },
+            ],
+            latestItems: [
+              {
+                id: "001",
+                img: "img/item01.jpg",
+                title: "天堂M藍鑽包3,000元",
+                date: "2023/11/22 13:47:52",
+                tag: "member",
+              },
+              {
+                id: "002",
+                img: "img/item02.jpg",
+                title:
+                  "白夜極光超值專用卡1699點 白夜極光超值專用卡1699點 白夜極光超值專用卡1699點 白夜極光超值專用卡1699點 白夜極光超值專用卡1699點",
+                date: "2023/11/22 13:47:52",
+                tag: "hkmacau",
+              },
+              {
+                id: "003",
+                img: "img/item03.jpg",
+                title: "絕地求生M專用卡1000點",
+                date: "2023/11/22 13:47:52",
+                tag: "member",
+              },
+              {
+                id: "004",
+                img: "img/item04.jpg",
+                title: "新楓之谷Online專用卡1080點",
+                date: "2023/11/22 13:47:52",
+                tag: "member",
+              },
+              {
+                id: "005",
+                img: "img/item01.jpg",
+                title: "天堂M藍鑽包3,000元",
+                date: "2023/11/22 13:47:52",
+                tag: "member",
+              },
+              {
+                id: "006",
+                img: "img/item02.jpg",
+                title: "白夜極光超值專用卡1699點",
+                date: "2023/11/22 13:47:52",
+                tag: "hkmacau",
+              },
+              {
+                id: "007",
+                img: "img/item03.jpg",
+                title: "絕地求生M專用卡1000點",
+                date: "2023/11/22 13:47:52",
+                tag: "member",
+              },
+              {
+                id: "008",
+                img: "img/item04.jpg",
+                title: "新楓之谷Online專用卡1080點",
+                date: "2023/11/22 13:47:52",
+                tag: "member",
+              },
+              {
+                id: "009",
+                img: "img/item01.jpg",
+                title: "天堂M藍鑽包3,000元",
+                date: "2023/11/22 13:47:52",
+                tag: "member",
+              },
+              {
+                id: "010",
+                img: "img/item02.jpg",
+                title: "白夜極光超值專用卡1699點",
+                date: "2023/11/22 13:47:52",
+                tag: "hkmacau",
+              },
+            ],
+            historyItems: [
+              {
+                title: "贈點領取",
+                serial: "2023112218000006639",
+                amount: "+300",
+                status: "成功",
+                date: "2023/11/22 13:47:52",
+                tag: "topup",
+              },
+              {
+                title: "扣點",
+                serial: "2023112218000006640",
+                amount: "-300",
+                status: "成功",
+                date: "2023/11/22 13:47:52",
+                tag: "deduct",
+              },
+              {
+                title: "扣點",
+                serial: "2023112218000006641",
+                amount: "-1000",
+                status: "失敗",
+                date: "2023/11/22 13:47:52",
+                tag: "deduct",
+              },
+              {
+                title: "贈點領取",
+                serial: "2023112218000006642",
+                amount: "+500",
+                status: "成功",
+                date: "2023/11/22 13:47:52",
+                tag: "topup",
+              },
+            ],
+          };
+        },
+
+        methods: {
+          changeTab(tab) {
+            this.activeTab = tab;
+
+            // 若高度不滿畫面，則 header 不隱藏
+            var listContent = $(".tab-content ul");
+            var $window = $(window);
+            if (listContent.height() < $window.height()) {
+              $("header").removeClass("hidden");
+            }
+          },
+          changeLatestTag(tag) {
+            this.latestTag = tag;
+
+            // 若高度不滿畫面，則 header 不隱藏
+            var listContent = $(".tab-content ul");
+            var $window = $(window);
+            if (listContent.height() < $window.height()) {
+              $("header").removeClass("hidden");
+            }
+          },
+          changeHistoryTag(tag) {
+            this.historyTag = tag;
+
+            // 若高度不滿畫面，則 header 不隱藏
+            var listContent = $(".tab-content ul");
+            var $window = $(window);
+            if (listContent.height() < $window.height()) {
+              $("header").removeClass("hidden");
+            }
+          },
+          shouldRenderItem(item) {
+            return this.historyTag === "all" || item.tag === this.historyTag;
+          },
+          getAmountClass(amount) {
+            const numericValue = parseFloat(amount);
+            return {
+              positive: numericValue > 0,
+              negative: numericValue < 0,
+            };
+          },
+
+          // 複製訂單號
+          copySerial(serial, event) {
+            var tempInput = document.createElement("input");
+            tempInput.value = serial;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            event.target.classList.remove("icon-icon_copy");
+            event.target.classList.add("icon-icon_check");
+
+            this.showToast();
+            setTimeout(function () {
+              $(".toastBox").removeAttr("style");
+              event.target.classList.remove("icon-icon_check");
+              event.target.classList.add("icon-icon_copy");
+            }, 2000);
+          },
+
+          //交易功能 popup
+          toggleAssemble() {
+            this.isAssembleVisible = !this.isAssembleVisible;
+            document.body.classList.add("modal-open");
+          },
+          closeAssemble() {
+            this.isAssembleVisible = false;
+            document.body.classList.remove("modal-open");
+          },
+
+          //發送驗證碼
+          sendVC: function () {
+            $(".btn-load-more").show();
+            $(".sendBtn").hide();
+
+            // 3秒後顯示
+            setTimeout(function () {
+              $(".btn-load-more").hide();
+              $(".sendBtn").show();
+              $(".sendBtn").text("60s");
+              $(".sendBtn").prop("disabled", true);
+              $("#SMStip").show();
+              var count = 60;
+              var interval = setInterval(function () {
+                count--;
+                $(".sendBtn").text(count + "s");
+                if (count == 0) {
+                  clearInterval(interval);
+                  $(".sendBtn").prop("disabled", false).text("發送驗證碼");
+                }
+              }, 1000);
+            }, 3000);
+          },
+
+          //popup
+          showModal() {
+            this.modalVisible = true;
+            document.body.classList.add("modal-open");
+            this.skeleton = true;
+          },
+          hidePopup() {
+            this.modalVisible = false;
+            this.currentPopup = ""; // 清除當前顯示的 popup
+            document.body.classList.remove("modal-open");
+            this.data = true;
+            this.skeleton = false;
+          },
+          showPopup(popupName) {
+            this.currentPopup = popupName; // 顯示當對應 popup
+            this.showModal();
+          },
+
+          // 顯示 toast
+          showToast() {
+            $(".toastBox")
+              .animate({ top: "10px" }, 100)
+              .delay(2000)
+              .animate({ top: "-40px" }, 100);
+          },
+        },
+
+        mounted() {
+          // skeleton
+          setTimeout(() => {
+            this.skeleton = false;
+            document.body.classList.remove("modal-open");
+            this.data = true;
+          }, 3000);
+        },
+      });
+
+      // header 藏起來
+      var prev = 40;
+      var $window = $(window);
+      var header = $("header");
+
+      $window.on("scroll", function () {
+        var scrollTop = $window.scrollTop();
+        if (scrollTop > 40) {
+          header.toggleClass("hidden", scrollTop > prev);
+          prev = scrollTop;
+        }
+      });
+    </script>
+  </body>
+</html>

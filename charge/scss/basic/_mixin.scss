@@ -1,0 +1,396 @@
+$size: (
+  "xxs": calc(0.25*var(--font-size)),
+  "xs": calc(0.5*var(--font-size)),
+  "sm": calc(0.75*var(--font-size)),
+  "md": calc(2*var(--font-size)),
+  "lg": calc(3*var(--font-size)),
+  "xl": calc(2.25*var(--font-size)),
+  "none": 0,
+);
+
+@each $name, $size in $size {
+  .p-#{$name} {
+    padding: $size !important;
+  }
+  .px-#{$name} {
+    padding-right: $size !important;
+    padding-left: $size !important;
+  }
+  .py-#{$name} {
+    padding-top: $size !important;
+    padding-bottom: $size !important;
+  }
+  .pr-#{$name} {
+    padding-right: $size !important;
+  }
+  .pb-#{$name} {
+    padding-bottom: $size !important;
+  }
+  .pt-#{$name} {
+    padding-top: $size !important;
+  }
+  .pl-#{$name} {
+    padding-left: $size !important;
+  }
+  .m-#{$name} {
+    margin: $size !important;
+  }
+  .mx-#{$name} {
+    margin-left: $size !important;
+    margin-right: $size !important;
+  }
+  .my-#{$name} {
+    margin-top: $size !important;
+    margin-bottom: $size !important;
+  }
+  .mr-#{$name} {
+    margin-right: $size !important;
+  }
+  .mb-#{$name} {
+    margin-bottom: $size !important;
+  }
+  .mt-#{$name} {
+    margin-top: $size !important;
+  }
+  .ml-#{$name} {
+    margin-left: $size !important;
+  }
+}
+
+.m-a {
+  margin: auto !important;
+}
+
+.mt-a {
+  margin-top: auto !important;
+}
+.ml-a {
+  margin-left: auto !important;
+}
+.mr-a {
+  margin-right: auto !important;
+}
+.mb-a {
+  margin-bottom: auto !important;
+}
+
+$shadowcolor: #ccc;
+
+@mixin shadow1($color: $shadowcolor) {
+  box-shadow: 0 1px calc( 0.3125 * var(--font-size) ) 0 rgba($color, 0.2),
+   0 calc( 0.1875 * var(--font-size) ) 1px calc( -0.125 * var(--font-size) ) rgba($color, 0.12),
+   0 calc( 0.125 * var(--font-size) ) calc( 0.125 * var(--font-size) ) 0 rgba($color, 0.14);
+}
+
+@mixin shadow2($color: $shadowcolor) {
+  box-shadow: 0 calc( 0.125 * var(--font-size) ) calc( 0.25 * var(--font-size) ) -1px rgba($color, 0.2), 
+  0 1px calc( 0.625 * var(--font-size) ) 0 rgba($color, 0.12), 
+  0 calc( 0.25 * var(--font-size) ) calc( 0.3125 * var(--font-size) ) 0 rgba($color, 0.14);
+}
+
+@mixin shadow3($color: $shadowcolor) {
+  box-shadow: 0 calc( 0.1875 * var(--font-size) ) calc( 0.3125 * var(--font-size) ) -1px rgba($color, 0.2),
+   0 1px calc( 1.125 * var(--font-size) ) 0 rgba($color, 0.12),
+   0 calc( 0.375 * var(--font-size) ) calc( 0.625 * var(--font-size) ) 0 rgba($color, 0.14);
+}
+
+
+.shadow-1 {
+  @include shadow1;
+}
+
+.shadow-2 {
+  @include shadow2;
+}
+
+.shadow-3 {
+  @include shadow3;
+}
+
+
+.shadow-none {
+  box-shadow: unset !important;
+}
+
+.full-width {
+  width: 100%;
+}
+.b-to-e {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+img {
+  max-width: 100%;
+}
+
+// 配合的動效
+.fade-in {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: 0.2s $bezire;
+}
+.fade-in.show {
+  height: auto;
+  opacity: 1;
+}
+
+@for $i from 1 to 21 {
+  .w-#{$i*5} {
+    width: $i * 5% !important;
+    overflow: auto;
+  }
+
+}
+@for $i from 1 to 6 {
+  .grow-#{$i} {
+    flex-grow: $i;
+  }
+}
+
+.bg {
+  background: $bfWhite;
+}
+
+$border: ("right", "top", "bottom", "left");
+
+@each $name in $border {
+  .divider-#{$name} {
+    border-#{$name}: 1px solid $bfMediumGray;
+  }
+}
+
+
+.pointer {
+  cursor: pointer;
+}
+
+.not-allowed {
+  cursor: not-allowed;
+}
+
+.hide {
+  display: none !important;
+}
+
+// 定位 & 排列
+
+.fix {
+  position: fixed !important;
+}
+
+.po-r {
+  position: relative !important;
+}
+.po-a {
+  position: absolute !important;
+}
+.po-f {
+  position: fixed !important;
+}
+
+.z1 {
+  z-index: 1;
+}
+.bottom {
+  bottom: 0 !important;
+}
+.top {
+  top: 0 !important;
+}
+
+.left {
+  left: 0 !important;
+}
+
+.right {
+  right: 0 !important;
+}
+.center {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.d-flex {
+  display: flex !important;
+}
+.d-block {
+  display: block !important;
+}
+
+.d-inline {
+  display: inline !important;
+}
+
+.f-wrap {
+  flex-wrap: wrap;
+}
+.f-n-shrink {
+  flex-shrink: 0 !important;
+}
+.f-shrink {
+  flex-shrink: 1 !important;
+}
+.f-grow {
+  flex-grow: 1;
+}
+.column {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.jc-center {
+  justify-content: center !important;
+}
+.jc-between {
+  justify-content: space-between !important;
+}
+.jc-around {
+  justify-content: space-around !important;
+}
+
+.ai-center {
+  min-height: 300px;
+  align-items: center !important;
+}
+
+.ai-start {
+  align-items: flex-start !important;
+}
+.ai-end {
+  align-items: flex-end !important;
+}
+
+//  圖片
+.img {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+
+  img{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  &[data-ratio="4-3"] {
+    width: 100%;
+    padding-top: 75%;
+  }
+  &[data-ratio="1"] {
+    width: 100%;
+    padding-top: 100%;
+    &[data-size="lg"] {
+      width: calc(3.25*var(--font-size));
+      padding-top:  calc(3.25*var(--font-size));
+    }
+    &[data-size="xl"] {
+      width: calc(5.25*var(--font-size));
+      padding-top: calc(5.25*var(--font-size));
+    }
+    &[data-size="lg"] {
+      width: calc(3.875*var(--font-size));
+      padding-top: calc(3.875*var(--font-size));
+    }
+    &[data-size="md"] {
+      width: calc(1.875*var(--font-size));
+      padding-top: calc(1.875*var(--font-size));
+    }
+    &[data-size="sm"] {
+      width: calc(1*var(--font-size));
+      padding-top: calc(1*var(--font-size));
+    }
+    
+  }
+}
+.round-lg {
+  border-radius: calc(1.5*var(--font-size)) !important;
+  overflow: hidden;
+}
+.round,.round-md {
+  border-radius: calc(1*var(--font-size)) !important;
+  overflow: hidden;
+}
+.round-2,.round-sm {
+  border-radius: calc(1.6*var(--font-size)) !important;
+  overflow: hidden;
+}
+.round-4,.round-xs {
+  border-radius: calc(.25*var(--font-size)) !important;
+  overflow: hidden;
+}
+
+.img-bf {
+  width: calc(5*var(--font-size));
+  padding-top: 2.825em;
+}
+
+
+
+// wrap
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 calc( 2.25 * var(--font-size) );
+  box-sizing: border-box;
+}
+
+.container-fluid {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.row {
+  display: flex;
+  margin: 0;
+  & > * + * {
+    margin-left: calc(0.5*var(--font-size));
+  }
+}
+
+// 背景色
+$text-color: (
+    // "black": $bfBlack,
+    // "dark": $bfDark,
+    // "bluedark": $bfBlueDark,
+    // "darkgray": $bfDarkGray,
+    // "mediumgray ": $bfMediumGray,
+    "gray": $bfGray,
+    "lightgray": $bfLightGray,
+    "slightlygray": $bfSlightlyGray,
+    "softwhite": $bfSoftWhite,
+    "bluesoftwhite": $bfBlueSoftWhite,
+    "white": $bfWhite,
+    // "darkprimary": $bfDarkPrimary,
+    "primary": $bfPrimary,
+    // "lightprimary": $bfLightPrimary,
+    // "darksecondarya": $bfDarkSecondaryA,
+    // "secondarya": $bfSecondaryA,
+    // "lightsecondarya": $bfLightSecondaryA,
+    // "secondaryb": $bfSecondaryB,
+    "warning": $bfWarning,
+    "daner": $bfDanger,
+    "cuntom-gray-1": $slightlyLightGray,
+    "cuntom-gray-2": $veryLightGray,
+);
+
+@each $name, $color in $text-color {
+    .bg-#{$name} {
+      background-color: $color !important;
+    }
+    .border-#{$name} {
+      border:  calc(.07*var(--font-size)) solid $color !important;
+    }
+}

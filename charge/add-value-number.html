@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" http-equiv="content-type" content="text/plain;" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta
+      name="viewport"
+      content="user-scalable=no, maximum-scale=1.0, minimum-scale=1.0, width=device-width, initial-scale=1.0"
+    />
+    <title>GashMall</title>
+    <link href="css/jquery.fancybox.min.css" rel="stylesheet" />
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- Gash 商城 menu css -->
+    <link rel="stylesheet" href="css/gash-style.css" />
+    <link rel="stylesheet" href="css/gash-menu.css" />
+  </head>
+  <body>
+    <div class="notice">
+      ⚠️
+      提醒您，GASH錢包即將於2024年12月XX日關閉儲值服務，屆時您存放在錢包內的點數仍可正常使用不受影響。
+    </div>
+
+    <header>
+      <nav class="nav-wrap">
+        <div class="nav-header">
+          <div class="nav-logo-mobile"><a>GASH</a></div>
+          <!-- 登出圖示-->
+          <a class="nav-logout" href="#"></a>
+        </div>
+      </nav>
+    </header>
+    <div class="anytix">
+      <div class="main-content value" id="app">
+        <div class="container line">
+          <div class="value-box">
+            <h3>請輸入儲值序號</h3>
+            <p class="caption2-M">
+              提領功能已關閉，儲值前請先確認(遊戲/平台)是否開放GASH會員轉點唷!
+            </p>
+            <div class="camera">
+              <input
+                type="text"
+                name=""
+                class="input"
+                placeholder="輸入儲值序號"
+                onKeyUp="value=value.replace(/[\W]/g,'')"
+              />
+              <i class="open"><img src="./images/icon/ic-scan.svg" alt="" /></i>
+            </div>
+            <a href="otp.html" class="btn-primary block round-2"
+              >確定<span class="alert">即將於 12/30 關閉</span></a
+            >
+            <!-- <button class="btn-primary block" data-fancybox onclick="$.fancybox.close();" data-fancybox data-src="#value-success">確定</button> -->
+          </div>
+        </div>
+        <div class="container">
+          <p class="caption2-M">🔥 不想輸入序號嗎？快使用直儲功能吧️</p>
+          <a
+            href="https://ec.gashpoint.com/SalePackage/Index/5?ChargeID=SA00245&EC_ID=EC021120020"
+            target="_blank"
+            class="btn-primary block round-2"
+          >
+            快速儲值
+            <span class="alert">即將於 12/30 關閉</span></a
+          >
+        </div>
+        <!-- 儲值序號：“錯誤＆已使用”訊息 -->
+        <div class="error-message warning" id="error-message" v-show="show">
+          <span class="icon"
+            ><img src="./images/icon/ic-warning-s-seca.svg" alt=""
+          /></span>
+          <p>儲值序號錯誤或已使用。</p>
+          <span class="error-hide" @click="errorHide()"
+            ><img src="./images/icon/ic-close.svg" alt=""
+          /></span>
+        </div>
+        <!-- 儲值序號：“序號長度”訊息 -->
+        <!-- <div class="error-message warning" id="error-message" v-show="show">
+					<span class="icon"><img src="./images/icon/ic-warning-s-seca.svg" alt=""></span>
+					<p>請檢查序號長度，應為10、20、21碼。</p>
+					<span class="error-hide" @click="errorHide()"><img src="./images/icon/ic-close.svg" alt=""></span>
+				</div> -->
+        <!-- 邀請碼：“已參加過”訊息  -->
+        <!-- <div class="error-message warning" id="error-message" v-show="show">
+					<span class="icon"><img src="./images/icon/ic-warning-s-seca.svg" alt=""></span>
+					<p>已參加過活動</p>
+					<span class="error-hide" @click="errorHide()"><img src="./images/icon/ic-close.svg" alt=""></span>
+				</div> -->
+        <!-- 邀請碼：輸入“錯誤”訊息  -->
+        <!-- <div class="error-message warning" id="error-message" v-show="show">
+					<span class="icon"><img src="./images/icon/ic-warning-s-seca.svg" alt=""></span>
+					<p>邀請碼輸入錯誤，請重新輸入</p>
+					<span class="error-hide" @click="errorHide()"><img src="./images/icon/ic-close.svg" alt=""></span>
+				</div> -->
+        <!-- 儲值序號 popup-->
+        <div class="dialog value" id="value-success" style="display: none">
+          <div class="column ai-center py-md">
+            <div class="Title mb-lg">儲值成功</div>
+            <p class="caption3">返回背包確認點數餘額喔</p>
+            <img src="./images/pic- addvalue.svg" alt="" />
+            <!-- 前往 bf!app 背包 > GASH 首頁-->
+            <a
+              href="#"
+              class="btn-primary block"
+              onclick="$.fancybox.close();"
+              data-fancybox
+              data-src="#value-invite-success"
+              >查看點數餘額</a
+            >
+            <a
+              href="add-value-number.html"
+              class="btn-primary block dark"
+              onclick="$.fancybox.close();"
+              >繼續輸入序號</a
+            >
+          </div>
+        </div>
+        <!-- 邀請碼 popup-->
+        <div
+          class="dialog value"
+          id="value-invite-success"
+          style="display: none"
+        >
+          <div class="column ai-center py-md">
+            <div class="Title mb-lg">邀請碼輸入成功</div>
+            <p class="caption3">已獲得寶箱，快前往查看吧！</p>
+            <img src="./images/pic- addvalue.svg" alt="" />
+            <!-- 前往 bf!app 背包 > GASH 首頁-->
+            <a href="#" class="btn-primary block" onclick="$.fancybox.close();"
+              >點我前往寶箱</a
+            >
+            <a
+              href="add-value-number.html"
+              class="btn-primary block dark"
+              onclick="$.fancybox.close();"
+              >繼續輸入序號</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="backdrop"></div>
+    <script src="js/vue.min.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            show: true,
+          };
+        },
+        mounted: function () {
+          setTimeout(() => {
+            document.getElementById("error-message").style.display = "none";
+          }, 5000);
+        },
+        methods: {
+          errorHide: function () {
+            this.show = false;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>GASH會員錢包 | 安全便捷的遊戲支付首選！</title>
+  <link rel="icon" type="image/png" href="img/favicon.ico" />
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.jpg" />
+  <meta name="keywords" content="GASH、遊戲橘子、遊戲點數、儲值、點數儲值、GASH點數、樂點、電子錢包" />
+  <meta name="description" content="GASH會員錢包是一個方便快捷的數位錢包，讓您可輕鬆進行遊戲內儲值，並在眾多遊戲中暢享消費樂趣。無論是儲值或是消費，都能享受安全且便捷的支付體驗。立即使用GASH會員錢包，盡情暢玩您喜愛的線上遊戲！" />
+  <!-- share info -->
+  <meta property="og:url" content="https://gashwallet.gashpoint.com"/>
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GASH會員錢包 | 安全便捷的遊戲支付首選！" />
+  <!-- Stage / og:image -->
+  <meta property="og:image" content="https://stage-gashwallet.gashpoint.com/img/og-image.jpg" />
+  <!-- Prod / og:image -->
+  <!-- <meta property="og:image" content="https://gashwallet.gashpoint.com/img/og-image.jpg" /> -->
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="720" />
+
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="fonts/icons/icon.woff2" />
+  <link rel="stylesheet" href="fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="fonts/icons/icons.css" />
+  <link rel="stylesheet" href="js/vendor/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Stage / Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P8G3C282');</script>
+  <!-- End Google Tag Manager -->
+  
+  <!-- Prod / Google Tag Manager -->
+  <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KZSGGMHK');</script> -->
+  <!-- End Google Tag Manager -->
+</head>
+
+<!-- Stage / Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PCE9RRCSVL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PCE9RRCSVL');
+</script>
+
+<!-- Prod / Google tag (gtag.js) -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9BJ2B40KC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F9BJ2B40KC');
+</script> -->
+
+<body>
+  <!-- Stage / Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P8G3C282"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- Prod / Google Tag Manager (noscript) -->
+  <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZSGGMHK"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header id="header">
+    <div class="cont">
+      <div class="lateral"></div>
+      <div class="center">
+        <img src="img/gash_logo.svg">
+      </div>
+      <div class="lateral">
+        <button class="btn" @click="toggleLoginStatus">{{ loginStatus ? '登出' : '登入' }}</button>
+      </div>
+    </div>
+  </header>
+
+  <div id="main-container" class="container convert">
+    <ul class="breadcrumb">
+      <li><a href="index.html"><i class="be-icon be-icon-home" aria-hidden="true"></i>首頁</a></li>
+      <li><a href="convert.html"></i>兌換</a></li>
+      <li>任務卡/刮刮卡</li>
+    </ul>
+    <div class="topup-card mission">
+        <h4>任務卡/刮刮卡</h4>
+        <div class="mission-swiper">
+          <!-- 切換頁籤時 .swiper-slide 內的 scrollbar 需滑到最上方 -->
+          <div class="swiper-pagination"></div>
+          <div id="swiper-top"></div>
+          <div class="swiper-wrapper mission-list">
+            <div class="swiper-slide">
+              <ul>
+                <li v-for="(item, index) in unuseItems" :key="index">
+                  <a href="convert-mission_inpage.html">
+                    <div class="img"><img :src="item.img"></div>
+                    <div class="list-info">
+                      <ul class="chips">
+                        <li v-for="chip in item.chips">
+                          {{ chip }}
+                        </li>
+                      </ul>
+                      <h6>{{ item.title }}</h6>
+                      <p class="expiration">領取期限：{{ item.expiration }}</p>
+                      <div class="point" v-if="item.point !== null">
+                        <img src="img/GASHpoint.svg">
+                        {{ item.point }}
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+              <div class="empty" v-if="unuseItems.length === 0">
+                <img src="img/empty.svg">
+                <p>目前尚未有任務</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <ul>
+                <li v-for="(item, index) in usedItems" :key="index" class="used">
+                  <a href="convert-mission_inpage.html">
+                    <div class="img">
+                      <img :src="item.img">
+                      <span>已使用</span>
+                    </div>
+                    <div class="list-info">
+                      <ul class="chips">
+                        <li v-for="chip in item.chips">
+                          {{ chip }}
+                        </li>
+                      </ul>
+                      <h6>{{ item.title }}</h6>
+                      <p class="expiration">領取期限：{{ item.expiration }}</p>
+                      <div class="point" v-if="item.point !== null">
+                        <img src="img/GASHpoint.svg">
+                        {{ item.point }}
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+              <div class="empty" v-if="usedItems.length === 0">
+                <div class="img"><img src="img/empty.svg"></div>
+                <p>目前尚未有任務</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <ul>
+                <li v-for="(item, index) in expiredItems" :key="index" class="expired">
+                  <a href="convert-mission_inpage.html">
+                    <div class="img">
+                      <img :src="item.img">
+                      <span>已過期</span>
+                    </div>
+                    <div class="list-info">
+                      <ul class="chips">
+                        <li v-for="chip in item.chips">
+                          {{ chip }}
+                        </li>
+                      </ul>
+                      <h6>{{ item.title }}</h6>
+                      <p class="expiration">領取期限：{{ item.expiration }}</p>
+                      <div class="point" v-if="item.point !== null">
+                        <img src="img/GASHpoint.svg">
+                        {{ item.point }}
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+              <div class="empty" v-if="expiredItems.length === 0">
+                <img src="img/empty.svg">
+                <p>目前尚未有任務</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+ 
+
+  <footer>
+    © 2024 GASH POINT Co., Ltd. All Rights Reserved.
+  </footer>
+
+  <script src="js/vendor/jquery-3.6.0.min.js"></script>
+  <script src="js/vendor/vue-2.6.14.min.js"></script>
+  <script src="js/vendor/swiper/swiper-bundle.min.js"></script>
+  <script type="text/javascript">
+    var vmHeader = new Vue({ 
+      el: "#header",
+      data() {
+        return {
+          loginStatus: false, //登入鈕
+        }},
+
+        methods: {
+        toggleLoginStatus() {
+          // 切換登入狀態
+          this.loginStatus = !this.loginStatus;
+        }
+      },        
+    });
+
+    var vmCont = new Vue({
+      el: '#main-container',
+      data() {
+        return {
+          items: [
+            {
+              state: 'unuse',
+              title: '點卡儲值1000點返GASH 50點',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','點數'],
+              point: '50',
+            },
+            {
+              state: 'unuse',
+              title: '勝利女神妮姬儲值回饋',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','序號'],
+              point: null,
+            },
+            {
+              state: 'used',
+              title: '單筆儲值999點以上返怪物彈珠虛寶乙組',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','序號'],
+              point: null,
+            },
+            {
+              state: 'expired',
+              title: '點卡儲值3000點返GASH 150點',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','點數'],
+              point: '150',
+            },
+            {
+              state: 'unuse',
+              title: '勝利女神妮姬儲值回饋',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['刮刮卡','點數'],
+              point: '?',
+            },
+            {
+              state: 'unuse',
+              title: '勝利女神妮姬儲值回饋',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['刮刮卡','序號'],
+              point: null,
+            },
+            {
+              state: 'unuse',
+              title: '點卡儲值1000點返GASH 50點',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','點數'],
+              point: '50',
+            },
+            {
+              state: 'unuse',
+              title: '點卡儲值1000點返GASH 50點',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','點數'],
+              point: '50',
+            },
+            {
+              state: 'unuse',
+              title: '點卡儲值1000點返GASH 50點',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','點數'],
+              point: '50',
+            },
+            {
+              state: 'unuse',
+              title: '點卡儲值1000點返GASH 50點',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','點數'],
+              point: '50',
+            },
+            {
+              state: 'unuse',
+              title: '點卡儲值1000點返GASH 50點',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','點數'],
+              point: '50',
+            },
+            {
+              state: 'unuse',
+              title: '點卡儲值1000點返GASH 50點',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','點數'],
+              point: '50',
+            },
+            {
+              state: 'used',
+              title: '單筆儲值999點以上返怪物彈珠虛寶乙組',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','點數'],
+              point: '50',
+            },
+            {
+              state: 'used',
+              title: '單筆儲值999點以上返怪物彈珠虛寶乙組',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','序號'],
+              point: null,
+            },
+            {
+              state: 'used',
+              title: '單筆儲值999點以上返怪物彈珠虛寶乙組',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','點數'],
+              point: '50',
+            },
+            {
+              state: 'used',
+              title: '單筆儲值999點以上返怪物彈珠虛寶乙組',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','序號'],
+              point: null,
+            },
+            {
+              state: 'used',
+              title: '單筆儲值999點以上返怪物彈珠虛寶乙組',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['刮刮卡','點數'],
+              point: '100',
+            },
+            {
+              state: 'used',
+              title: '單筆儲值999點以上返怪物彈珠虛寶乙組',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['刮刮卡','序號'],
+              point: null,
+            },
+            {
+              state: 'used',
+              title: '單筆儲值999點以上返怪物彈珠虛寶乙組',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','點數'],
+              point: '150',
+            },
+            {
+              state: 'used',
+              title: '單筆儲值999點以上返怪物彈珠虛寶乙組',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','序號'],
+              point: null,
+            },
+            {
+              state: 'expired',
+              title: '點卡儲值3000點返GASH 100點',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['刮刮卡','點數'],
+              point: '100',
+            },
+            {
+              state: 'expired',
+              title: '單筆儲值999點以上返怪物彈珠虛寶乙組',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['刮刮卡','序號'],
+              point: null,
+            },
+            {
+              state: 'expired',
+              title: '單筆儲值999點以上返怪物彈珠虛寶乙組',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','序號'],
+              point: null,
+            },
+            {
+              state: 'expired',
+              title: '點卡儲值3000點返GASH 100點',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['刮刮卡','點數'],
+              point: '100',
+            },
+            {
+              state: 'expired',
+              title: '單筆儲值999點以上返怪物彈珠虛寶乙組',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['刮刮卡','序號'],
+              point: null,
+            },
+            {
+              state: 'expired',
+              title: '單筆儲值999點以上返怪物彈珠虛寶乙組',
+              expiration: '2024/04/03 17:56 - 2024/04/30 17:56',
+              img: 'img/mission-img.png',
+              chips: ['任務卡','序號'],
+              point: null,
+            },
+          ],
+        }
+      },
+
+      computed: {
+        unuseItems() {
+          return this.items.filter(item => item.state === 'unuse');
+        },
+        usedItems() {
+          return this.items.filter(item => item.state === 'used');
+        },
+        expiredItems() {
+          return this.items.filter(item => item.state === 'expired');
+        }
+      }
+    });
+
+    const missionSwiper = new Swiper('.mission-swiper', {
+      autoHeight: true,
+      allowTouchMove: false,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        renderBullet: function (index, className) {
+          var tabsName = ["可使用", "已使用", "已過期"];
+          return (
+            '<span class="' + className + '">' + tabsName[index] + "</span>"
+          );
+        },
+      },
+    })
+
+    //tabs 固定上方
+    $(document).ready(function() {
+      const headerHeight = $('#header').innerHeight();
+      const pagination = $('.swiper-pagination');
+
+      function handleScroll() {
+        if (window.scrollY > headerHeight) {
+          pagination.addClass("fixed");
+        } else {
+          pagination.removeClass("fixed");
+        }
+      }
+      window.addEventListener("scroll", handleScroll);
+
+      // 初始檢查
+      handleScroll();
+    });
+  </script>
+</body>
+
+</html>

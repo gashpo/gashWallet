@@ -1,0 +1,68 @@
+.otp{
+    &.main-content{
+        padding: calc( 8 * var(--font-size)) 0 0;
+    }
+    .otp-box{
+        padding-bottom: calc( 3 * var(--font-size));
+        margin-bottom: calc( 3 * var(--font-size));
+    }
+    h3{
+        margin-bottom: calc( 1.5 * var(--font-size));
+        font-size: calc( 1.8 * var(--font-size));
+        font-weight: 500;
+    }
+    .caption2-M{
+        font-weight: normal;
+        color: $bfDarkGray;
+    }
+    .verification-code {
+        display: flex;
+        justify-content: space-between;
+        margin-top: calc(2.5 * var(--font-size));
+        input {
+            width: calc(100% / 6 - .6rem);
+            font-size: calc(3 * var(--font-size));
+            font-weight: 500;
+            text-align: center;
+            border-color: $bfGray;
+            border-width: 0 0 1px 0;
+            background: unset;
+            &:last-of-type {
+                margin-right: 0;
+            }
+            &:active,
+            &:focus {
+                outline: unset;
+            }
+            &[data-insert='true'] {
+                border-color: $bfDark;
+            }
+            &[disabled] {
+                background: unset;
+            }
+        }
+        &.error {
+            input {
+                border-color: $bfDanger;
+            }
+        }
+        &.success {
+            input {
+                border-color: $bfPrimary;
+            }
+        }
+    }
+    .verification-status {
+        min-height: calc( 2 * var(--font-size));
+        margin-top: calc( 1 * var(--font-size));
+        .error-caption {
+            font-size: calc(1.3 * var(--font-size));
+            color: $bfDanger;
+        }
+    }
+    p.expired{
+        font-size: calc(1.3 * var(--font-size));
+        color: $bfDark;
+        text-align: center;
+    }
+}

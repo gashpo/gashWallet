@@ -1,0 +1,157 @@
+
+/* loading */
+
+$skelenton-radius: calc( 1.25 * var(--font-size) );
+.skeleton {
+    padding-bottom: calc( 5 * var(--font-size) );
+    & > div {
+        box-sizing: border-box;
+    }
+    .banner {
+        margin-bottom: calc( 1 * var(--font-size) );
+        width: 100%;
+        padding-top: 56%;
+        border-radius: $skelenton-radius;
+        background: $bfSlightlyGray;
+        position: relative;
+        overflow: hidden;
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -10%;
+            width: 60%;
+            height: 120%;
+            background-image: linear-gradient(to right, $bfSlightlyGray, $bfSoftWhite);
+            transform: skew(-30deg);
+            animation: loading infinite 1.2s ease;
+        }
+    }
+    .text {
+        margin-bottom: calc( 1 * var(--font-size) );
+        width: 100%;
+        border-radius: $skelenton-radius;
+        background: $bfSlightlyGray;
+        height: calc( 1 * var(--font-size) );
+        position: relative;
+        overflow: hidden;
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: -10%;
+            width: 50%;
+            height: 120%;
+            background-image: linear-gradient(to right, $bfSlightlyGray, $bfSoftWhite);
+            transform: skew(-30deg);
+            animation: loading infinite 1.5s ease;
+        }
+        &.line-2 {
+            height: calc( 2 * var(--font-size) );
+        }    
+        &.line-3 {
+            height: calc( 3 * var(--font-size) );
+        }    
+    }
+    .title {
+        margin: calc( 1 * var(--font-size) ) 0;
+        width: 100%;
+        border-radius: $skelenton-radius;
+        background: $bfSlightlyGray;
+        height: calc( 1.5 * var(--font-size) );
+        position: relative;
+        overflow: hidden;
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: -10%;
+            width: 50%;
+            height: 120%;
+            background-image: linear-gradient(to right, $bfSlightlyGray, $bfSoftWhite);
+            transform: skew(-30deg);
+            animation: loading infinite 1.5s ease;
+        }
+    }
+
+    .img {
+        background: $bfSlightlyGray;
+        flex-shrink: 0;
+        border-radius: $skelenton-radius;
+        width: 100%;
+        padding-top: 75%;
+        position: relative;
+        overflow: hidden;
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -10%;
+            width: 60%;
+            height: 120%;
+            background-image: linear-gradient(to right, $bfSlightlyGray, $bfSoftWhite);
+            transform: skew(-30deg);
+            animation: loading infinite 1.2s ease;
+        }
+        &.r4-1 {
+            width: 100%;
+            padding-top: 25%;
+        }
+        &.squre {
+            width: 100%;
+            padding-top: 100%;
+            &[data-size="sm"] {
+                width: calc( 1.5 * var(--font-size) );
+                padding-top: calc( 1.5 * var(--font-size) );
+            }
+            &[data-size="md"] {
+                width: calc( 3 * var(--font-size) );
+                padding-top: calc( 3 * var(--font-size) );
+            }
+            &[data-size="lg"] {
+                width: calc( 5 * var(--font-size) );
+                padding-top: calc( 5 * var(--font-size) );
+            }
+        }
+        &.r5-3 {
+            width: 100%;
+            padding-top: 60%;
+        }
+        &.r3-5 {
+            width: 100%;
+            padding-top: 60%;
+        }
+    }
+    .list {
+        width: 100%;
+        display: flex;
+        .img {
+            width: 36%;
+            padding-top: 28%;
+            & + * {
+                margin-left: calc( 1 * var(--font-size) );
+            }
+        }
+    }
+    .hr {
+        padding: calc( 1 * var(--font-size) );
+    }
+    .info {
+        padding: calc( .5 * var(--font-size) ) 0;
+        width: 100%;
+    }
+    .list {
+        margin-bottom: calc( 1 * var(--font-size) );
+    }
+}
+
+@keyframes loading {
+    0% {
+        left: -50%;
+    }
+    100% {
+        left: 110%;
+    }
+}

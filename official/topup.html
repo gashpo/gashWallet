@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>GASH會員錢包 | 安全便捷的遊戲支付首選！</title>
+    <link rel="icon" type="image/png" href="img/favicon.ico" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.jpg" />
+    <meta
+      name="keywords"
+      content="GASH、遊戲橘子、遊戲點數、儲值、點數儲值、GASH點數、樂點、電子錢包"
+    />
+    <meta
+      name="description"
+      content="GASH會員錢包是一個方便快捷的數位錢包，讓您可輕鬆進行遊戲內儲值，並在眾多遊戲中暢享消費樂趣。無論是儲值或是消費，都能享受安全且便捷的支付體驗。立即使用GASH會員錢包，盡情暢玩您喜愛的線上遊戲！"
+    />
+    <!-- share info -->
+    <meta property="og:url" content="https://gashwallet.gashpoint.com" />
+    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="GASH會員錢包 | 安全便捷的遊戲支付首選！"
+    />
+    <!-- Stage / og:image -->
+    <meta
+      property="og:image"
+      content="https://stage-gashwallet.gashpoint.com/img/og-image.jpg"
+    />
+    <!-- Prod / og:image -->
+    <!-- <meta property="og:image" content="https://gashwallet.gashpoint.com/img/og-image.jpg" /> -->
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="720" />
+
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin=""
+      href="fonts/icons/icon.woff2"
+    />
+    <link rel="stylesheet" href="fonts/icomoon/style.css" />
+    <link rel="stylesheet" href="fonts/icons/icons.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Stage / Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-P8G3C282");
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Prod / Google Tag Manager -->
+    <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KZSGGMHK');</script> -->
+    <!-- End Google Tag Manager -->
+  </head>
+
+  <!-- Stage / Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-PCE9RRCSVL"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-PCE9RRCSVL");
+  </script>
+
+  <!-- Prod / Google tag (gtag.js) -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9BJ2B40KC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F9BJ2B40KC');
+</script> -->
+
+  <body>
+    <!-- Stage / Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-P8G3C282"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Prod / Google Tag Manager (noscript) -->
+    <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZSGGMHK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="notice">
+      ⚠️
+      提醒您，GASH錢包即將於2024年12月XX日關閉儲值服務，屆時您存放在錢包內的點數仍可正常使用不受影響。
+    </div>
+
+    <header id="header">
+      <div class="cont">
+        <div class="lateral"></div>
+        <div class="center">
+          <img src="img/gash_logo.svg" />
+        </div>
+        <div class="lateral">
+          <button class="btn" @click="toggleLoginStatus">
+            {{ loginStatus ? '登出' : '登入' }}
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div id="main-container" class="container topup">
+      <ul class="breadcrumb">
+        <li>
+          <a href="index.html"
+            ><i class="be-icon be-icon-home" aria-hidden="true"></i>首頁</a
+          >
+        </li>
+        <li>立刻儲值</li>
+      </ul>
+      <div class="topup-card">
+        <div class="topup-title">
+          <h4>立刻儲值</h4>
+          <p>請輸入儲值密碼</p>
+        </div>
+        <div class="input-icon">
+          <input
+            type="text"
+            placeholder="請輸入儲值密碼"
+            onKeyUp="value=value.replace(/[\W]/g,'')"
+          />
+          <i class="icon-icon_scan"></i>
+        </div>
+        <button class="btn" @click="sendLoad()" style="margin-top: 20px">
+          <span>儲值</span>
+          <span class="alert">即將於 12/30 關閉</span>
+          <div class="btn-load-more__dots btn-load">
+            <span class="btn-load-more__dot dot-1"></span>
+            <span class="btn-load-more__dot dot-2"></span>
+            <span class="btn-load-more__dot dot-3"></span>
+          </div>
+        </button>
+
+        <div class="topup-note">
+          <p>貼心提醒</p>
+          <ol>
+            <li>
+              <span>1</span>
+              <p>
+                部分遊戲商品不開放轉點功能(如：<a
+                  href="https://tw.beanfun.com/news/content.aspx?p=2&news_id=3813&c=30&t=2701&tc=Announcement&service_id=0"
+                  target="_blank"
+                  >台灣遊戲橘子</a
+                >...等)，詳情請見各遊戲官網公告。
+              </p>
+            </li>
+            <li>
+              <span>2</span>
+              <p>點數儲值成功將無法退費，請儲值前多加留意。</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+      <p class="topup-buy">
+        還沒有儲值密碼嗎？
+        <a
+          href="https://ec.gashpoint.com/SalePackage/Index/5?ChargeID=SA00245&EC_ID=EC021120020"
+          target="_blank"
+          >線上購買</a
+        >
+      </p>
+
+      <!-- Popup - 儲值 -->
+      <div class="modal-dialog" v-if="modalVisible && currentPopup === 'topUp'">
+        <span class="modal-close-btn" @click="hidePopup"
+          ><i class="icon-close"></i
+        ></span>
+        <div class="modal-container">
+          <div class="modal-title">
+            <h3>儲值成功</h3>
+            <p>返回雲端背包確認點數餘額喔！</p>
+          </div>
+          <div class="modal-content">
+            <img src="img/check.png" />
+          </div>
+          <button class="btn" onclick="location.href='index.html'">
+            查看點數餘額
+          </button>
+          <button class="btn btn-outline" @click="hidePopup">
+            繼續輸入儲值密碼
+          </button>
+        </div>
+      </div>
+      <!-- 遮罩 -->
+      <div class="overlay" v-if="modalVisible" @click="hidePopup"></div>
+    </div>
+
+    <!-- toast - 放入失敗 -->
+    <div class="toastBox ic-false">
+      <p>儲值密碼錯誤或已使用。</p>
+    </div>
+
+    <footer>@2023 集團 Group</footer>
+
+    <script src="js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="js/vendor/vue-2.6.14.min.js"></script>
+    <script type="text/javascript">
+      var vmHeader = new Vue({
+        el: "#header",
+        data() {
+          return {
+            loginStatus: false, //登入鈕
+          };
+        },
+
+        methods: {
+          toggleLoginStatus() {
+            // 切換登入狀態
+            this.loginStatus = !this.loginStatus;
+          },
+        },
+      });
+
+      var vmCont = new Vue({
+        el: "#main-container",
+
+        data() {
+          return {
+            modalVisible: false, //遮罩
+            currentPopup: "",
+          };
+        },
+
+        methods: {
+          //儲值 btn
+          sendLoad: function () {
+            $(".btn .btn-load").show();
+            $(".btn > span").hide();
+
+            // 3秒後顯示
+            setTimeout(
+              function () {
+                $(".btn .btn-load").hide();
+                $(".btn > span").show();
+                setTimeout(
+                  function () {
+                    this.showPopup("topUp");
+                  }.bind(this),
+                  0
+                );
+              }.bind(this),
+              2000
+            );
+          },
+
+          //popup
+          showModal() {
+            this.modalVisible = true;
+            document.body.classList.add("modal-open");
+          },
+          hidePopup() {
+            this.modalVisible = false;
+            this.currentPopup = ""; // 清除當前顯示的 popup
+            document.body.classList.remove("modal-open");
+          },
+          showPopup(popupName) {
+            this.currentPopup = popupName; // 顯示當對應 popup
+            this.showModal();
+          },
+
+          // 交易功能 popup
+          toggleAssemble() {
+            this.isAssembleVisible = !this.isAssembleVisible;
+          },
+          closeAssemble() {
+            this.isAssembleVisible = false;
+          },
+
+          // 顯示 toast
+          showToast() {
+            $(".toastBox")
+              .animate({ top: "10px" }, 100)
+              .delay(2000)
+              .animate({ top: "-40px" }, 100);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
