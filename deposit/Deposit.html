@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <title>GASH POINT</title>
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="Css/jquery-ui_SDK.css" rel="stylesheet" />
+    <link href="Css/reset_SDK.css" rel="stylesheet" />
+    <link href="Css/site-m_SDK.css" rel="stylesheet" />
+    <link href="Css/redeem.min.css" rel="stylesheet" />
+    <link
+      href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      .LBD_CaptchaDiv a img {
+        visibility: hidden;
+      }
+      footer {
+        width: 100%;
+        height: 60px;
+        margin-top: 100px;
+        display: inline-block;
+        bottom: 0;
+      }
+
+      footer .footerText {
+        text-align: center;
+        padding: 23px 0px 20px 20px;
+        font-size: 14px;
+        color: #fff;
+        background-color: #000;
+      }
+      header {
+        background: -webkit-linear-gradient(
+          left,
+          #e5006e,
+          #f17932 70%,
+          #f6ac19
+        );
+        background: linear-gradient(90deg, #e5006e 0, #f17932 70%, #f6ac19);
+      }
+      .clm-block {
+        padding: 5%;
+      }
+      .lbox-block {
+        border-radius: 10px;
+        top: 50px;
+      }
+      .center {
+        margin: 5%;
+      }
+      ul.form-list li .txt {
+        line-height: 45px;
+      }
+      .lbox-block .a {
+        font-size: 1.2m;
+        margin-top: 25px;
+      }
+      ul.form-list li .label-lg {
+        margin-bottom: 20px;
+      }
+      @@media (max-width: 600px) {
+        .lbox-block .a {
+          font-size: 2m;
+        }
+        ul.form-list li .txt {
+          line-height: 30px;
+        }
+        .lbox-block .a {
+          margin-top: 20px;
+        }
+      }
+    </style>
+    <script src="Scripts/jquery.js"></script>
+    <script src="Scripts/jquery-latest_SDK.min.js"></script>
+    <script src="Scripts/jquery-ui_SDK.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.lightbox_me_SDK.js"></script>
+    <script src="Scripts/jquery.alphanumeric_SDK.js"></script>
+    <!--[if lt IE 9]>
+      <link href="~/Css/SDK_IE.css" rel="stylesheet" />
+      <script src="~/Scripts/html5shiv_SDK.js" type="text/javascript"></script>
+      <script src="~/Scripts/respond_SDK.js" type="text/javascript"></script>
+    <![endif]-->
+    <!--[if lt IE 10]>
+      <script src="~/Scripts/fixIePlaceholder_SDK.js"></script>
+    <![endif]-->
+    <script src="Scripts/site-m_SDK.js" type="text/javascript"></script>
+    <script src="Scripts/JSLINQ.js"></script>
+    <script src="Scripts/common.js" rel="stylesheet"></script>
+    <script src="Scripts/session-storage.js?_=@GashPlus.Member.Common.Utility.GenerateTimeStampInMilliseconds()"></script>
+    <script type="text/javascript">
+      function post(path, params, method) {
+          method = method || "post";
+
+          var form = document.createElement("form");
+          form.setAttribute("method", method);
+          form.setAttribute("action", path);
+
+          for (var key in params) {
+              if (params.hasOwnProperty(key)) {
+                  var hiddenField = document.createElement("input");
+                  hiddenField.setAttribute("type", "hidden");
+                  hiddenField.setAttribute("name", key);
+                  hiddenField.setAttribute("value", params[key]);
+
+                  form.appendChild(hiddenField);
+              }
+          }
+
+          document.body.appendChild(form);
+          form.submit();
+      }
+
+      var data = '@Html.Raw(JsonHelper.ObjectToJson(Model))';
+      var Result = {};
+      var creditCardpaid = "@SiteConfiguration.CreditCardPAID";
+      var gamaniaPayPAID = '@SiteConfiguration.GamaPayPAID';
+      Result.VP = $.parseJSON(data);
+
+      Result.Show = function (obj, fn, cid, pid) {
+          if (typeof fn === "string") { fn = eval(fn); }
+          var s = new fn();
+          var results = s.Code(cid, pid);
+          $(obj).html(s.View(results.items || results));
+      };
+
+      Result.GetCard = function (arrayID, arrayName) {
+          this.View = Result.Views.CardArray;
+      };
+      Result.GetCard.prototype = {
+          Code: function (id) {
+              return JSLINQ(Result.VP).Select(function (item) { return item; });
+          }
+      };
+
+      Result.GetPayment = function () {
+          this.View = Result.Views.PayArray;
+      };
+      Result.GetPayment.prototype = {
+          Code: function (id) {
+              return JSLINQ(Result.VP).Where(function (item) { return item.ID == id; });
+          }
+      };
+
+      Result.GetPrice = function () {
+          this.View = Result.Views.PriceArray;
+      };
+      Result.GetPrice.prototype = {
+          Code: function (cid, pid) {
+              var r = JSLINQ(Result.VP).Where(function (item) { return item.ID == cid; });
+              var result = r.items[0].PaymentAgents;
+              var data = new Array();
+              for (var i = 0; i < result.length; i++) {
+                  if (result[i].ID == pid)
+                      data.push(result[i].Denominations);
+              }
+              return data;
+          }
+      };
+
+      Result.Views = {};
+      Result.Views.CardArray = function (strArray) {
+          var str = "";
+          for (var i = 0; i < strArray.length; i++) {
+              str += "<option value=" + strArray[i].ID + ">" + strArray[i].Name + "</option>";
+          }
+          return str;
+      };
+      Result.Views.PayArray = function (strArray) {
+          var str = "<option value='0'>@Resources.CommonMessage.VIRTUAL_PAYMENT_PAYMENT_AGENT</option>";
+          for (var i = 0; i < strArray[0].PaymentAgents.length; i++) {
+              if (strArray[0].PaymentAgents[i].ID.toLowerCase() == "rsk82207" && creditCardpaid != "") {
+                  strArray[0].PaymentAgents[i].ID = creditCardpaid;
+              }
+              if (strArray[0].PaymentAgents[i].Name.toLowerCase() == "webatm") continue;
+              if (gamaniaPayPAID == "" && strArray[0].PaymentAgents[i].ID.toLowerCase() == 'gpbnk02') continue;
+
+              str += "<option value=" + strArray[0].PaymentAgents[i].ID + ">" + strArray[0].PaymentAgents[i].Name + "</option>";
+          }
+          return str;
+      };
+      Result.Views.PriceArray = function (strArray) {
+          var str = "<option value='0'>@Resources.CommonMessage.VIRTUAL_PAYMENT_PRICE</option>";
+          for (var i = 0; i < strArray[0].length; i++) {
+              str += "<option value=" + strArray[0][i].Value + ">" + strArray[0][i].Value + "</option>";
+          }
+          return str;
+      };
+
+      function ChangeImg() {
+          var obj = $(".Redeem_Frame").find("img");
+          var path = "/web/wallet/";
+          var srcImg = obj.attr("src");
+          var oCard = srcImg.substring(srcImg.indexOf(path) + path.length, srcImg.length);
+          var card = $('#Card option:selected').val();
+          var src = srcImg.replace(oCard, card) + ".jpg";
+          $(obj).attr("src", src);
+      }
+
+      function Pay() {
+          @*a key saving account add digit security code on the right*@
+          var c = $("#Card").val();
+          var pa = $("#Pay").val();
+          var pr = $("#Price").val();
+
+          var msg = "";
+          if (c == "0") msg += "@Resources.CommonMessage.CHECK_INPUT_DATA" + "@Resources.CommonMessage.VIRTUAL_PAYMENT_CARD" + "<br />";
+          if (pa == "0") msg += "@Resources.CommonMessage.CHECK_INPUT_DATA" + "@Resources.CommonMessage.VIRTUAL_PAYMENT_PAYMENT_AGENT" + "<br />";
+          if (pr == "0") msg += "@Resources.CommonMessage.CHECK_INPUT_DATA" + "@Resources.CommonMessage.VIRTUAL_PAYMENT_PRICE" + "<br />";
+
+          if (c == "0" || pa == "0" || pr == "0") {
+              document.getElementById("ErrorShowVP").innerHTML = msg;
+              $('#ErrorShowVP').show();
+              return false;
+          }
+
+          post('@Url.Action("Pay")', { WalletID: c, PAID: pa, Amount: pr, TabCacheKey: '@ViewBag.TabCacheKey' || TabCache.GetKey() });
+          //window.location.href = "@SiteConfiguration.UrlGashPlusWallet/SDK/Pay/?WalletID=" + c + "&PAID=" + pa + "&Amount=" + pr;
+          return true;
+      }
+
+      function ErrorMessageStatus(obj) {
+          if (obj.ArrayData != null && obj.ArrayData[0] != null && obj.ArrayData[0] != "0") {
+              if (parseInt(obj.ArrayData[1]) >= parseInt(obj.ArrayData[0])) {
+                  $("#redeemBoxType").show();
+              } else {
+                  $("#redeemBoxType").hide();
+              }
+          }
+      }
+      function CheckEnter(e) {
+          var intCode = window.event ? window.event.keyCode : e.which;
+          if (intCode == 13) {
+              Login();
+          }
+      }
+
+      $(document).ready(function () {
+
+          $(".btCaptcha").find("div").css('width', '').css('height', '');
+          $(".btCaptcha").find("div").css('width', '100%').css('height', '100%');
+          $(".btCaptcha").find("img").eq(0).css('width', '100%').css('height', '100%');
+
+          Result.Show("#Card", Result.GetCard);
+          var card = $('#Card option:selected').val();
+          Result.Show("#Pay", Result.GetPayment, card);
+          ChangeImg();
+
+          $("#Card").change(function () {
+              var card = $('#Card option:selected').val();
+              Result.Show("#Pay", Result.GetPayment, card);
+              $("#Price").html("<option value='0'>@Resources.CommonMessage.VIRTUAL_PAYMENT_PRICE</option>");
+              ChangeImg();
+          });
+
+          $("#Pay").change(function () {
+              var card = $('#Card option:selected').val();
+              var price = $('#Pay option:selected').val() == "0" ? $('#Pay').find("option").next().val() : $('#Pay option:selected').val();
+              Result.Show("#Price", Result.GetPrice, card, price);
+          });
+
+          $("#VpBtnOK").click(function () {
+              $(this).off("click");
+              if (!Pay()) $(this).on("click", this, Pay);
+          });
+
+          $("#pinBtn").bind("click", function () {
+              var strPinCode = $('#pinTxt').val();
+              if (strPinCode.length != 10 && strPinCode.length != 14 && strPinCode.length != 20 && strPinCode.length != 21) {
+                  $('#ErrorShow').text('@Resources.CommonMessage.INPUT_PIN_CODE').show();
+              }
+              else {
+                  var strToken = $('.Token>input[name="__RequestVerificationToken"]').val();
+                  var redeemBoxType = ($("#redeemBoxType").css('display') != "none") ? true : false;
+                  var captchCode = $("#CaptchaCode").val();
+                  var captchaObj = $("#CaptchaCode").get(0).Captcha;
+                  var captchaResult = (redeemBoxType) ? Common.CheckCaptcha(captchaObj, captchCode) : true;
+                  if (captchaResult) {
+                      var strVerifyStatus = (redeemBoxType) ? "1" : "0";
+                      $.ajax({
+                          type: "POST", cache: false, timeout: 20000, async: false, dataType: "json",
+                          url: '@Url.Action("Deposit")',
+                          data: { "PinCode": strPinCode, "VerifyStatus": strVerifyStatus, "__RequestVerificationToken": strToken, 'TabCacheKey': '@TabCacheKey' },
+                          success: function (obj) {
+                              var eleConform = $(".conform");
+                              if (obj.ReturnCode == 1) {
+                                  var sAmount = parseInt(obj.ArrayData[0]);
+                                  var sRemainingAmount = parseInt(obj.ArrayData[1]);
+                                  if (sAmount > 0 && sRemainingAmount > 0) {
+                                      $("#Amount").text(sAmount);
+                                      $("#RemainingAmount").text(sRemainingAmount);
+                                      $('#pinBtnOK').bind("click", function () {
+                                          post('@Url.Action("UpdateDeduct")');
+                                      });
+                                      $('#lightByPin').lightbox_me({
+                                          onClose: function () {
+                                              post('@Url.Action("UpdateDeduct")');
+                                          }
+                                      });
+                                      $("#redeemBoxType").hide();
+                                  }
+                                  else {
+                                      $('#ErrorShow').text('@Resources.CommonMessage.ADD_PIN_CODE_FAILED').show();
+                                  }
+                              }
+                              else if (obj.ReturnCode == 2) {
+                                  ErrorMessageStatus(obj);
+                                  $('#ErrorShow').text(obj.ReturnMessage).show();
+                              }
+                              else if (obj.ReturnCode == -98) {
+                                  $('#ErrorShow').html("儲值失敗! 請按返回重新輸入!<br/>若仍無法完成儲值，請洽詢客服。").show();
+                              }
+                              else {
+                                  ErrorMessageStatus(obj);
+                                  $('#ErrorShow').text(obj.ReturnMessage).show();
+                              }
+                          },
+                          error: function (xhr, ajaxOptions, thrownError) {
+                              $('#ErrorShow').text('@Resources.CommonMessage.SYSTEM_ERROR').show();
+                          }
+                      });
+                  }
+              }
+          });
+
+          if ('@ViewBag.VPdecAmount' != null && '@ViewBag.VPRemainingAmount' != null && '@ViewBag.VPdecAmount' != '' && '@ViewBag.VPRemainingAmount' != '') {
+              BindUpdateDeduct();
+              lightboxFix("lightByVP");
+          } else {
+              if ("@ViewBag.PAID" != null && "@ViewBag.PAID" == "@SiteConfiguration.GamaPayPAID") {
+                  BindUpdateDeduct();
+                  if ('@ViewBag.ErrorShowVP' != null && '@ViewBag.ErrorShowVP' != '')
+                      lightboxFix("lightByGamaPayVPError");
+                  else if('@ViewBag.WaitVP' != null && '@ViewBag.WaitVP' != '')
+                      lightboxFix("lightByGamaPayVPWait");
+              }
+          }
+
+          $(".btCaptcha").click(function () {
+              $("#CaptchaCode").get(0).Captcha.ReloadImage()
+              setTimeout(ChangeImageSize, 100);
+          })
+      });
+
+      function BindUpdateDeduct() {
+          $('#vpBtnOK,#vpBtnError,#vpBtnWait').bind("click", function () {
+              post('@Url.Action("UpdateDeduct")');
+          });
+      }
+      function lightboxFix(elementName) {
+          $('#' + elementName).lightbox_me({
+              onClose: function () {
+                  post('@Url.Action("UpdateDeduct")');
+              }
+          });
+      }
+      function ChangeImageSize() {
+          $(".btCaptcha").find("div").css('width', '').css('height', '');
+          $(".btCaptcha").find("div").css('width', '100%').css('height', '100%');
+          $(".btCaptcha").find("img").eq(0).css('width', '100%').css('height', '100%');
+      }
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="wrapper_1"></div>
+      <header>
+        <div class="func-bar">
+          <a class="prev-area" href="#"
+            ><span class="icon prev" style="display: none"></span
+          ></a>
+          <span class="title">選擇支付工具</span>
+          <a class="close-area" href="#"
+            ><span class="icon close" style="display: none"></span
+          ></a>
+        </div>
+        <div class="notice">
+          ⚠️
+          提醒您，GASH錢包即將於2024年12月XX日關閉儲值服務，屆時您存放在錢包內的點數仍可正常使用不受影響。
+        </div>
+      </header>
+      <div class="outer_container">
+        <div class="container">
+          <div class="clm-block switch-over">
+            <div class="caption">
+              <a href="#" class="slideToggles slide">
+                <span>輸入 GASH 儲值密碼</span>
+                <p class="icon slide-arrow down"></p>
+              </a>
+            </div>
+            <div class="form-block slide-form dfopen">
+              <ul class="form-list">
+                <li>
+                  <input
+                    type="text"
+                    id="pinTxt"
+                    placeholder="儲值密碼為10、14、20或21碼英數字組合"
+                    maxlength="21"
+                  />
+                </li>
+                <p class="notice red" id="ErrorShow">@ViewBag.ErrorShow</p>
+
+                <div id="redeemBoxType" style="display: none">
+                  @{ MvcCaptcha registrationCaptcha =
+                  CaptchaHelper.GetRegistrationCaptcha(); }
+                  <div>
+                    @Html.TextBox("CaptchaCode", "", new { @class = "INtext
+                    login_BOX_IMGPW", @id = "CaptchaCode", @maxlength = "6",
+                    @onkeypress = "CheckEnter(event);", @onfocus =
+                    "Common.ClearText(this)", @onblur = "Common.SetText(this)",
+                    @placeholder = "圖形驗證碼" })
+                    <div class="btCaptcha" style="cursor: pointer">
+                      @Html.Captcha(registrationCaptcha)
+                    </div>
+                  </div>
+                </div>
+
+                <li>
+                  <a href="javascript:void(0)" class="btn" id="pinBtn">
+                    確認
+                    <span class="alert">即將於 12/30 關閉</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="lbox-block" id="lightByPin" style="display: none">
+            <div class="lbox">
+              <ul class="form-list center">
+                <li><span class="label-lg">儲值成功</span></li>
+                <li>
+                  <span class="label txt"
+                    >已成功存入<span class="pink" id="Amount">20</span> 點</span
+                  >
+                </li>
+                <li style="font-size: 0.7em; color: #aaa">
+                  <span class="label txt"
+                    >目前餘額<span class="pink" id="RemainingAmount">1103</span>
+                    點</span
+                  >
+                </li>
+                @*
+                <li class="a">
+                  <span style="float: left">
+                    <img
+                      src="Images/icon-ok.png"
+                      width="25px;"
+                    />我同意進行遊戲綁定&nbsp;
+                    <a
+                      href="#"
+                      style="
+                        font-size: 10px;
+                        text-decoration: underline;
+                        color: #848484;
+                      "
+                      >前往解除綁定></a
+                    > </span
+                  >&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a
+                    href="https://tw.gashpoint.com/games/article/6807"
+                    style="float: right; color: #06c"
+                    target="_blank"
+                    ><img src="Images/icon.png" width="20px;" />遊戲綁定說明</a
+                  >
+                </li>
+                *@
+                <li>
+                  <a href="javascript:void(0)" class="btn" id="pinBtnOK">
+                    確認
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="split-line">
+            <hr />
+            <span>or</span>
+          </div>
+          <div class="clm-block switch-over">
+            <div class="caption">
+              <a href="#" class="slideToggles slide">
+                <span>其他支付工具</span>
+                <p class="icon slide-arrow down"></p>
+              </a>
+            </div>
+            <div class="form-block slide-form dfopen">
+              <ul class="form-list">
+                <li class="Redeem_Frame">
+                  <img src="@string.Format("{0}/web/wallet/T00013TWD.jpg",
+                  @SiteConfiguration.ImageServerPath)" width="250" height="154"
+                  style="display:none">
+                </li>
+                <li>
+                  <div class="select-box" style="display: none">
+                    <select name="" id="Card">
+                      <option value="0">
+                        @Resources.CommonMessage.VIRTUAL_PAYMENT_CARD
+                      </option>
+                    </select>
+                    <div class="icon dropdown-arrow"></div>
+                  </div>
+
+                  <div class="select-box">
+                    <select name="" id="Pay">
+                      <option value="0">test</option>
+                    </select>
+                    <div class="icon dropdown-arrow"></div>
+                  </div>
+
+                  <div class="select-box">
+                    <select name="" id="Price">
+                      <option value="0">0</option>
+                    </select>
+                    <div class="icon dropdown-arrow"></div>
+                  </div>
+                </li>
+                <li>
+                  <p class="notice red" id="ErrorShowVP">
+                    @ViewBag.ErrorShowVP
+                  </p>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="btn" id="VpBtnOK">
+                    確認
+                    <span class="alert">即將於 12/30 關閉</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="lbox-block"
+            id="lightByGamaPayVPError"
+            style="display: none"
+          >
+            <div class="lbox">
+              <ul class="form-list center">
+                <li><span class="label-lg">交易失敗</span></li>
+                <li><span class="label txt">交易失敗，請重新進行操作</span></li>
+                <li>
+                  <a href="javascript:void(0)" class="btn" id="vpBtnError"
+                    >確認</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="lbox-block"
+            id="lightByGamaPayVPWait"
+            style="display: none"
+          >
+            <div class="lbox">
+              <ul class="form-list center">
+                <li><span class="label-lg">交易等待中</span></li>
+                <li>
+                  <span class="label txt"
+                    >請至橘子支APP中確認完成付款後再繼續</span
+                  >
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="btn" id="vpBtnWait"
+                    >確認</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="lbox-block" id="lightByVP" style="display: none">
+            <div class="lbox">
+              <ul class="form-list center">
+                <li><span class="label-lg">儲值成功</span></li>
+                @{ if (ViewBag.BindCreditCard != null && ViewBag.BindCreditCard)
+                {
+                <li>
+                  <span class="label txt"
+                    >一鍵加值設定完成！加值完成！請繼續進行扣點交易！</span
+                  >
+                </li>
+                } else if (ViewBag.BindGamaPay != null && ViewBag.BindGamaPay) {
+                if (ViewBag.FirstBindGamaPay != null &&
+                ViewBag.FirstBindGamaPay) {
+                <li>
+                  <span class="label txt"
+                    >橘子支資料已綁定並完成加值，請繼續進行扣點</span
+                  >
+                </li>
+                } else {
+                <li><span class="label txt">完成加值，請繼續進行扣點</span></li>
+                } } else { if (ViewBag.VPdecAmount != null) {
+                <li>
+                  <span class="label txt"
+                    >已成功存入<span class="pink" id="Amount"
+                      >@ViewBag.VPdecAmount</span
+                    >
+                    點</span
+                  >
+                </li>
+                } else {
+                <li>
+                  <span class="label txt"
+                    >已成功存入<span class="pink" id="Amount">?</span> 點</span
+                  >
+                </li>
+                } if (ViewBag.VPRemainingAmount != null) {
+                <li>
+                  <span class="label txt"
+                    >目前餘額<span class="pink" id="Amount"
+                      >@ViewBag.VPRemainingAmount</span
+                    >
+                    點</span
+                  >
+                </li>
+                } else {
+                <li>
+                  <span class="label txt"
+                    >目前餘額<span class="pink" id="Amount">?</span> 點</span
+                  >
+                </li>
+                } } }
+                <li>
+                  <a href="javascript:void(0)" class="btn" id="vpBtnOK">確認</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p class="footerText">
+        © 2019 GASH POINT Company Limited. All Rights Reserved
+      </p>
+    </footer>
+  </body>
+</html>

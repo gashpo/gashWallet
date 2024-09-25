@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:description" content="" />
+    <meta name="keywords" content="09Init" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>GASH POINT</title>
+
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="Css/reset_SDK.css" rel="stylesheet" />
+    <link href="Css/jquery-ui_SDK.css" rel="stylesheet" />
+    <link href="Css/site-m_SDK.css" rel="stylesheet" />
+    <style>
+        * {
+            font-family: "微軟正黑體", "新細明體", Arial, Helvetica, sans-serif;
+        }
+
+        header {
+            display: block;
+            height: 60px;
+            width: 100%;
+            background: -webkit-linear-gradient(left,#e5006e,#f17932 70%,#f6ac19);
+            background: linear-gradient(90deg,#e5006e 0,#f17932 70%,#f6ac19);
+            text-align: center;
+        }
+
+        .logo2 {
+            margin-top: 16px;
+            margin-bottom: 10px;
+        }
+
+        @@media (max-width: 675px) {
+            .clm-block {
+                margin: 10%;
+                padding: 5%;
+            }
+
+            .note {
+                font-size: 12px;
+            }
+
+            .btn {
+                margin-top: 10px;
+                border-radius: 5px;
+            }
+
+            input[type="text"], input[type="password"], select {
+                border: 2px solid #8EC21F;
+                border-radius: 5px;
+            }
+        }
+
+        .lbox-block {
+            border-radius: 10px;
+            top: 50px;
+        }
+
+        .center {
+            margin: 5%;
+        }
+
+        ul.form-list li .txt {
+            line-height: 45px;
+        }
+
+        .lbox-block .a {
+            font-size: 1.2m;
+            margin-top: 25px;
+        }
+
+        ul.form-list li .label-lg {
+            margin-bottom: 20px;
+        }
+
+        @@media (max-width: 600px) {
+            .lbox-block .a {
+                font-size: 2m;
+            }
+
+            ul.form-list li .txt {
+                line-height: 30px;
+            }
+
+            .lbox-block .a {
+                margin-top: 20px;
+            }
+        }
+        #OK:disabled {
+            background-color: #ccc; /* 背景色 */
+            color: #666; /* 文字顏色 */
+            cursor: not-allowed; /* 改變游標類型 */
+        }
+    </style>
+    <script src="Scripts/jquery.js"></script>
+    <script src="Scripts/jquery-latest_SDK.min.js"></script>
+    <script src="Scripts/jquery-ui_SDK.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.lightbox_me_SDK.js"></script>
+    <script src="Scripts/jquery.alphanumeric_SDK.js"></script>
+
+    <!--[if lt IE 9]>
+    <link href="~/Css/SDK_IE.css" rel="stylesheet" />
+    <script src="~/Scripts/html5shiv_SDK.js" type="text/javascript"></script>
+    <script src="~/Scripts/respond_SDK.js" type="text/javascript"></script>
+    <![endif]-->
+    <!--[if lt IE 10]>
+    <script src = "~/Scripts/fixIePlaceholder_SDK.js"></script>
+    <![endif]-->
+    <script src="Scripts/site-m_SDK.js" type="text/javascript"></script>
+    <script src="Scripts/session-storage.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ('@ViewData["TabCacheKey"]' !== '') {
+                TabCache.SetKey('@ViewData["TabCacheKey"]');
+            }
+            initCheck();
+        
+
+            $("#secure_code").numeric().keyup(function (event) {
+                event.stopImmediatePropagation();
+                if ($('#displayName').val() != '' && this.value.length == 6) {
+                    $('#OK').removeAttr('style');
+                    $('#OK').click(function (event) { event.stopImmediatePropagation(); $('#OK').prop('disabled', true); PointsDeduct(); });
+                    $('#OK').css('cursor', 'pointer');
+                    $('#OK').css('font-family', '微軟正黑體, 新細明體, Arial, Helvetica, sans-serif');
+                    $('#OK').css('font-weight', 'bold');
+                    return false;
+                }
+                else {
+                    $('#OK').unbind('click');
+                    $('#OK').css('background-color', '#b2c0ca');
+                    $('#OK').css('cursor', 'no-drop');
+                }
+            });
+
+            $('#displayName').keyup(function (event) {
+                $("#secure_code").trigger('keyup');
+            });
+
+            var PointsDeduct = function () {
+                $('#OK').prop('disabled', true);
+                $('#OK').unbind('click');
+                $('#ErrorShow').text('').hide();
+                var card = 'T00013TWD';
+
+                var selectText = $('#amountlable').text();
+
+                var RemainingAmount = '';
+                var strStart = selectText.indexOf('額') + 1;
+                var strEnd = selectText.indexOf('點)');
+                for (var i = strStart; i < strEnd; i++) {
+                    RemainingAmount += selectText[i];
+                }
+
+                var Amount = '@Model.Amount';
+                if (parseInt(RemainingAmount) < parseInt(Amount)) {
+                    ShowLightBox(Amount, RemainingAmount);
+                    $('#OK').prop('disabled', false);
+                }
+                else {
+                    PointsDeductAjax(card, RemainingAmount);
+                }
+                return false;
+            };
+
+            $('#choose').click(function () {
+                $("#secure_code").val('').focus();
+                $('#OK').unbind('click');
+                $('#OK').css('background-color', '#b2c0ca');
+                $('#OK').css('cursor', 'no-drop');
+                $('#light').trigger('close');
+            });
+
+            $('#BindHelp').click(function () {
+                $('#BindHelpDetail').slideToggle();
+            });
+
+            $("input[name=paytype]").click(function () {
+                var Selected = $(this).val();
+                $("input[name=paytype]").each(function (i) {
+                    if ($(this).val() == Selected) $(this).prop("checked", true);
+                    else $(this).prop("checked", false);
+                });
+            });
+
+            $('.paybycard').click(function () {
+                if ($(this).is(':checked')) {
+                    $('.keycard').show();
+                    $('.keypw').hide();
+                } else {
+                    $('.keycard').hide();
+                    $('.keypw').show();
+                }
+            });
+
+            $('.paybypoint').click(function () {
+                if ($(this).is(':checked')) {
+                    $('.keypw').show();
+                    $('.keycard').hide();
+                } else {
+                    $('.keypw').hide();
+                    $('.keycard').show();
+                }
+            });
+
+            $("#aKeySaveing").click(function () {
+                $(this).off("click");
+                if (!Pay()) $(this).on("click", this, Pay);
+            });
+
+            if ($("#paytype1").is(":checked")) {
+                $(".keycard").show();
+            }
+            if ($("input[name=paytype]").length == 1) {
+                $("input[name=paytype]").eq(0).prop("checked", true);
+            }
+            $("#bindAccount,#nobindAccount").click(function () {
+                if (typeof ($("#paytype2").val()) == "undefined" &&
+                    '@SiteConfiguration.GamaPayPAID' != "") {
+                    var _href = $(this).prop("href");
+                    if (_href.indexOf('?') == -1)
+                        _href += '?';
+                    else
+                        _href += '&';
+                    $(this).prop("href", _href + "firstBindGamaPay=1");
+                }
+            })
+            $("#tpop").click(function () {
+                $('#lightByGamaPay').lightbox_me({
+                    onClose: function () {
+                        $("#bindCreditCard").css("z-index", 1002)
+                        $("#lightByGamaPay").hide();
+                    },
+                    onLoad: function () {
+                        $("#bindCreditCard").css("z-index", 1001)
+                    },
+                    centered: true
+                });
+            })
+            $("#lightByGamaPay").click(function () {
+                $("#lightByGamaPay").hide();
+                $("#bindCreditCard").css("z-index", 1002)
+            });
+        });
+
+        function post(path, params, method) {
+            method = method || "post";
+
+            var form = document.createElement("form");
+            form.setAttribute("method", method);
+            form.setAttribute("action", path);
+
+            for (var key in params) {
+                if (params.hasOwnProperty(key)) {
+                    var hiddenField = document.createElement("input");
+                    hiddenField.setAttribute("type", "hidden");
+                    hiddenField.setAttribute("name", key);
+                    hiddenField.setAttribute("value", params[key]);
+
+                    form.appendChild(hiddenField);
+                }
+            }
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+        function PointsDeductAjax(card, RemainingAmount) {
+            var secure_code = $('#secure_code').val();
+            var displayName = $('#displayName').val()
+            var strToken = $('.Token>input[name="__RequestVerificationToken"]').val();
+
+            $.ajax({
+                type: "POST", cache: false, timeout: 20000, async: false, dataType: "json",
+                url: "/SDK/PointsDeduct",
+                data: { "Card": card, "Remaining": RemainingAmount, "SecureCode": secure_code, "DisplayName": displayName, "__RequestVerificationToken": strToken, "TabCacheKey": TabCache.GetKey() },
+                success: function (result) {
+                    if (result.ReturnCode != 1) {
+                        $("#secure_code").val('').focus();
+                        $('#OK').unbind('click');
+                        $('#OK').css('background-color', '#b2c0ca');
+                        $('#OK').css('cursor', 'no-drop');
+                    }
+                    if (result.ReturnCode == 1) {
+                        window.location = result.RedirectUrl;
+                    }
+                    else if (result.ReturnCode == -1) {
+                        $('#pink').text(result.ReturnMessage);
+                        $('#pinkA').text(parseInt(Amount) - parseInt(result.ReturnMessage));
+                        $('#light').lightbox_me();
+                        $('#OK').prop('disabled', false);
+                    }
+                    else if (result.ReturnCode == -99) {
+                        $('#ErrorShow').text('@Resources.CommonMessage.SYSTEM_ERROR').show();
+                        $('#OK').prop('disabled', false);
+                    }
+                    else if (result.ReturnCode == -98) {
+                        $('#ErrorShow').text(result.ReturnMessage).show();
+                        $('#OK').prop('disabled', false);
+                    }
+                    else {
+                        $('#ErrorShow').text(result.ReturnMessage).show();
+                        $('#OK').prop('disabled', false);
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $('#ErrorShow').text('@Resources.CommonMessage.SYSTEM_ERROR').show();
+                    $('#OK').prop('disabled', false);
+                }
+            });
+        }
+
+        function ShowLightBox(Amount, RemainingAmount) {
+
+                $('#pink').text(RemainingAmount);
+                $('#pinkA').text(parseInt(Amount) - parseInt(RemainingAmount));
+                $('#light').lightbox_me();
+        }
+
+        function initCheck() {
+            var card = 'T00013TWD';
+
+            var selectText = $('#amountlable').text();
+            var RemainingAmount = '';
+            var strStart = selectText.indexOf('額') + 1;
+            var strEnd = selectText.indexOf('點)');
+            for (var i = strStart; i < strEnd; i++) {
+                RemainingAmount += selectText[i];
+            }
+
+            var Amount = '@Model.Amount';
+            if (parseInt(RemainingAmount) < parseInt(Amount)) {
+                ShowLightBox(Amount, RemainingAmount);
+            }
+        }
+
+        
+
+        function ShowError(amount, digitSecurityCode, paid, paname) {
+            var msg = "";
+            var error = false;
+            if (paid == "") {
+                msg += "@Resources.CommonMessage.CHECK_INPUT_DATA" + "@Resources.CommonMessage.VIRTUAL_PAYMENT_CARD" + "<br />";
+                error = true;
+            }
+            if (paname == "paytype1" && digitSecurityCode == "") {
+                msg += "@Resources.CommonMessage.CHECK_INPUT_DATA" + "@Resources.CommonMessage.VIRTUAL_PAYMENT_DIGITSECURITYCODE" + "<br />";
+                error = true;
+            }
+            if (parseInt(amount) == 0) {
+                msg += "@Resources.CommonMessage.CHECK_INPUT_DATA" + "@Resources.CommonMessage.VIRTUAL_PAYMENT_PRICE" + "<br />";
+                error = true;
+            }
+            if (error) {
+                document.getElementById("ErrorShowVP").innerHTML = msg;
+                $('#ErrorShowVP').show();
+            }
+            return error;
+        }
+
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-88941313-3', 'auto');
+        ga('send', 'pageview');
+		
+		ShowLightBox(100, 10);
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="wrapper_1"></div>
+        <header>
+            <img src="Images/logo_w.svg" width="200px" class="logo2">
+
+        </header>
+        <div class="lbox-block" id="lightByGamaPay" style="display:none;">
+            <div class="lbox">
+                <ul class="form-list center">
+                    <li><span class="label-lg">提醒</span></li>
+                    <li><span class="label txt">至官網或APP的帳號管理功能解除綁定後，才能變更綁定的帳號。</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="outer_container">
+            <div class="container">
+                <div class="clm-block">
+                    <div class="form-block">
+                        <ul class="form-list">
+                            <li>
+                                <span class="label">本次交易：<span class="pink">@Model.Amount</span>點</span>
+                            </li>
+                            <li>
+                                <span id="amountlable" class="label" style="font-size: 1.5em">(餘額{1}點)</span>
+                            </li>
+                            <li>
+                                <span class="label">請輸入遊戲名稱：<span class="txt" style="display:none;"><input type="checkbox" id="check" style="display:none;"><label for="check"><span></span>綁定</label></span></span>
+                                <input id="displayName" type="text" placeholder="" value="@Model.ContentProviderName" maxlength="100">
+                                <p class="notice">※ <a class="blue-link" href="javascript:void(0)" id="BindHelp">遊戲綁定說明</a></p>
+                                <div style="display:none" id="BindHelpDetail">
+                                    <span class="label" style="font-size: 1.7em;text-decoration:underline;">★綁定遊戲帳號教學</span>
+                                    <span class="label" style="font-size: 1em;">一、於您欲儲值的遊戲中選擇GASH會員扣點方式，將會連結至beanfun!會員登入畫面，請掃描QRCODE進行登入。</span>
+                                    <span class="label" style="font-size: 1em;">二、自行設定遊戲名稱，未來此遊戲帳號進行會員扣點時，無需再次登入GASH會員帳號僅需輸入安全鎖。</span>
+                                    <span class="label" style="font-size: 1em;">三、輸入【安全鎖】，按下「確認」送出，驗證成功即完成交易，可重新確認點數。</span>
+                                    <span class="label" style="font-size: 1em;"></span>
+                                    <span class="label" style="font-size: 1.7em;text-decoration:underline;">★解除綁定遊戲帳號教學</span>
+                                    <span class="label" style="font-size: 1em;">一、於beanfun!右下角「我的」→我的服務「GASH點數」</span>
+                                    <span class="label" style="font-size: 1em;">二、點選左上角「≡」選單，選擇「設定」</span>
+                                    <span class="label" style="font-size: 1em;">三、點選「我的帳戶」→ 遊戲綁定</span>
+                                    <span class="label" style="font-size: 1em;">四、點選遊戲名稱後方的綠色編輯鈕，可進行遊戲名稱修改。出現編輯框後可修改遊戲名稱，按確認存檔即完成。</span>
+                                    <span class="label" style="font-size: 1em;">五、若欲解除遊戲綁定，請點選綠色垃圾桶圖案，按下確認後即可解除綁定遊戲。</span>
+                                    <span><u><a href="https://tw.gashpoint.com/games/article/6807" target="_blank" class="blue">遊戲綁定及解綁步驟教學&gt;</a></u></span>
+
+                                </div>
+                            </li>
+
+                            <li style="text-align: center; margin:30px;">
+                                <span class="label" style="color: #8EC21F">驗證安全鎖</span>
+                                <img src="Images/security.svg" width="100px;" style="margin-top:20px"><br>
+                                <a href="@(SiteConfiguration.UrlNewService + "/faq#qa-section-6")" class="blue">忘記安全鎖?</a>
+                            </li>
+                            <li>
+                                <input id="secure_code" class="secure-code" type="password" placeholder="請輸入6位數字" maxlength="6">
+                            </li>
+                            <li><p class="notice red" id="ErrorShow" style="display:none"></p></li>
+                            <li>
+                                <button class="btn" id="OK" type="submit">確認</button>
+                            </li>
+                            <span class="note">
+                                點數將直接從您的帳戶扣除…
+                            </span>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lbox-block" id="light" style="display:none;">
+            <div class="lbox">
+                <ul class="form-list center">
+                    <li><span class="label-lg" style="color:red">餘額不足</span></li>
+                    <li><span class="label txt">目前僅有：<span class="pink" id="pink">?</span> 點</span></li>
+                    <li><span class="label txt">您尚缺 <span class="pink" id="pinkA">?</span> 點</span></li>
+                        <li>
+                            <p style="text-align:left; color:#555555;font-size:1em;margin-top: 30px;">
+                                @SiteConfiguration.SDKDepositMessage
+                            </p>
+                        </li>
+                    <li>
+                        <a href="@Url.Action("Deposit", new { TabCacheKey })" class="btn" id="nobindAccount">
+                            馬上儲值!!
+                            <span class="alert">即將於 12/30 關閉</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="lbox-block" id="bindCreditCard" style="display:none;">
+            <div class="lbox">
+                <ul class="form-list center">
+                    <li><span class="label-lg" style="color:red">餘額不足</span></li>
+                    <li><span class="label txt">目前僅有：<span class="pink" id="CreditCard_pink">?</span> 點</span></li>
+                    <li><span class="label txt">您尚缺 <span class="pink" id="CreditCard_pinkA">?</span> 點</span></li>
+                    <li><hr class="across"></li>
+                    <li><span class="label txt">使用您綁定的付款方式快速加值吧!</span></li>
+                    <li><span class="label-lg">儲值金額：<span class="pink" id="CreditCardAmount">?</span> 元</span></li>
+                    @{
+                        if (!Model.IsPaymentAgentInfoNotNull && Model.PaymentAgentInfo.Count > 0)
+                        {
+                            foreach (var item in Model.PaymentAgentInfo)
+                            {
+                                switch ((string)item.DATA_NAME)
+                                {
+                                    case "信用卡卡號":
+                                        <li class="clm-block-2">
+                                            <span class="label left">
+                                                <input type="checkbox" name="paytype" value="@item.PAID" id="paytype1" class="paybycard">
+                                                <label for="paytype1">
+                                                    <span></span>信用卡<i class="txt"> @Html.Raw(string.Format("({0})", item.DATE_VALUE))</i>
+                                                </label>
+                                            </span>
+                                            <div class="input-box-with-card keycard">
+                                                <input type="text" placeholder="請輸入卡片背面末三碼" maxlength="3" id="digitSecurityCode">
+                                                <span class="icon card"></span>
+                                            </div>
+                                        </li>
+                                        break;
+                                    case "會員資訊":
+                                        <li class="clm-block-2">
+                                            <span class="label left">
+                                                <input type="checkbox" name="paytype" value="@item.PAID" id="paytype2" class="paybypoint">
+                                                <label for="paytype2">
+                                                    <span></span>橘子支支付
+                                                    <i class="txt"> @Html.Raw(string.Format("({0})", item.DATE_VALUE))</i>
+                                                    <span id="tpop"
+                                                          style='background: url("../Images/SDK/help.png") no-repeat 0px 0px / 100%; margin: -2% 2% 0%;'>
+                                                    </span>
+                                                </label>
+                                            </span>
+                                        </li>
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                    <li>
+                        <p class="notice red" id="ErrorShowVP" style="display:none"></p>
+                    </li>
+                    <li><a href="#" class="btn" id="aKeySaveing">快速加值</a></li>
+                    <li class="clm-block-2">
+                        <div class="caption">其他付款方式</div>
+                        <ul class="form-list">
+
+                            <li><a href="@Url.Action("Deposit", new { TabCacheKey })" class="btn func" id="bindAccount">其他儲值方式</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
