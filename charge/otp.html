@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" http-equiv="content-type" content="text/plain;" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<meta name="HandheldFriendly" content="True" />
+		<meta name="MobileOptimized" content="320" />
+		<meta name="viewport" content="user-scalable=no, maximum-scale=1.0, minimum-scale=1.0, width=device-width, initial-scale=1.0" />
+		<title>GashMall</title>
+		<link href="css/reset.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<!-- Gash 商城 menu css -->
+		<link rel="stylesheet" href="css/gash-style.css">
+		<link rel="stylesheet" href="css/gash-menu.css">	
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<script src="js/common.js"></script>	
+	</head>
+	<body>
+		<header>
+			<nav class="nav-wrap">
+				<div class="nav-header">
+					<div class="nav-logo-mobile"><a>GASH</a></div>
+					<!-- 登出圖示-->
+					<a class="nav-logout" href="#"></a>
+				</div>
+			</nav>
+		</header>
+		<div class="anytix">
+			<div class="main-content otp" id="app">
+				<div class="container">
+					<div class="otp-box">
+						<h3>帳戶安全保護機制</h3>
+						<p class="caption2-M">為了確保您帳戶的安全性，我們已將 6 位數驗證碼傳送至 0938XXXXXX，請於下方輸入後完成驗證。</p>
+
+						<div class="verification-code" id="confirmCode" :class="showAlert">
+							<template v-for="item,idx in inputText">
+							  	<input :disabled="showAlert == 'success' || currentId !== idx" :data-idx="idx" :data-insert="item.value? 'true': ''" v-model="item.value" :ref="'input'+idx" maxlength="1" pattern="d*" @keypress="isNumber($event)" @keyup.delete="back($event)">
+							</template>
+						</div>
+						<div class="verification-status">
+							<!-- 驗證碼錯誤，倒數次數 -->
+							<p class="error-caption" v-if="showAlert === 'error'">驗證碼錯誤，尚有 4 次機會</p>
+							<!-- 驗證碼錯誤達上限 -->
+							<!-- <p class="error-caption" v-if="showAlert === 'error'">驗證碼錯誤達上限次數，請重新購買</p> -->
+							<!-- 驗證碼過期 -->
+							<!-- <p class="error-caption" v-if="showAlert === 'error'">驗證碼已過期，請重新購買</p> -->
+						</div>
+					</div>
+					<p class="expired">驗證碼到期時間：2022/06/20 12:33</p>
+				</div>
+			</div>
+    	</div>
+		<script src="js/vue.min.js"></script>
+		<script>
+			//- var jQfn = function (){
+			//- }
+			var vm = new Vue({
+				el: '#app',
+				data() {
+					return {
+						timer: 5,
+						verifyCode: '123456',
+						showAlert: '',
+						success: false,
+						currentId: 0,
+						inputText: [
+							{ value: '', insert: false, disabled: false},
+							{ value: '', insert: false, disabled: true},
+							{ value: '', insert: false, disabled: true},
+							{ value: '', insert: false, disabled: true},
+							{ value: '', insert: false, disabled: true},
+							{ value: '', insert: false, disabled: true},
+						]
+					}
+				},
+				watch: {
+					currentId: function(){
+						//- console.log(this.currentId)
+						if (this.currentId  < 5) {
+							document.querySelector("[data-idx='" + this.currentId + "']").focus();
+						} else {
+							this.currentId = 5
+						}
+					},
+					inputText: {
+						handler: function (){
+							let code = '';
+							this.inputText.map(function(item, index, array){
+								code += item.value
+								focusPlaced = true
+							})
+							if(code.length === this.inputText.length) {
+								if( code !== this.verifyCode) {
+									this.showAlert = 'error'
+									//- this.inputText[5].disabled = false
+								} else {
+									this.showAlert = 'success'
+									// this.timer = 0
+									this.success = true
+								}
+							} else {
+								this.showAlert = ''
+							}
+						},
+						deep: true
+					}
+				},
+				// mounted: function () {
+				// 	this.$nextTick(function () {
+				// 		this.countDown();
+				// 	})
+				// },
+				// created() {
+				// 	window.addEventListener("resize", this.inputWidth);
+				// },
+				// destroyed() {
+				// 	window.removeEventListener("resize", this.inputWidth);
+				// },
+				methods: {
+					isNumber: function(evt) {
+						evt = (evt) ? evt : window.event;
+						let id = parseInt(evt.target.dataset.idx); 
+						var charCode = (evt.which) ? evt.which : evt.keyCode;
+						if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46 ) {
+							evt.preventDefault();
+						} else {
+							this.inputText[id].value = evt.key
+							this.insertCode(id)
+						}
+					},
+					insertCode: function(id) {
+						this.currentId = id + 1;
+						let inputWrap = document.querySelector('#confirmCode');
+						
+						window.setTimeout(function(){
+							inputWrap.children[vm.currentId].focus();
+						}, 30);
+					},
+					back: function(e){
+						let id = parseInt(e.target.dataset.idx);
+						let inserted = e.target.dataset.insert;
+						let inputWrap = document.querySelector('#confirmCode');
+						if (!this.inputText[id].value) {
+							if(id !== 0 ) {
+								this.currentId = id -1
+								window.setTimeout(function(){
+									inputWrap.children[vm.currentId].focus();
+								}, 30);
+							} else {
+								this.currentId = 0 
+							}
+						}
+					},
+					// setTimer: function(){
+					// 	if (!this.timer) {
+					// 		this.timer = 5;
+					// 		this.countDown();
+					// 	} 
+					// }, 
+					// countDown: function() {
+					// 	window.setTimeout(function(){
+					// 		if(vm.timer > 0) {
+					// 			vm.timer --
+					// 			vm.countDown();
+					// 		}
+					// 	}, 1000);
+					// },
+				},
+				// updated: function () {
+				// 	this.$nextTick(function () {
+				// 	})
+				// }
+			})
+		</script>
+	</body>
+</html>

@@ -965,7 +965,7 @@ header .notice {
 #nobindAccount span.alert::after {
   content: "";
   position: absolute;
-  top: 100%;
+  top: calc(100% - 1px);
   right: 12px;
   background-color: #2b3843;
   width: 20px;

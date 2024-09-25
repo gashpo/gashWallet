@@ -1,0 +1,21 @@
+.notice {
+  font-family: "noto sans tc";
+  position: fixed;
+  font-size: calc(1.2 * var(--font-size));
+  line-height: calc(2.4 * var(--font-size));
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: calc(1.2 * var(--font-size));
+  color: $bg;
+  background: var(--Primary-Color-500, #2b3843);
+  z-index: 999;
+
+  + header {
+    transform: translate(0, 0);
+  }
+
+  ~ .anytix {
+    margin-top: 72px;
+  }
+}

@@ -78,7 +78,7 @@
       &:after {
         content: "";
         position: absolute;
-        top: 100%;
+        top: calc(100% - 1px);
         right: size(12);
         background-color: #e72e6b;
         width: size(20);

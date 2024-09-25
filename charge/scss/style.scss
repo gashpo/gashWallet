@@ -1,0 +1,23 @@
+@import "./basic/var";
+@import "./basic/icon";
+@import "./component/notice.scss";
+
+.anytix {
+  @import "./basic/typography";
+  @import "./basic/mixin";
+
+  @import "./component/button";
+  @import "./component/slide";
+  @import "./component/list";
+  @import "./component/skeleton-loading";
+  @import "./component/tabs";
+  @import "./component/card";
+  @import "./component/dialog.scss";
+  @import "./component/accordion.scss";
+  @import "./component/input.scss";
+  @import "./component/badge.scss";
+  @import "./component/alert.scss";
+
+  @import "./page/_value";
+  @import "./page/_otp";
+}

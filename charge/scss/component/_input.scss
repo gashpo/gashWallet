@@ -1,0 +1,210 @@
+.checkbox {
+    padding-top: calc( 0.25 * var(--font-size) );
+    padding-bottom: calc( 0.25 * var(--font-size) );
+    padding-left: calc( 1.75 * var(--font-size) );
+    position: relative;
+    [type="checkbox"] {
+        display: none;
+        &:checked + label:before {
+            background-color: $bfPrimary;
+            border-color: $bfPrimary;
+            background-image: url("./../images/icon/ic-check-white.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: calc( 2 * var(--font-size) );
+        }
+    }
+    label:before {
+        content: "";
+        display: inline-block;
+        width: calc( 2 * var(--font-size) );
+        height: calc( 2 * var(--font-size) );
+        border-radius: calc( 0.25 * var(--font-size) );
+        border: 1px solid $bfDarkGray;
+        position: absolute;
+        top: calc( .3 * var(--font-size) );
+        left: 0;
+        background-color: $bfWhite;
+    }
+    label,
+    label a,
+    label span {
+        font-size: calc( 1.4 * var(--font-size) );
+        line-height: calc( 2 * var(--font-size) );
+        vertical-align: top;
+        color: $bfDark;
+    }
+}
+
+// 多選票券
+
+.list-option-wrap {
+    width: 100%;
+    [type="radio"] {
+        // display: none;
+
+        &:checked + .list-option-label {
+            border-color: $bfPrimary;
+            background: url("./../img/icon/ic-check_circle-primary.png");
+            background-size: calc( 1.2 * var(--font-size) );
+            background-repeat: no-repeat;
+            background-position: right calc( 0.75 * var(--font-size) ) top calc( 0.75 * var(--font-size) );
+        }
+    }
+}
+
+.list-option-label {
+    display: flex;
+    padding: calc( 0.75 * var(--font-size) ) calc( 2 * var(--font-size) ) calc( 0.75 * var(--font-size) ) calc( 0.75 * var(--font-size) );
+    border-radius: calc( 0.5 * var(--font-size) );
+    border: calc( 0.1 * var(--font-size) ) solid $bfLightGray;
+    margin-bottom: calc( 0.6 * var(--font-size) );
+    text-align: left;
+    font-size: calc( 0.8125 * var(--font-size) );
+    line-height: calc( 1.25 * var(--font-size) );
+    vertical-align: middle;
+    font-weight: bold;
+    background-image: url("./../img/icon/ic-check_circle-lightgray.png");
+    background-size: calc( 1.2 * var(--font-size) );
+    background-repeat: no-repeat;
+    background-position: right calc( 0.75 * var(--font-size) ) top calc( 0.75 * var(--font-size) );
+}
+
+.input {
+    box-sizing: border-box;
+    padding: calc( 1.35 * var(--font-size) ) calc( 1 * var(--font-size) );
+    border-color: $bfGray;
+    border-style: solid;
+    border-width: calc( 0.1 * var(--font-size) );
+    border-radius: calc( .5 * var(--font-size) );
+    font-size: calc( 0.9375 * var(--font-size) );
+    line-height: calc( 1.375 * var(--font-size) );
+    vertical-align: middle;
+    color: $bfDark;
+    font-size: calc( 1.4 * var(--font-size) );
+    &:focus-visible {
+        outline: unset;
+    }
+    &::placeholder {
+        font-size: calc( 1.4 * var(--font-size) );
+        color: $bfGray;
+    }
+    &:focus,
+    &:active {
+        outline: unset;
+        border-color: $bfPrimary;
+    }
+}
+
+.search {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+    .input, input.input {
+        width: 100%;
+        min-width: unset;
+        padding-left: calc( 2 * var(--font-size) );
+        background-image: url("./../img/icon/ic-search-gray.png");
+        background-position: left calc( 0.5 * var(--font-size) ) center;
+        background-repeat: no-repeat;
+        background-size: calc( 1 * var(--font-size) );
+        background-color: $bfSoftWhite;
+        padding: calc( 0.25 * var(--font-size) ) calc( 1 * var(--font-size) ) calc( 0.25 * var(--font-size) ) calc( 2 * var(--font-size) );
+        box-sizing: border-box;
+        border-color: $bfSoftWhite;
+        border-style: solid;
+        border-width: calc( 0.1 * var(--font-size) );
+        border-radius: calc( 1.5 * var(--font-size) );
+        font-size: calc( 0.9375 * var(--font-size) );
+        line-height: calc( 1.375 * var(--font-size) );
+        color: $bfDark;
+        display: block;
+        flex-grow: 1;
+        flex-shrink: 1;
+        &:focus-visible {
+            outline: unset;
+        }
+        &::placeholder {
+            color: $bfMediumGray;
+        }
+        &:focus,
+        &:active {
+            outline: unset;
+            border-color: $bfPrimary;
+        }
+    }
+}
+
+// 複製序號
+.input-wrap {
+    box-sizing: border-box;
+    padding: calc( 0.75 * var(--font-size) ) calc( 1 * var(--font-size) );
+    border-radius: calc( 0.5 * var(--font-size) );
+    border: calc( .08 * var(--font-size) ) solid $bfLightGray;
+    display: flex;
+    flex-shrink: 0;
+    transition: $transition;
+    position: relative;
+    & > label:first-of-type {
+        flex-grow: 1;
+    }
+    [readonly] {
+        color: $bfDark;
+        outline: unset;
+        border: unset;
+        flex-grow: 1;
+        font-size: calc( 0.75 * var(--font-size) );
+        line-height: calc( 1 * var(--font-size) );
+        vertical-align: middle;
+    }
+    .input {
+        padding: 0;
+        border-width: 0;
+        flex-grow: 1;
+        line-height: calc( 1.25 * var(--font-size) );
+    }
+    &.active {
+        border-color: $bfPrimary;
+    }
+    ::selection {
+        background: unset;
+        color: $bfDark;
+    }
+}
+
+.btn-copy {
+    padding: 0;
+    display: inline-block;
+    border: unset;
+    outline: unset;
+    background: unset;
+    font-weight: bold;
+
+    color: $bfPrimary;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    position: absolute;
+    right: calc( .5 * var(--font-size) );
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    img {
+        width: calc( 1.3 * var(--font-size) );
+    }
+    span {
+        font-size: calc( 0.75 * var(--font-size) );
+        line-height: calc( 1 * var(--font-size) );
+        position: absolute;
+        right: calc(1.7 * var(--font-size) );
+        // left: calc( -3.25 * var(--font-size) );
+        display: block;
+        color: $bfPrimary;
+        font-weight: 500;
+        background: $bfWhite;
+        white-space: nowrap;
+        transition: $transition;
+    }
+}

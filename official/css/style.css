@@ -824,7 +824,7 @@ footer.inpage_fixed {
 .floatingBtn button span.alert:after {
   content: "";
   position: absolute;
-  top: 100%;
+  top: calc(100% - 1px);
   right: 0.75rem;
   background-color: #e72e6b;
   width: 1.25rem;

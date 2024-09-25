@@ -1,0 +1,79 @@
+
+.alert {
+    padding: calc( .625 * var(--font-size) );
+    font-size: calc( 0.875 * var(--font-size) );
+    line-height: calc( 1.25 * var(--font-size) );
+    vertical-align: middle;
+    font-weight: bold;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: calc( .5 * var(--font-size) );
+    margin: calc( .5 * var(--font-size) ) 0;
+    .img, .material-icons {
+        margin-right: calc( .25 * var(--font-size) );
+        margin-top: calc( -.05 * var(--font-size) ); 
+    }
+}
+.alert-disabled {
+    background: $bfSoftWhite;
+    color: $bfMediumGray;
+} 
+
+.alert-primary {
+    background: $bfVeryLightPrimary;
+    color: $bfPrimary;
+} 
+
+.alert-bar {
+    position: fixed;
+    z-index: 99996;
+    top: calc( 3 * var(--font-size) );
+    left: calc( 1 * var(--font-size) );
+    right: calc( 1 * var(--font-size) );
+    padding: calc( .75 * var(--font-size) ) calc( 2 * var(--font-size) ) calc( .75 * var(--font-size) ) calc( .75 * var(--font-size) );
+    background: $bfWhite;
+    border-radius: calc( .5 * var(--font-size) );
+    border-left-width: calc( .5 * var(--font-size) );
+    border-left-style: solid;
+    border-left-color: $bfWarning;
+    box-shadow: 0px calc( .25 * var(--font-size) ) calc( .625 * var(--font-size) ) rgba(173, 173, 173, 0.2);
+    font-size: calc( 0.875 * var(--font-size) );
+    line-height: calc( 1.5 * var(--font-size) );
+    vertical-align: middle;
+    &[data-state="warning"] {
+        padding-left: calc( 2.25 * var(--font-size) );
+        background-image: url('./../img/icon/ic-warning-s-seca.png');
+        background-repeat: no-repeat;
+        background-size: calc( 1.5 * var(--font-size) );
+        background-position: top calc( .75 * var(--font-size) ) left calc( .625 * var(--font-size) );
+    }
+    &[data-state="error"],&[data-state="danger"] {
+        padding-left: calc( 2.25 * var(--font-size) );
+        border-left-color: $bfDanger;
+        background-image: url('./../img/icon/ic-danger-s-danger.png');
+        background-repeat: no-repeat;
+        background-size: calc( 1.5 * var(--font-size) );
+        background-position: top calc( .75 * var(--font-size) ) left calc( .625 * var(--font-size) );
+    }
+    &[data-state="info"] {
+        padding-left: calc( 2.25 * var(--font-size) );
+        border-left-color: $bfSecondaryB;
+        background-image: url('./../img/icon/ic-info-s-secb.png');
+        background-repeat: no-repeat;
+        background-size: calc( 1.5 * var(--font-size) );
+        background-position: top calc( .75 * var(--font-size) ) left calc( .625 * var(--font-size) );
+    }
+    .close {
+        width: var(--font-size);
+        position: absolute;
+        padding: calc( 0 * var(--font-size) ) calc( 0.25 * var(--font-size) );
+        width: calc( 2 * var(--font-size) );
+        height: calc( 2 * var(--font-size) );
+        right: calc( 0 * var(--font-size) );
+        top: calc( 0.5 * var(--font-size) );
+        background-image: url('./../img/icon/ic-close-s-dark.png');
+        background-repeat: no-repeat;
+        background-size: calc( 1 * var(--font-size) );
+        background-position:center;
+    }
+}
