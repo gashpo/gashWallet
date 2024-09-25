@@ -1,0 +1,197 @@
+.floatingBtn {
+  width: size(640);
+  display: table;
+  margin: 0 auto;
+  position: fixed;
+  bottom: size(52);
+  left: 0;
+  right: 0;
+  padding: size(16) size(24);
+  border-radius: size(12);
+  background-color: color(white);
+  box-shadow: 0 0 size(20) 0 rgba(color(gray-4), 0.7);
+  opacity: 0;
+  visibility: hidden;
+  animation: showBtn 0.5s linear forwards;
+  animation-delay: 0.5s;
+  z-index: 10;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: size(12);
+
+    li {
+      position: relative;
+      flex: 1;
+
+      &.ic-trade-parent {
+        flex: 0;
+      }
+    }
+  }
+
+  button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: size(8);
+    font-size: size(16);
+    font-weight: 400;
+
+    &::before {
+      font-family: "icomoon";
+      font-size: size(20);
+    }
+
+    &.ic-trade {
+      width: auto;
+      min-width: auto;
+      padding: size(2) size(16);
+      color: #2b3843;
+      background-color: transparent;
+      flex-direction: column;
+      gap: 0;
+      font-size: size(11);
+      border-color: transparent;
+
+      &::before {
+        content: "\e912";
+        font-size: size(24);
+      }
+    }
+
+    span.alert {
+      position: absolute;
+      font-size: size(12);
+      color: color(white);
+      background-color: #e72e6b;
+      padding: size(4) size(8);
+      border-radius: size(4);
+      bottom: calc(100% + size(6));
+      left: 50%;
+      transform: translate(calc(-100% - 32px), 0);
+      min-width: max-content;
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        right: size(12);
+        background-color: #e72e6b;
+        width: size(20);
+        height: size(16);
+        clip-path: polygon(0 0, 100% 75%, 75% 0);
+      }
+    }
+  }
+
+  @keyframes showBtn {
+    0% {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    100% {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  @include max-to(pad) {
+    width: 100svw;
+    bottom: 0;
+    border-radius: 0;
+    padding: size(20);
+
+    &.mission {
+      bottom: size(40);
+      padding: size(8) size(16);
+    }
+  }
+}
+
+.mask {
+  width: 100dvw;
+  height: 100dvh;
+  background-color: rgba(color(black), 0.75);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.assemble {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+
+  ul {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: size(8);
+    font-size: size(16);
+    font-weight: 500;
+    color: color(white);
+    white-space: nowrap;
+  }
+
+  button {
+    min-width: size(54);
+    width: size(54);
+    height: size(54);
+    padding: 0;
+    border-radius: size(100);
+    background-color: color(white);
+    transition: all 0.3s;
+    border-color: transparent !important;
+
+    &::before {
+      color: color(soft-black);
+      font-size: size(24);
+    }
+
+    &.sale::before {
+      content: "\e90d";
+    }
+
+    &.exchange::before {
+      content: "\e90b";
+    }
+
+    &.give::before {
+      content: "\e90c";
+    }
+
+    &.close::before {
+      content: "\e913";
+    }
+
+    &.convert::before {
+      content: "\e920";
+    }
+
+    &.setting::before {
+      content: "\e91a";
+    }
+
+    @include hover {
+      transition: all 0.3s;
+      box-shadow: 0 0 size(20) 0 rgba(color(gray-4), 0.5);
+      background-color: color(soft-white);
+    }
+  }
+}

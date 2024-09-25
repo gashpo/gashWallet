@@ -1,0 +1,42 @@
+.toastBox {
+    display: flex;
+    max-width: max-content;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    gap: size(8);
+    padding: size(8) size(28);
+    margin: 0 auto;
+    border-radius: size(8);
+    color: color(white);
+    background-color: color(soft-black);
+    position: fixed;
+    top: -40px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+
+    p {
+        color: color(white);
+    }
+
+    &.ic-true,
+    &.ic-false {
+        &::before {
+            font-size: size(20);
+        }
+    }
+
+    &.ic-true {
+        &::before {
+            @include icon-fonts('icomoon', 'e907');
+        }
+    }
+
+    &.ic-false {
+        &::before {
+            @include icon-fonts('icomoon', 'e908');
+        }
+    }
+}

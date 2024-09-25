@@ -1,0 +1,33 @@
+.tags {
+    padding: size(20) 0;
+    width: 100%;
+    overflow-x: auto;
+    background-color: color(white);
+
+    >ul {
+        display: flex;
+        gap: size(12);
+        width: auto;
+
+        >li {
+            border-radius: size(4);
+            font-size: size(14);
+            line-height: size(20);
+            padding: size(4) size(8);
+            cursor: pointer;
+            background-color: color(soft-white);
+            color: color(gray-10);
+            min-width: max-content;
+
+            &.active {
+                background-color: color(soft-black);
+                color: color(white);
+            }
+        }
+    }
+
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-track {
+        display: none;
+    }
+}

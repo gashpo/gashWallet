@@ -1,0 +1,28 @@
+.tab {
+    display: flex;
+    border-bottom: size(1) solid color(gray-2);
+    background-color: color(white);
+
+    >li {
+        height: size(49);
+        flex: 1;
+        padding: size(12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-bottom: size(3) solid transparent;
+        margin-bottom: size(-1);
+        font-size: size(15);
+        color: color(gray-10);
+
+        &.active {
+            color: color(soft-black);
+            border-color: color(primary);
+        }
+
+        @include hover {
+            color: color(soft-black);
+        }
+    }
+}

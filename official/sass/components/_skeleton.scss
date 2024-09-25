@@ -1,0 +1,124 @@
+.skeleton {
+    display: flex;
+    width: calc(100svw - size(160) - size(160));
+    height: calc(100svh - size(106));
+    gap: size(40);
+    background-color: color(white);
+    // position: fixed;
+    z-index: 99;
+
+    @include max-to(pad) {
+        width: calc(100svw - size(20) - size(20));
+        flex-direction: column;
+        // position: fixed;
+    }
+
+    .point-info {
+        @include max-to(pad) {
+            width: calc(100svw - size(20) - size(20));
+        }
+
+        .point-title {
+            p {
+                height: size(20);
+            }
+
+            h2 {
+                width: size(112);
+                height: size(48);
+            }
+        }
+
+        .point-detail {
+            flex-direction: column;
+            gap: size(8);
+
+            >div {
+                flex: auto;
+                height: size(24);
+            }
+        }
+
+        .index-note {
+            height: size(62);
+            padding: 0;
+            border-radius: 0;
+            background: color(gray-5);
+        }
+    }
+
+    .records {
+        .tab {
+            padding-top: size(48);
+
+            li {
+                height: size(3);
+                padding: 0;
+                border: none;
+            }
+        }
+
+        .tags {
+            li {
+                width: size(72);
+                height: size(28);
+                padding: 0;
+            }
+
+        }
+
+        .latest-list {
+            li {
+                .item-img {
+                    width: size(70);
+                    height: size(70);
+                    border-radius: size(12);
+                }
+
+                .item-info {
+                    width: 100%;
+
+                    .item-title {
+                        width: 100%;
+                        height: size(24);
+                    }
+
+                    .item-date {
+                        width: 100%;
+                        height: size(17);
+                    }
+                }
+            }
+        }
+    }
+
+    .loading {
+        width: 100%;
+        overflow: hidden;
+        background: color(gray-5);
+        position: relative;
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: -10%;
+            width: 50%;
+            height: 120%;
+            background-image: linear-gradient(to right, color(gray-5), color(gray-3));
+            transform: skew(-30deg);
+            animation: loading infinite 2s ease;
+        }
+    }
+
+}
+
+@keyframes loading {
+    0% {
+        left: -50%;
+    }
+
+    100% {
+        left: 110%;
+    }
+}

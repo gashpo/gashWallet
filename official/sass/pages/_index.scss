@@ -1,0 +1,261 @@
+.container.index {
+  padding: size(106) size(160) size(88);
+  display: flex;
+  flex-wrap: wrap;
+  gap: size(40);
+
+  @include max-to(pad) {
+    padding: size(160) size(20) size(24);
+    gap: size(20);
+    flex-direction: column;
+  }
+}
+
+.point-info {
+  flex: 1;
+  align-self: flex-start;
+  position: sticky;
+  top: size(128);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: size(8);
+  background-color: color(white);
+  border-radius: size(12);
+  padding: size(20);
+  box-shadow: 0 0 size(20) color(gray-4);
+
+  .point-title {
+    display: flex;
+    flex-wrap: wrap;
+    gap: size(4);
+    align-items: flex-end;
+    justify-content: center;
+
+    p {
+      flex: 100%;
+    }
+  }
+
+  .point-detail {
+    display: flex;
+    padding: size(12) 0;
+
+    div {
+      flex: 1;
+      text-align: center;
+
+      & + div {
+        border-left: size(1) solid color(gray-5);
+      }
+    }
+  }
+
+  .index-note {
+    background-color: color(soft-white);
+    padding: size(12);
+    border-radius: size(12);
+    font-size: size(14);
+    text-align: left;
+
+    p {
+      color: color(gray-8);
+    }
+
+    .info {
+      display: flex;
+      align-items: center;
+      gap: size(4);
+
+      &::before {
+        @include icon-fonts("icomoon", "e916");
+      }
+    }
+  }
+
+  @include max-to(pad) {
+    width: 100%;
+    position: inherit;
+    flex-grow: 0;
+  }
+}
+
+.records {
+  flex: 1;
+
+  .tab {
+    position: sticky;
+    top: size(80);
+    transition-property: top;
+  }
+
+  .tags {
+    position: sticky;
+    top: size(119);
+  }
+
+  .empty {
+    display: flex;
+    width: 100%;
+    min-height: 300px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+
+    p {
+      text-align: center;
+      font-size: 0.9375rem;
+      color: #666;
+    }
+  }
+
+  .latest-list,
+  .history-list {
+    > li {
+      padding: size(16) 0;
+      // display: flex;
+      // gap: size(16);
+
+      &:not(:last-child) {
+        border-bottom: size(1) solid color(gray-2);
+      }
+
+      a {
+        display: flex;
+        gap: size(16);
+        border-bottom: none;
+        color: color(soft-black);
+      }
+    }
+  }
+
+  .latest-list {
+    .item-img {
+      flex-shrink: 0;
+      width: size(70);
+      margin-bottom: size(-4);
+
+      img {
+        border-radius: size(12);
+      }
+    }
+
+    .item-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: size(8);
+
+      .item-title {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+      }
+
+      .item-date {
+        font-size: size(12);
+        color: color(gray-8);
+      }
+    }
+  }
+
+  .history-list {
+    .item-info {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: size(8);
+
+      .item-cont {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .item-amount {
+          min-width: size(52);
+          text-align: right;
+
+          &.positive {
+            color: color(success);
+          }
+
+          &.negative {
+            color: color(error);
+          }
+        }
+      }
+
+      .item-serial {
+        display: flex;
+        align-items: center;
+        gap: size(8);
+        color: color(gray-10);
+        font-size: size(12);
+
+        span {
+          padding: size(2) size(4);
+          color: color(gray-10);
+          border-radius: size(4);
+          border: size(1) solid color(gray-10);
+        }
+
+        i {
+          font-size: size(20);
+          color: color(primary);
+          cursor: pointer;
+          transition-duration: 0s;
+
+          @include hover {
+            color: darken(color(primary), 5%);
+          }
+        }
+      }
+
+      .item-statusndate {
+        font-size: size(12);
+
+        span {
+          color: color(gray-8);
+
+          &:not(:last-child) {
+            padding-right: size(8);
+            margin-right: size(8);
+            border-right: size(1) solid color(gray-8);
+          }
+        }
+      }
+    }
+  }
+
+  @include max-to(pad) {
+    // .tab {
+
+    //     &::before,
+    //     &::after {
+    //         position: absolute;
+    //         content: '';
+    //         top: 0;
+    //         bottom: size(-70);
+    //         width: size(8);
+    //         background-color: color(white);
+    //     }
+
+    //     &::before {
+    //         right: calc(100% - size(1));
+    //     }
+
+    //     &::after {
+    //         left: calc(100% - size(1));
+    //     }
+    // }
+  }
+}
+
+.index-footer {
+  @include max-to(pad) {
+    margin-bottom: size(86);
+  }
+}

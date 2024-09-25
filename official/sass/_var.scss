@@ -1,0 +1,106 @@
+// RWD 斷點
+$breakpoints: (
+    pc: 1440px,
+    laptop: 1280px,
+    pad: 1024px,
+    small-pad: 768px,
+    mobile: 516px,
+    small-mobile: 320px,
+);
+
+@mixin max-to($key) {
+
+    // If the key exists in the map
+    @if map-has-key($breakpoints, $key) {
+
+        // Prints a media query based on the value
+        @media (max-width: map-get($breakpoints, $key)) {
+            @content;
+        }
+    }
+
+    // If the key doesn't exist in the map
+    @else {
+        @warn "Unfortunately, no value could be retrieved from `#{$key}`. "
+        +"Available breakpoints are: #{map-keys($breakpoints)}.";
+    }
+}
+
+
+
+// 色彩定義
+$colors: (
+    primary: #2B3843,
+    primary-dark: #15212C,
+    second: #ff9500,
+
+    white: #ffffff,
+    soft-white: #f7f7f7,
+    gray-1: #f0f0f0,
+    gray-2: #eff1f3,
+    gray-3: #eeeeee,
+    gray-4: #dde9f2,
+    gray-5: #dddddd,
+    gray-6: #cccccc,
+    gray-7: #b3b3b3,
+    gray-8: #999999,
+    gray-9: #959ba1,
+    gray-10: #666666,
+    gray-11: #333333,
+    soft-black: #2b3843,
+    black: #000000,
+
+    success: #29cc6a,
+    warning: #D49519,
+    error: #fc5555,
+);
+
+@function color($key) {
+    @return map-get($colors, $key);
+}
+
+
+
+// 尺寸
+@function size($key) {
+    @return calc($key / 16 * 1rem);
+}
+
+
+
+// 大網 hover
+@mixin hover {
+    @media (hover: hover) {
+        &:hover {
+            @content;
+        }
+    }
+}
+
+
+
+// 超連結顏色
+@mixin a-color($default: color(primary), $hover: color(primary-dark)) {
+    color: $default;
+    transition-property: color;
+    display: inline-block;
+    border-bottom: size(1) solid $default;
+    padding-bottom: 0;
+    text-decoration: none;
+
+    @include hover {
+        color: $hover;
+        border-bottom: size(1) solid $hover;
+    }
+}
+
+
+//解決 sass 轉譯壓縮 unicode 亂碼
+@mixin icon-fonts($name, $code) {
+    font-family: "#{$name}";
+    content: unquote("\"\\#{$code}\"");
+}
+
+.font-sm {
+    font-size: size(14);
+}

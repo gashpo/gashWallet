@@ -1,0 +1,161 @@
+header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: size(40);
+  text-align: center;
+  padding: size(16) 0;
+  background-color: color(white);
+  border-bottom: size(1) solid color(gray-1);
+  z-index: 11;
+
+  .cont {
+    padding: 0 size(160);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    @include max-to(pad) {
+      padding: 0 size(20);
+    }
+
+    .lateral {
+      min-width: size(62);
+
+      .btn {
+        min-width: auto;
+        padding: 0.5rem 1rem;
+        font-size: size(14);
+
+        &.loggedin {
+          color: color(primary);
+          border: 1px color(primary) solid;
+          background-color: color(white);
+        }
+      }
+    }
+
+    .center {
+      flex: auto;
+    }
+  }
+
+  &.hidden {
+    top: size(-70);
+
+    & + .container {
+      .point-info {
+        top: size(60);
+      }
+
+      .records {
+        .tab {
+          top: size(40);
+        }
+
+        .tags {
+          top: size(89);
+        }
+      }
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: size(4);
+    background-color: color(white);
+    border-top: size(1) solid color(gray-1);
+  }
+
+  @include max-to(pad) {
+    top: size(72);
+
+    &.hidden {
+      & + .container {
+        .records {
+          .tab {
+            top: size(72);
+          }
+
+          .tags {
+            top: size(121);
+          }
+        }
+      }
+    }
+  }
+}
+
+.breadcrumb {
+  display: flex;
+  gap: size(12);
+  height: max-content;
+  margin-bottom: size(20);
+  align-items: center;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: size(12);
+    color: color(gray-9);
+    font-size: size(13);
+    cursor: default;
+
+    a {
+      display: flex;
+      border: none;
+      color: color(gray-9);
+    }
+
+    &:not(:last-child) {
+      &::after {
+        font-family: "icon";
+        content: "\ea05";
+      }
+    }
+
+    &:last-child {
+      flex: 1;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      overflow: hidden;
+    }
+  }
+
+  @include max-to(mobile) {
+    gap: size(4) size(8);
+    flex-wrap: wrap;
+
+    li {
+      gap: size(8);
+    }
+  }
+}
+
+.container {
+  min-height: calc(100svh - size(46));
+}
+
+footer {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: size(16);
+  text-align: center;
+  font-size: size(13);
+  background-color: color(white);
+  color: color(gray-8);
+  border-top: size(1) solid color(gray-1);
+
+  &.inpage_fixed {
+    position: fixed;
+    bottom: 0;
+  }
+}

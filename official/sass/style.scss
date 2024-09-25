@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap");
+@import "var";
+@import "reset";
+@import "global";
+@import "layout";
+
+@import "components/tab";
+@import "components/tag";
+@import "components/floatingBtn";
+@import "components/toast";
+@import "components/modal";
+@import "components/step";
+@import "components/loading";
+@import "components/skeleton";
+@import "components/notice";
+
+@import "pages/index";
+@import "pages/topup";
+@import "pages/setting";
+@import "pages/convert";

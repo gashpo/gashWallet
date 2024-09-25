@@ -1,0 +1,71 @@
+.btn-load-more__dots {
+    display: block;
+
+    .btn-load-more__dot {
+        display: inline-block;
+        margin-right: calc(0.25rem / 2);
+        margin-left: calc(0.25rem / 2);
+        width: 0.25rem;
+        height: 0.25rem;
+        background-color: color(soft-black);
+        border-radius: 9px;
+        animation: ani-dot 1s infinite alternate;
+
+        &.dot-2 {
+            animation-delay: 0.12s;
+        }
+
+        &.dot-3 {
+            animation-delay: 0.24s;
+        }
+    }
+
+    @-webkit-keyframes ani-dot {
+        0% {
+            transform: scale(1);
+        }
+
+        100% {
+            transform: scale(0.3);
+        }
+    }
+}
+
+
+//發送驗證碼
+.btn-load-more {
+    display: none;
+    width: 102px;
+    height: 36px;
+    border-radius: 0 8px 8px 0;
+    background-color: color(soft-black);
+    background: none;
+    cursor: auto;
+    position: absolute;
+    top: .6rem;
+    right: 0;
+
+    &::after {
+        content: ' ';
+        display: block;
+        margin: 0 auto;
+        margin-top: 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .btn-load-more__dots {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+//btn
+.btn-load {
+    display: none;
+
+    .btn-load-more__dot {
+        margin-bottom: 5px;
+        background-color: color(white);
+    }
+}
